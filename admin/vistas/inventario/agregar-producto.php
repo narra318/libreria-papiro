@@ -16,7 +16,6 @@
     <link rel="shortcut icon" href="../../../img/icono2.png" type="image/ico" />
     <link rel="stylesheet" href="../../../css/custom.css">
     <link rel="stylesheet" href="../../../css/style2.css">
-    <script src="../../../js/bootstrap.bundle.min.js"> </script>
     <link href="../../../libs/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <script async src="https://www.google.com/recaptcha/api.js"></script>
     <style>
@@ -74,7 +73,8 @@
     </div>
 
     <div class="container-fluid justify-content-center">
-        <h1 id="Titulo3" class="text-center  ms-5 mt-5">Agregar producto</h1>
+        <h1 id="Titulo3" class="text-center ms-5 mt-5">Agregar producto</h1>
+        <p class="text-light text-center"> <i class="bi bi-danger"></i> Asegurese de revisar de antemano que la categoria, tematica y editorial ya esten registradas. </p>
 
         <div class="row justify-content-center">
             <div class=" col-md-6 p-5 justify-content-center">
@@ -217,22 +217,15 @@
 
             </div>
 
-            <!-- <span class="msg-error error"></span><div id="recaptcha" class="g-recaptcha" data-sitekey=""></div> -->
-
-            <div class="text-center m-4">
-                <input type="submit" class="btn btn-light border rounded" id="btn-agregar" name="btn-agregar" value="Agregar producto "></button>
-                <a type="button" id="regresar" name="regresar" onclick="history.back()" class="btn btn-light border border-light rounded"> Volver </a>
-            </div>
+                <div class="text-center m-4">
+                    <input type="submit" class="btn btn-light border rounded" id="btn-agregar" name="btn-agregar" value="Agregar producto "></button>
+                    <a type="button" id="regresar" name="regresar" onclick="history.back()" class="btn btn-light border border-light rounded"> Volver </a>
+                </div>
             </form>
-
-
         </div>
-
-
     </div>
 
-
-    
+    <script src="../../../js/bootstrap.bundle.min.js"> </script>
 </body>
 
 </html>

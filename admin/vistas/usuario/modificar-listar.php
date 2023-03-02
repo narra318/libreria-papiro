@@ -69,7 +69,6 @@
                     <th class="border border-info "> Nombre </th>
                     <th class="border border-info "> Apellido </th>
                     <th class="border border-info "> Correo </th>
-                    <th class="border border-info "> Pais </th>
                     <th class="border border-info ">  </th>
                 </tr>
             </thead>
@@ -78,12 +77,14 @@
         $con = new Configuracion;
         $conexion = $con->conectarDB();
 
+
+        // Como exceptuo los usuarios con un id especifico basandome en esta sentencia
         $sql = "SELECT usuario.idUsuario, usuario.nombreUsuario, usuario.apellidoUsuario, usuario.correoUsuario, 
             roles.rolUsuario, usuario.usuario, estado.estado, pais.nombrePais FROM usuario 
             INNER JOIN pais ON usuario.idPais = pais.idPais 
             INNER JOIN estado ON usuario.idEstado = estado.idEstado 
             INNER JOIN roles ON usuario.idRol = roles.idRol
-            -- WHERE usuario.idUsuario BETWEEN 1 AND 11
+            WHERE usuario.idUsuario NOT IN (1,2)
         ORDER BY usuario.idRol ASC LIMIT $limite;";
 
         $usuarios = mysqli_query($conexion, $sql);
@@ -96,7 +97,6 @@
             $nombre = $fila['nombreUsuario'];
             $apellido = $fila['apellidoUsuario'];
             $correo = $fila['correoUsuario'];
-            $pais = $fila['nombrePais'];
             
             echo "<tr class='linea bg-dark text-secondary bg-dark'>
             <td class='border border-info '> ".$idUsuario." </td>
@@ -106,14 +106,12 @@
             <td class='border border-info'> ".$nombre." </td>
             <td class='border border-info'> ".$apellido." </td>
             <td class='border border-info'> ".$correo." </td>
-            <td class='border border-info'> ".$pais." </td>
             <td class='border border-info' id='Link'> <a href='../../codigo/usuario/modificar.php?id=".$idUsuario."'> Editar <i class= 'bi bi-pencil'></i> </a> </td>
             </tr>";
-            
         }
     ?>
         </table>
-            <!-- <span id="Link"><a value="<?php // echo $in=11; $f=20; ?>" class="btn"> Página 2 </a></span> -->
+            <!-- Paginación -->
         </div>
     </div>
         <script>

@@ -59,8 +59,8 @@
             <div class=" col-md-12 justify-content-center">
 
                 <form action="../../codigo/inventario/categoria.php" class="p-5" method="POST" class="">
-                    <div class="form-floating">
-                        <input type="text" placeholder="Ingrese el nombre del producto" name="nueva-categoria" id="nueva-categoria" class="form-control bg-dark bg-opacity-75 text-light border-bottom border-light " required>
+                    <div class="form-floating mx-auto" style="width: 50%;">
+                        <input type="text" placeholder="Ingrese el nombre del producto" name="nueva-categoria" id="nueva-categoria" class="form-control bg-dark bg-opacity-75 mx-auto text-light border-bottom border-light" required>
                         <label for="nueva-categoria" class="text-light">Ingrese una nueva Categoria</label>
                     </div>
                     <div class="text-center m-4 mb-0">
@@ -69,10 +69,10 @@
                     </div>
                 </form>
 
-                <div class="container overflow-auto p-4 pt-0 text-white">
-                    <p> Las categorias actuales son: </p>
+                <div class="container overflow-auto p-4 pt-0 text-white"> <br>
+                    <p class="text-center fw-bold bg-dark w-25 mx-auto"> Las categorias actuales son: </p>
 
-                    <table class="table overflow-auto w- 50">
+                    <table class="table overflow-auto w-50 mx-auto">
                         <thead>
                             <tr class="text-white bg-info bg-opacity-75 text-center">
                                 <th class="border border-info"> ID </th>

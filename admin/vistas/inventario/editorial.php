@@ -57,7 +57,7 @@
             <div class=" col-md-12 p-5 justify-content-center">
 
                 <form action="../../codigo/inventario/editorial.php" method="POST" class="">
-                    <div class="form-floating m-4">
+                    <div class="form-floating m-4 mx-auto" style="width: 50%;">
                         <input type="text" placeholder="Ingrese el nombre del producto" name="nueva-editorial" id="nueva-editorial" class="form-control bg-dark bg-opacity-75 text-light border-bottom border-light " required>
                         <label for="nueva-editorial" class="text-light">Ingrese una nueva editorial</label>
                     </div>
@@ -67,9 +67,10 @@
                     </div>
                 </form>
                 <div class="container overflow-auto p-4 pt-0 text-white"> 
-                    <p> Las editoriales actuales son:  </p>
+                    <br><br>
+                    <p class="text-center fw-bold bg-dark w-25 mx-auto"> Las editoriales actuales son:  </p>
 
-                    <table class="table overflow-auto w- 50">
+                    <table class="table overflow-auto  w-50 mx-auto">
                         <thead>
                             <tr class="text-white bg-info bg-opacity-75 text-center"> 
                                 <th class="border border-info"> ID </th>

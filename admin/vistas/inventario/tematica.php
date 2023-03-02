@@ -52,12 +52,12 @@
         </div>
     </div>
     <div class="container-fluid justify-content-center">
-        <h1 id="Titulo3" class="text-center mt-5">agregar tematica</h1>
+        <h1 id="Titulo3" class="text-center mt-5">Agregar tematica</h1>
         <div class="row justify-content-center">
             <div class=" col-md-12 p-5 justify-content-center">
 
-                <form action="../../codigo/inventario/tematica.php" method="POST" class="">
-                    <div class="form-floating m-4">
+                <form action="../../codigo/inventario/tematica.php" method="POST">
+                    <div class="form-floating m-4 mx-auto" style="width: 50%;">
                         <input type="text" placeholder="Ingrese el nombre del producto" name="nueva-tematica" id="nueva-tematica" class="form-control bg-dark bg-opacity-75 text-light border-bottom border-light " required>
                         <label for="nueva-tematica" class="text-light">Ingrese una nueva Tematica</label>
                     </div>
@@ -68,9 +68,10 @@
                 </form>
 
                 <div class="container overflow-auto p-4 pt-0 text-white"> 
-                    <p> Las tematicas actuales son:  </p>
+                    <br><br>
+                    <p class="text-center fw-bold bg-dark w-25 mx-auto"> Las tematicas actuales son:  </p>
 
-                    <table class="table overflow-auto">
+                    <table class="table overflow-auto w-50 mx-auto">
                         <thead>
                             <tr class="text-white bg-info bg-opacity-75 text-center"> 
                                 <th class="border border-info"> ID </th>

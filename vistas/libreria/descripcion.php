@@ -74,7 +74,7 @@
                             </table>
                         </div>
 
-                        <p class="card-text text-primary" style="text-align:justify;"><?php echo $row['descripcionLibro']; ?></p>
+                        <div class="card-text text-primary pt-2 pb-3" style="text-align:justify; color: #26111D;"><?php echo $row['descripcionLibro']; ?></div>
                         <p class="card-text" style="font-size:25px;"><span class="text-info"><b>Precio: $<?php echo number_format($row['precioLibro']); ?></b> </span></p>
                         <p class="card-text" style="font-size:25px;">  </p>
                         

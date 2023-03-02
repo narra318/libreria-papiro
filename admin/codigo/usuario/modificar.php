@@ -11,8 +11,7 @@
 
     $id = $_GET['id'];
     $sql = "SELECT usuario.idUsuario, usuario.nombreUsuario, usuario.apellidoUsuario, usuario.correoUsuario, 
-            roles.rolUsuario, usuario.idRol, usuario.usuario, usuario.idEstado, usuario.idPais, estado.estado, pais.nombrePais FROM usuario 
-            INNER JOIN pais ON usuario.idPais = pais.idPais 
+            roles.rolUsuario, usuario.idRol, usuario.usuario, usuario.idEstado, estado.estado FROM usuario 
             INNER JOIN estado ON usuario.idEstado = estado.idEstado 
             INNER JOIN roles ON usuario.idRol = roles.idRol 
         WHERE idUsuario='$id' LIMIT 21;";
@@ -28,9 +27,8 @@
         $nombre = $conexion->real_escape_string($_POST['nombreUsuario']);
         $apellido = $conexion->real_escape_string($_POST['apellidoUsuario']);
         $correo = $conexion->real_escape_string($_POST['correoUsuario']);
-        $pais = $conexion->real_escape_string($_POST['nombrePais']);
 
-        $actualiza = "UPDATE usuario SET nombreUsuario='".htmlentities($nombre)."', apellidoUsuario='".htmlentities($apellido)."', correoUsuario='".htmlentities($correo)."', idRol='$Rol', usuario='".htmlentities($usuario)."', idEstado='$Estado', idPais='$pais' WHERE idUsuario='$id'";
+        $actualiza = "UPDATE usuario SET nombreUsuario='".htmlentities($nombre)."', apellidoUsuario='".htmlentities($apellido)."', correoUsuario='".htmlentities($correo)."', idRol='$Rol', usuario='".htmlentities($usuario)."', idEstado='$Estado' WHERE idUsuario='$id'";
 
         $actualizar = $conexion->query($actualiza);
         $_SESSION["actualizado"] = "Se ha actualizado el usuario correctamente";
@@ -90,28 +88,9 @@
                         <label for="apellido" class="text-light">Apellido</label>
                     </div>
 
-
-
                     <div class="form-floating m-4">
                         <input type="email" value="<?php echo $dato['correoUsuario']; ?>" placeholder="Ingrese su correo" name="correoUsuario" id="correoUsuario" class="form-control bg-dark bg-opacity-75 text-light border-bottom border-light" required>
                         <label for="correo" class="text-light">Correo</label>
-                    </div>
-
-                    <div class="form-floating m-4">
-                        <select name="rolUsuario" id="rolUsuario" class="form-control bg-dark bg-opacity-50 text-light border-bottom border-light" required>
-                            <option value="<?php echo $dato['idRol']; ?>" selected="true"> <?php echo $dato['rolUsuario']; ?> </option>
-                            <?php
-                            $sql1 = "SELECT * from roles";
-                            $resultado_consulta_mysql = mysqli_query($conexion, $sql1);
-
-                            while ($fila = mysqli_fetch_array($resultado_consulta_mysql)) {
-                                $idRol = $fila['idRol'];
-                                $rol = $fila['rolUsuario'];
-                                echo "<option value='" . $idRol . "'> " . $rol  . "</option>";
-                            }
-                            echo "</select>";
-                            ?>
-                            <label for="">Rol</label>
                     </div>
                 </div>
 
@@ -138,23 +117,22 @@
                             <label for="pais">Estado</label>
                     </div>
 
-
+                    
                     <div class="form-floating m-4">
-                        <select name="nombrePais" id="nombrePais" class="form-control bg-dark bg-opacity-75 text-light border-bottom border-light" required>
-
-                            <option value="<?php echo $dato['idPais']; ?>" selected="true"> <?php echo $dato['nombrePais']; ?> </option>
+                        <select name="rolUsuario" id="rolUsuario" class="form-control bg-dark bg-opacity-50 text-light border-bottom border-light" required>
+                            <option value="<?php echo $dato['idRol']; ?>" selected="true"> <?php echo $dato['rolUsuario']; ?> </option>
                             <?php
-                            $sql3 = "SELECT * from pais";
-                            $resultado_consulta_mysql = mysqli_query($conexion, $sql3);
+                            $sql1 = "SELECT * from roles";
+                            $resultado_consulta_mysql = mysqli_query($conexion, $sql1);
 
                             while ($fila = mysqli_fetch_array($resultado_consulta_mysql)) {
-                                $idPais = $fila['idPais'];
-                                $nombrePais = $fila['nombrePais'];
-                                echo "<option value='" . $idPais . "' required> " . $nombrePais  . "</option>";
+                                $idRol = $fila['idRol'];
+                                $rol = $fila['rolUsuario'];
+                                echo "<option value='" . $idRol . "'> " . $rol  . "</option>";
                             }
                             echo "</select>";
                             ?>
-                            <label for="pais">Nombre del pais</label>
+                            <label for="">Rol</label>
                     </div>
                 </div>
 
