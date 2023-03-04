@@ -102,7 +102,7 @@
                     <div class="row m-4 ms-3 me-3">
                         <div class="col">
                             <div class="form-floating">
-                                <input type="text" placeholder="Ingrese el número de páginas" name="n-paginas" id="n-paginas" class="form-control bg-dark bg-opacity-75 text-light border-bottom border-light " required>
+                                <input type="number" placeholder="Ingrese el número de páginas" name="n-paginas" id="n-paginas" class="form-control bg-dark bg-opacity-75 text-light border-bottom border-light " required>
                                 <label for="n-paginas" class="text-light">Número de Páginas</label>
                             </div>
                         </div>

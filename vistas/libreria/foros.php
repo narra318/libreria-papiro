@@ -1,12 +1,12 @@
 <?php
     ob_start();
     session_start();
-    if(!isset($_SESSION['Status'])){
+    if (!isset($_SESSION['Status'])) {
         $_SESSION['Foro2'] = "<script> alert('Por favor inicie sesión para ver los foros'); </script>";
-        header('Location: ../usuario/');
+        header('Location: ../../vistas/usuario/index.php');
     }
-    
-    if(isset($_SESSION['Foro'])){
+
+    if (isset($_SESSION['Foro'])) {
         echo $_SESSION['Foro'];
         // header('Location: ../libreria/foros.php');
         unset($_SESSION["Foro"]);
@@ -15,6 +15,7 @@
 
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <title> Foros </title>
     <meta charset="UTF-8">
@@ -23,73 +24,113 @@
     <link rel="shortcut icon" href="../../img/icono2.png" type="image/ico" />
     <link rel="apple-touch-icon" href="../../img/icono2.png">
     <link rel="stylesheet" href="../../css/custom.css">
-    <script src="../../js/bootstrap.bundle.min.js"> </script>
     <link rel="stylesheet" href="../../css/style.css">
-    <link href ="../../libs/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="../../libs/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        #volver-a-foros {
+            display: none;
+        }
+
+        #barra-busqueda {
+            height: 50px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
+
 <body class="bg-secondary">
     <?php include '../../modules/menu-footer.php'; ?>
-    <?= menu("../.."); ?>
+    <?= menu("../../"); ?>
 
-    <?php 
-        if(isset($_SESSION['crearForo'])){
+    <?php
+        if (isset($_SESSION['crearForo'])) {
             echo '<div class="alert alert-success m-0 alert-dismissible fade show">
-                <button class="btn-close" type="button" data-bs-dismiss="alert"></button>
-                <strong> Exito:</strong> ';
+                    <button class="btn-close" type="button" data-bs-dismiss="alert"></button>
+                    <strong> Exito:</strong> ';
             echo $_SESSION["crearForo"];
             echo '</div>';
-            
+
             unset($_SESSION['crearForo']);
         }
-    
     ?>
-
-    
 
     <div class="container">
         <h1 id="Titulo1" class="mt-5 text-center"> Foros </h1>
         <p id="" class="mt-2 text-center text-info"> Sistema de Intercambio de libros </p>
 
-        <div class="text-end"><a type="button" href="../foros/formulario.php" class="btn btn-outline-primary border border-primary rounded"> Crear foro </a></div>
+        <div class="titulo-barra">
+            <?= BarraBusqueda() ?>
+        </div>
+        
+        <div class="foros-container" id="foros-container">
+            <div class="text-end mt-4"><a type="button" href="../../vistas/foros/formulario.php" class="btn btn-outline-primary border border-primary rounded"> Crear foro </a></div>
+            <table id="tabla-foros" class="table mt-5 mb-5" width="620px">
+                <tr>
+                    <th width="20px"> </th>
+                    <th width="200px"> Creador </th>
+                    <th width="300px">Libro</th>
+                    <th width="200px">Autor</th>
+                    <th width="100px">Respuestas</th>
+                </tr>
+                <?php
+                include "../../controller/conexion.php";
+                $con = new Configuracion;
+                $conexion = $con->conectarDB();
 
-        <table class="table mt-5 mb-5" width="620px">
-            <tr>
-                <th width="20px">  </th>
-                <th width="200px"> Creador </th>
-                <th width="300px">Libro</th>
-                <th width="200px">Autor</th>
-                <th width="100px">Respuestas</th>
-            </tr>
-        <?php 
-            include "../../controller/conexion.php";
-            $con = new Configuracion;
-            $conexion = $con->conectarDB();
+                $query = "SELECT * FROM foro 
+                INNER JOIN usuario ON foro.idUsuario = usuario.idUsuario
+                INNER JOIN estado ON foro.idEstado = estado.idEstado
+                WHERE foro.identificador = 0 AND estado.idEstado=1  ORDER BY id DESC";
+                $result = $conexion->query($query);
 
-            $query = "SELECT * FROM foro 
-            INNER JOIN usuario ON foro.idUsuario = usuario.idUsuario
-            INNER JOIN estado ON foro.idEstado = estado.idEstado
-            WHERE foro.identificador = 0 AND estado.idEstado=1  ORDER BY id DESC";
-            $result = $conexion->query($query);
-            
-            while($row = mysqli_fetch_array($result, MYSQLI_ASSOC)){
-                $id = $row['id'];
-                $idUsuario = $row['usuario'];
-                $titulo = $row['nombreLibro'];
-                $autor = $row['autorLibro'];
-                $fecha = $row['fecha'];
-                $respuestas = $row['respuestas'];
-                echo "<tr>";
+                while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                    $id = $row['id'];
+                    $idUsuario = $row['usuario'];
+                    $titulo = $row['nombreLibro'];
+                    $autor = $row['autorLibro'];
+                    $fecha = $row['fecha'];
+                    $respuestas = $row['respuestas'];
+                    echo "<tr>";
                     echo "<td> <a href='../foros/foro.php?id=$id'>Ver</a></td>";
                     echo "<td>$idUsuario</td>";
                     echo "<td>$titulo</td>";
                     echo "<td>$autor</td>";
                     echo "<td>$respuestas</td>";
-                echo "</tr>";
-            }
-        ?>
-        </table>
+                    echo "</tr>";
+                }
+                ?>
+            </table>
+        </div>
     </div>
 
-    <div><?= footer(); ?></div>
+    <div class="p-5" id="resultados">  </div>
+    <div class="p-5"> <a href="http://localhost/Libreria/vistas/libreria/foros.php" id="volver-a-foros">Volver a los foros</a>
+    </div>
+
+    <div> <?= footer(); ?> </div>
+    
+    <script src="../../js/bootstrap.bundle.min.js"> </script>
+    <script>
+        function buscar(){
+            var busqueda = document.getElementById('busqueda').value;
+
+            if (busqueda.trim() !== '') {
+                var xhttp = new XMLHttpRequest();
+                xhttp.onreadystatechange = function() {
+                    if (this.readyState == 4 && this.status == 200) {
+                        document.getElementById("resultados").innerHTML = this.responseText;
+                        document.getElementById("tabla-foros").style.display = "none";
+                        document.getElementById('volver-a-foros').style.display = 'inline';
+                    }
+                };
+                xhttp.open("GET", "buscar.php?busqueda=" + busqueda, true);
+                xhttp.send();
+            } else {
+                document.getElementById("busqueda").value = "";
+                document.getElementById("resultados").innerHTML = "";
+                document.querySelector(".tabla-foros").style.display = "none";
+            }
+        }
+    </script>
 </body>
 </html>

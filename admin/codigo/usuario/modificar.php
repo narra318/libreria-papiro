@@ -122,7 +122,7 @@
                         <select name="rolUsuario" id="rolUsuario" class="form-control bg-dark bg-opacity-50 text-light border-bottom border-light" required>
                             <option value="<?php echo $dato['idRol']; ?>" selected="true"> <?php echo $dato['rolUsuario']; ?> </option>
                             <?php
-                            $sql1 = "SELECT * from roles";
+                            $sql1 = "SELECT * from roles WHERE idRol='2' OR idRol='3';";
                             $resultado_consulta_mysql = mysqli_query($conexion, $sql1);
 
                             while ($fila = mysqli_fetch_array($resultado_consulta_mysql)) {
@@ -138,8 +138,8 @@
 
                 <div class="text-end m-4 mt-0 text-center">
                     <!-- <a class='btn btn-success' href='editarSocios.php?id=".$fila["idSocio"]."' > <i class='bi bi-pencil'></i> </a> -->
-                    <button type="submit" name="modificar" id="modificar" class="btn btn-outline-light border"> Modificar </button>
-                    <a type="button" name="regresar" id="regresar" class="btn btn-outline-light border" onclick="history.back()">Regresar</a>
+                    <button type="submit" name="modificar" id="modificar" class="btn btn-light border"> Modificar </button>
+                    <a type="button" name="regresar" id="regresar" class="btn btn-light border" onclick="history.back()">Regresar</a>
                 </div>
 
             </div>

@@ -140,4 +140,16 @@
 
       MENUADMIN;
     };
+
+    function BarraBusqueda(){
+      echo
+        <<<BarraBusqueda
+          <div class="col-md-8 mx-auto" id="barra-busqueda">
+            <form class="input-group mb-3" id="formulario" action="" method="get">
+                <input type="text" name="busqueda" id="busqueda" class="form-control" placeholder="Buscar" aria-describedby="btnBuscar">
+                <button type="button" id="btnBuscar" class="btn btn-primary " onclick="buscar()"> Buscar </button>
+            </form>
+          </div>
+        BarraBusqueda;
+    };
 ?>
