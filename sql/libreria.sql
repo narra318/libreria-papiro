@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 25-02-2023 a las 19:31:23
+-- Tiempo de generación: 16-03-2023 a las 11:25:04
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -53,6 +53,33 @@ INSERT INTO `categoria` (`idCategoria`, `categoria`) VALUES
 (9, 'poesia turca'),
 (2, 'Romance'),
 (11, 'siuu');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `clientes`
+--
+
+CREATE TABLE `clientes` (
+  `id` int(11) NOT NULL,
+  `idUsuario` int(11) NOT NULL,
+  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `phone` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
+  `ciudad` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
+  `address` text COLLATE utf8_unicode_ci NOT NULL,
+  `masInf` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  `status` enum('1','0') COLLATE utf8_unicode_ci NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `clientes`
+--
+
+INSERT INTO `clientes` (`id`, `idUsuario`, `name`, `phone`, `ciudad`, `address`, `masInf`, `created`, `modified`, `status`) VALUES
+(1, 3, 'ConfiguroWeb', '3022589741', 'Cali', 'Cali', '', '2022-02-17 08:21:25', '2018-02-17 08:21:25', '1'),
+(2, 1, 'Nikol Alexandra Ramírez Ramos', '3209549367', 'Tunja', 'Cr3 #23-20', 'Bloque 4 Apartamento 103', '2023-03-15 19:36:25', '2023-03-15 19:36:25', '1');
 
 -- --------------------------------------------------------
 
@@ -176,6 +203,62 @@ INSERT INTO `libro` (`idLibro`, `nombreLibro`, `autor`, `descripcionLibro`, `pre
 (25, 'Ma City', 'BTS', '   El lugar que más me gusta en el mundo\r\nNaturaleza y ciudad, lugares para construir\r\nPara mí, me gusta más el parque Lake que el río Han\r\nIncluso si eres pequeño, me abrazas tan plácidamente\r\nCuando se siente como si me fuera a olvidar de mis raíces\r\nEn ese lugar, encuentro el yo que se había desvanecido\r\nRecuerdo tu aroma y todo\r\nEres mi verano, otoño, invierno y cada primavera   ', 120000, 10, 1, '90', '2015', 58, 4, '20130613', 3, 1, '/img/1674325593.jpg'),
 (26, 'Inner Child', 'V', 'The smiling kid,\nThe child who used to just laugh brightly\nWhen I see you like that\nI keep laughing\n \nThe tingling sun and that summer&#039;s air\nThe grey-lit streets&#039; sounds that were so cold\nI draw in a breath and knock at your door', 109000, 5, 1, '210', '2020', 58, 2, '20200222', 4, 1, '/img/1674329922.jpg'),
 (27, 'Inner Child', 'Dennis', ' Libro de aventura por Dennis ', 156999, 10, 1, '583', '2023', 7, 2, '8923478789837329', 6, 1, '/img/1676379244.jpg');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `orden`
+--
+
+CREATE TABLE `orden` (
+  `id` int(11) NOT NULL,
+  `customer_id` int(11) NOT NULL,
+  `total_price` float(10,2) NOT NULL,
+  `created` datetime NOT NULL,
+  `modified` datetime NOT NULL,
+  `status` enum('1','0') COLLATE utf8_unicode_ci NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `orden`
+--
+
+INSERT INTO `orden` (`id`, `customer_id`, `total_price`, `created`, `modified`, `status`) VALUES
+(6, 1, 25.00, '2022-06-12 12:46:58', '2022-06-12 12:46:58', '1'),
+(7, 1, 40.00, '2022-06-12 13:08:08', '2022-06-12 13:08:08', '1'),
+(8, 1, 58000.00, '2023-03-15 17:07:50', '2023-03-15 17:07:50', '1'),
+(9, 2, 200630.00, '2023-03-15 20:33:41', '2023-03-15 20:33:41', '1'),
+(10, 2, 288087.00, '2023-03-15 21:54:31', '2023-03-15 21:54:31', '1'),
+(11, 2, 288087.00, '2023-03-15 21:58:28', '2023-03-15 21:58:28', '1'),
+(12, 2, 288087.00, '2023-03-15 21:58:33', '2023-03-15 21:58:33', '1'),
+(13, 2, 288087.00, '2023-03-15 22:04:00', '2023-03-15 22:04:00', '1');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `orden_articulos`
+--
+
+CREATE TABLE `orden_articulos` (
+  `id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `quantity` int(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `orden_articulos`
+--
+
+INSERT INTO `orden_articulos` (`id`, `order_id`, `product_id`, `quantity`) VALUES
+(1, 6, 2, 1),
+(2, 7, 3, 1),
+(3, 7, 4, 1),
+(4, 8, 1, 1),
+(5, 8, 4, 2),
+(6, 9, 18, 1),
+(7, 13, 7, 1),
+(8, 13, 6, 4);
 
 -- --------------------------------------------------------
 
@@ -508,7 +591,8 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`idUsuario`, `nombreUsuario`, `apellidoUsuario`, `correoUsuario`, `idRol`, `usuario`, `contrasenaUsuario`, `idEstado`, `idPais`) VALUES
 (1, 'Nikol', 'Ramírez', 'nikol@admin.com', 1, 'Nikol', 'HgLesw==', 1, 52),
-(5, 'Alexandra', 'Ramos', 'Alexandra@gmail.com', 2, 'Alexandra', 'HgLesw==', 1, 96),
+(2, 'Papiro', 'Libreria', 'libreriaPapiro@admin..com', 1, 'Papiro', 'HgLesw==', 1, 241),
+(3, 'Alexandra', 'Ramos', 'Alexandra@gmail.com', 2, 'Alexandra', 'HgLesw==', 1, 96),
 (6, 'Dennis', 'Morato', 'dennis@gmail.com', 2, 'Dennis', 'HwnctaM=', 1, 16),
 (7, 'Jessenia', 'Quintero', 'dennisquintero@gmail.com', 2, 'Jk', 'HwnctaPl', 1, 114),
 (8, 'N', 'R', 'nr@gmail.com', 2, 'nr', 'QEnes6Xndg==', 1, 52),
@@ -527,7 +611,10 @@ INSERT INTO `usuario` (`idUsuario`, `nombreUsuario`, `apellidoUsuario`, `correoU
 (34, '&lt;h1&gt; Nikol &lt;/h1&', '&lt;b&gt;  Ram&iacute;rez', 'noooooooooo@gmail.com', 3, 'Noooooooooooo', 'HgLesw==', 1, 13),
 (35, '&lt;h1&gt; Nikol &lt;/h1&', '&lt;b&gt;  Ram&iacute;rez', 'so@gmail.com', 3, 'soooo', 'HgLXtg==', 1, 10),
 (36, '&lt;h1&gt; Sexy &lt;/h1&a', '&lt;b&gt;  Nukim', 'sexynukim@gmail.com', 2, 'SexyNukim', 'HgLesw==', 1, 131),
-(37, 'Dennis', 'Morato', 'dennis23@gmail.com', 3, 'Dennis23', 'Hwnc', 1, 24);
+(37, 'Dennis', 'Morato', 'dennis23@gmail.com', 3, 'Dennis23', 'Hwnc', 1, 24),
+(38, 'Nikol', 'Ram&iacute;rez', 'nnnn@gmail.com', 3, 'Nnn', 'HgLesw==', 1, 241),
+(39, 'Alexandraa', 'Ramoss', 'Alexandraa@gmail.com', 3, 'Alexandraa', 'HgLesw==', 1, 241),
+(40, 'Alexandraa', 'Ramos', 'Alexandraaa@gmail.com', 3, 'Alexandraaa', 'HgLesw==', 1, 241);
 
 --
 -- Índices para tablas volcadas
@@ -539,6 +626,13 @@ INSERT INTO `usuario` (`idUsuario`, `nombreUsuario`, `apellidoUsuario`, `correoU
 ALTER TABLE `categoria`
   ADD PRIMARY KEY (`idCategoria`),
   ADD KEY `categoria` (`categoria`) USING BTREE;
+
+--
+-- Indices de la tabla `clientes`
+--
+ALTER TABLE `clientes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idUsuario` (`idUsuario`);
 
 --
 -- Indices de la tabla `editorial`
@@ -572,6 +666,20 @@ ALTER TABLE `libro`
   ADD KEY `idPais` (`idPais`),
   ADD KEY `idCategoria` (`idCategoria`),
   ADD KEY `libro` (`idEstado`);
+
+--
+-- Indices de la tabla `orden`
+--
+ALTER TABLE `orden`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `customer_id` (`customer_id`);
+
+--
+-- Indices de la tabla `orden_articulos`
+--
+ALTER TABLE `orden_articulos`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `order_id` (`order_id`);
 
 --
 -- Indices de la tabla `pais`
@@ -614,6 +722,12 @@ ALTER TABLE `categoria`
   MODIFY `idCategoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
+-- AUTO_INCREMENT de la tabla `clientes`
+--
+ALTER TABLE `clientes`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT de la tabla `editorial`
 --
 ALTER TABLE `editorial`
@@ -629,13 +743,25 @@ ALTER TABLE `estado`
 -- AUTO_INCREMENT de la tabla `foro`
 --
 ALTER TABLE `foro`
-  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT de la tabla `libro`
 --
 ALTER TABLE `libro`
-  MODIFY `idLibro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `idLibro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
+--
+-- AUTO_INCREMENT de la tabla `orden`
+--
+ALTER TABLE `orden`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT de la tabla `orden_articulos`
+--
+ALTER TABLE `orden_articulos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `pais`
@@ -659,11 +785,17 @@ ALTER TABLE `tematica`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- Restricciones para tablas volcadas
 --
+
+--
+-- Filtros para la tabla `clientes`
+--
+ALTER TABLE `clientes`
+  ADD CONSTRAINT `clientes_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `foro`
@@ -681,6 +813,18 @@ ALTER TABLE `libro`
   ADD CONSTRAINT `libro_ibfk_2` FOREIGN KEY (`idTematica`) REFERENCES `tematica` (`idTematica`),
   ADD CONSTRAINT `libro_ibfk_3` FOREIGN KEY (`idPais`) REFERENCES `pais` (`idPais`),
   ADD CONSTRAINT `libro_ibfk_4` FOREIGN KEY (`idCategoria`) REFERENCES `categoria` (`idCategoria`);
+
+--
+-- Filtros para la tabla `orden`
+--
+ALTER TABLE `orden`
+  ADD CONSTRAINT `orden_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `clientes` (`id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `orden_articulos`
+--
+ALTER TABLE `orden_articulos`
+  ADD CONSTRAINT `orden_articulos_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orden` (`id`) ON UPDATE CASCADE;
 
 --
 -- Filtros para la tabla `usuario`

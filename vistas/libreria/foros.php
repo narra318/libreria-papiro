@@ -1,16 +1,15 @@
 <?php
-    ob_start();
-    session_start();
-    if (!isset($_SESSION['Status'])) {
-        $_SESSION['Foro2'] = "<script> alert('Por favor inicie sesión para ver los foros'); </script>";
-        header('Location: ../../vistas/usuario/index.php');
-    }
+ob_start();
+session_start();
+if (!isset($_SESSION['Status'])) {
+    $_SESSION['Foro2'] = "<script> alert('Por favor inicie sesión para ver los foros'); </script>";
+    header('Location: ../../vistas/usuario/index.php');
+}
 
-    if (isset($_SESSION['Foro'])) {
-        echo $_SESSION['Foro'];
-        // header('Location: ../libreria/foros.php');
-        unset($_SESSION["Foro"]);
-    }
+if (isset($_SESSION['Foro'])) {
+    echo $_SESSION['Foro'];
+    unset($_SESSION["Foro"]);
+}
 ?>
 
 <!DOCTYPE html>
@@ -43,15 +42,15 @@
     <?= menu("../../"); ?>
 
     <?php
-        if (isset($_SESSION['crearForo'])) {
-            echo '<div class="alert alert-success m-0 alert-dismissible fade show">
+    if (isset($_SESSION['crearForo'])) {
+        echo '<div class="alert alert-success m-0 alert-dismissible fade show">
                     <button class="btn-close" type="button" data-bs-dismiss="alert"></button>
                     <strong> Exito:</strong> ';
-            echo $_SESSION["crearForo"];
-            echo '</div>';
+        echo $_SESSION["crearForo"];
+        echo '</div>';
 
-            unset($_SESSION['crearForo']);
-        }
+        unset($_SESSION['crearForo']);
+    }
     ?>
 
     <div class="container">
@@ -61,7 +60,7 @@
         <div class="titulo-barra">
             <?= BarraBusqueda() ?>
         </div>
-        
+
         <div class="foros-container" id="foros-container">
             <div class="text-end mt-4"><a type="button" href="../../vistas/foros/formulario.php" class="btn btn-outline-primary border border-primary rounded"> Crear foro </a></div>
             <table id="tabla-foros" class="table mt-5 mb-5" width="620px">
@@ -73,25 +72,34 @@
                     <th width="100px">Respuestas</th>
                 </tr>
                 <?php
-                include "../../controller/conexion.php";
+
+                include_once "../../controller/conexion.php";
                 $con = new Configuracion;
                 $conexion = $con->conectarDB();
 
-                $query = "SELECT * FROM foro 
-                INNER JOIN usuario ON foro.idUsuario = usuario.idUsuario
-                INNER JOIN estado ON foro.idEstado = estado.idEstado
-                WHERE foro.identificador = 0 AND estado.idEstado=1  ORDER BY id DESC";
+                    $query = "SELECT s.idForo, f.idUsuario, f.nombreLibro , f.autorLibro, u.usuario, s.cantidad
+                    FROM usuario u, foro f, (SELECT  f.id as idForo,  COUNT(r.idForo) as cantidad
+                    FROM respuestas r RIGHT JOIN foro f ON  r.idForo = f.id
+                    WHERE f.idEstado = 1
+                    GROUP BY f.id
+                    ORDER BY id DESC) s 
+                    WHERE u.idUsuario = f.idUsuario
+                    AND s.idForo = f.id";
                 $result = $conexion->query($query);
-
+                
+                $conexion = $con->cerrarConexion();
+                unset($conexion);   
+                unset($con);
+     
+                
                 while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-                    $id = $row['id'];
+                    $id = $row['idForo'];
                     $idUsuario = $row['usuario'];
                     $titulo = $row['nombreLibro'];
                     $autor = $row['autorLibro'];
-                    $fecha = $row['fecha'];
-                    $respuestas = $row['respuestas'];
+                    $respuestas = $row['cantidad'];
                     echo "<tr>";
-                    echo "<td> <a href='../foros/foro.php?id=$id'>Ver</a></td>";
+                    echo "<td> <a href='../foros/foro.php?id=$id'>Ver</a></td>";    
                     echo "<td>$idUsuario</td>";
                     echo "<td>$titulo</td>";
                     echo "<td>$autor</td>";
@@ -103,15 +111,15 @@
         </div>
     </div>
 
-    <div class="p-5" id="resultados">  </div>
+    <div class="p-5" id="resultados"> </div>
     <div class="p-5"> <a href="http://localhost/Libreria/vistas/libreria/foros.php" id="volver-a-foros">Volver a los foros</a>
     </div>
 
     <div> <?= footer(); ?> </div>
-    
+
     <script src="../../js/bootstrap.bundle.min.js"> </script>
     <script>
-        function buscar(){
+        function buscar() {
             var busqueda = document.getElementById('busqueda').value;
 
             if (busqueda.trim() !== '') {
@@ -133,4 +141,5 @@
         }
     </script>
 </body>
+
 </html>

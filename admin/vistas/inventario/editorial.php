@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="../../../img/icono2.png" type="image/ico" />
     <link rel="stylesheet" href="../../../css/custom.css">
     <link rel="stylesheet" href="../../../css/style2.css">
-    <script src="../../../js/bootstrap.bundle.min.js"> </script>
+    <link rel="stylesheet" href="../../../css/jquery.dataTables.min.css">
     <link href="../../../libs/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <style>
         body {
@@ -27,7 +27,7 @@
     </style>
 </head>
 
-<body>
+<body class="bg-dark">
     <?php include '../../../modules/menu-footer.php'; ?>
     <?= menuAdmin("../../../"); ?>
 
@@ -66,11 +66,8 @@
                         <a type="button" id="regresar" name="regresar" onclick="history.back()" class="btn btn-light border border-light rounded"> Volver </a>
                     </div>
                 </form>
-                <div class="container overflow-auto p-4 pt-0 text-white"> 
-                    <br><br>
-                    <p class="text-center fw-bold bg-dark w-25 mx-auto"> Las editoriales actuales son:  </p>
-
-                    <table class="table overflow-auto  w-50 mx-auto">
+                <div class="container overflow-auto p-4 pt-0 w-50 text-white"> <br><br>
+                    <table class="table overflow-auto  mx-auto" id="tabla">
                         <thead>
                             <tr class="text-white bg-info bg-opacity-75 text-center"> 
                                 <th class="border border-info"> ID </th>
@@ -94,9 +91,21 @@
                         ?>
                     </table>
                 </div>
-
             </div>
         </div>
-</body>
+    </div>
 
+    <script src="../../../js/bootstrap.bundle.min.js"> </script>
+    <script src="../../../js/jquery-3.6.1.min.js"> </script>
+    <script src="../../../js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#tabla').DataTable({
+                paging: true,
+                ordering: true,
+                info: false,
+            });
+        });
+    </script>
+</body>
 </html>

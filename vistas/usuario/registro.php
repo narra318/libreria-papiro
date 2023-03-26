@@ -18,7 +18,7 @@
     <link rel="apple-touch-icon" href="../../img/icono2.png">
     <link rel="stylesheet" href="../../css/custom.css">
     <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link href ="../../libs/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="../../css/login_reg.css">
 </head>
 <body class="bg-secondary">

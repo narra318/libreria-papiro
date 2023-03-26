@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="../../../css/custom.css">
     <link rel="stylesheet" href="../../../css/style2.css">
     <link href ="../../../libs/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/jquery.dataTables.min.css">
     <style>
         body{
             background-image: url('../../../img/fondos/fondo-admin.jpg');
@@ -31,6 +32,13 @@
             text-decoration: none;
             color: white;
             font-size: 17px;
+        }
+        .dataTables_wrapper .dataTables_length,
+        .dataTables_wrapper .dataTables_filter {
+            color: transparent;
+            visibility: hidden;
+            display: none;
+            margin: 5px;
         }
 
     </style>
@@ -61,6 +69,7 @@
 
     <script src="../../../js/bootstrap.bundle.min.js"> </script>
     <script src="../../../js/jquery-3.6.1.min.js"> </script>
+    <script src="../../../js/jquery.dataTables.min.js"></script>
     <script>
         function listarUsuarios(consulta) {
             if(consulta == ""){
@@ -99,6 +108,12 @@
             });
             $(".linea").mouseout(function() {
                 $(this).attr("class", "bg-dark text-secondary bg-dark p-0");
+            });
+
+            $('#usuarios').DataTable({
+                paging: true,
+                ordering: true,
+                info: true,
             });
         })
     </script>

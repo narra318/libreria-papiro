@@ -1,24 +1,30 @@
 <?php
-//session_start();
+
 class Configuracion
 {
-    private $servidor;
-    private $user;
-    private $password;
 
-    function conectarDB()
+    public $con;
+
+    public function __construct()
     {
-        $servidor = "localhost";
-        $user = "root";
-        $password = "";
-        $database = "libreria";
-        $con = new mysqli($servidor, $user, $password, $database);
-        if ($con->connect_error) {
+        $this->con = new mysqli("localhost", "root", "", "libreria");
+    }
+
+
+    public function conectarDB()
+    {
+        if ($this->con->connect_error) {
             $_SESSION["ErrorDB"] = "No ha sido posible establecer la conexión con la base de datos";
         } else {
         }
-        return $con;
+        return $this->con;
+    }
+
+    public function cerrarConexion()
+    {
+        echo "<script>console.log('Debug Objects: " . "' );</script>";
+        return $this->con->close();
     }
 }
-// $conexion = new Configuracion();
-// $conexion->conectarDB();
+
+?>

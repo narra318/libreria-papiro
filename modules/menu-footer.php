@@ -1,33 +1,9 @@
 <?php
     function menu($img){
-      include($_SERVER['DOCUMENT_ROOT'].'/libreria/vistas/libreria/modal_cart.php');
-      // echo $_SERVER['DOCUMENT_ROOT'].'/libreria/vistas/libreria/modal_cart.php';
-
-      if(isset($_SESSION['carrito'])){
-        $carrito_mio = $_SESSION['carrito'];
-      }
-
-      if(isset($_SESSION['carrito'])){
-        for($i=0; $i <= count($carrito_mio)-1; $i ++){
-            if(isset($carrito_mio[$i])){
-              if($carrito_mio[$i]!=NULL){ 
-                if(!isset($carrito_mio['cantidad'])){$carrito_mio['cantidad'] = '0';}else{ $carrito_mio['cantidad'] = $carrito_mio['cantidad'];}
-                $total_cantidad = $carrito_mio['cantidad'];
-                $total_cantidad ++ ;
-                if(!isset($totalcantidad)){$totalcantidad = '0';}else{ $totalcantidad = $totalcantidad;}
-                $totalcantidad += $total_cantidad;
-            }
-          }
-        }
-      }
-
-      //declaramos variables
-      if(!isset($totalcantidad)){$totalcantidad = '0';}else{ $totalcantidad = $totalcantidad;}
-
     echo <<<EOT
         <nav class="navbar navbar-expand-sm bg-primary navbar-dark sticky-top border-bottom border-info p-2">
             <div class="container-fluid">
-                <a class="navbar-brand ms-2" href="http://localhost/Libreria/" target="_self"> <img src="$img/img/icono.svg" style="height:35px;" alt="Icono de mariposa" style="width: 100%; min-width: 20%"> </a>
+                <a class="navbar-brand ms-2" href="http://localhost/Libreria/" target="_self"> <img src="$img/img/icono.png" style="height:35px;" alt="Icono de mariposa" style="width: 100%; min-width: 20%"> </a>
                 <a class="navbar-brand" href="http://localhost/Libreria/" style="color: #b97f9f;"> Libreria Papiro ઇઉ </a>
             
                 <button class="navbar-toggler" aria-label="Boton del menu desplegable" type="button" data-bs-toggle="collapse" data-bs-target="#menuR"> 
@@ -37,8 +13,8 @@
                 <div class="collapse navbar-collapse justify-content-end" id="menuR">
                     <ul class="navbar-nav me-3">
                         <li class="nav-item"> <a class="nav-link me-2" href="http://localhost/Libreria/"> <i class="bi bi-house-heart me-1"> </i> Inicio </a> </li>
-                        <li class="nav-item"> <a class="nav-link me-2" href="http://localhost/Libreria/vistas/libreria/catalogo.php"> <i class="bi bi-journal-richtext me-1"> </i> Catálogo </a> </li>
                         <li class="nav-item"> <a class="nav-link me-2" href="http://localhost/Libreria/vistas/libreria/libreria.php"> <i class="bi bi-building me-1"> </i> Nosotros </a> </li>
+                        <li class="nav-item"> <a class="nav-link me-2" href="http://localhost/Libreria/vistas/libreria/catalogo.php"> <i class="bi bi-journal-richtext me-1"> </i> Catálogo </a> </li>
                         <li class="nav-item"> <a class="nav-link me-2" href="http://localhost/Libreria/vistas/libreria/foros.php"> <i class="bi bi-textarea-resize me-1"> </i> Foros </a> </li>
         EOT;   
 
@@ -49,22 +25,6 @@
           }
 
         echo <<<EOT
-                        <li>
-                          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                          </button>
-
-                          <div class="collapse navbar-collapse" id="navbarNavDropdown">
-                            <ul class="navbar-nav">
-                              <li class="nav-item">
-        EOT;
-                            echo '<a class="nav-link" data-bs-toggle="modal" data-bs-target="#modal_cart" style="cursor:pointer; background-color: #53213d; border-radius: 15%;"><i class="bi bi-cart"></i> &nbsp;'.$totalcantidad.'</a>';
-
-        echo <<<EOT
-                              </li>
-                            </ul>
-                          </div>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -76,8 +36,7 @@
 
     function footer(){
     echo <<<FOOTER
-        <footer class="footer-16371 bg-primary bg-opacity- 75">
-            <hr>
+        <footer class="footer-16371 bg-primary">
               <div class="container pt-3">
                 <div class="row justify-content-center">
                   <div class="col-md-9 text-center">
@@ -152,4 +111,30 @@
           </div>
         BarraBusqueda;
     };
+
+    function menuSide($status1,$status2,$status3,$status4, $img){
+      $van = $_SESSION['Status'];
+      echo
+          <<<MENU
+              <div class="d-flex flex-column flex-shrink-0 p-3 pb-0 text-white bg-primary" style=" width: 20vw; height: 100%;">
+              
+                  <img src="$img/img/iconoooo.png" alt="perrito con mariposas">
+                  <hr>
+                  <ul class="nav nav-pills flex-column mb-auto">
+                      <li class="nav-item menu-side">
+                          <a href="http://localhost/Libreria/vistas/usuario/logeado/" class="nav-link menuu text-white $status1"> Foros </a>
+                      </li>
+                      <li class="nav-item menu-side">
+                          <a href="http://localhost/Libreria/carrito/VerCarta.php" class="nav-link text-white $status2 menuu"> Carrito de compras </a>
+                      </li>
+                      <li class="nav-item menu-side">
+                          <a href="http://localhost/Libreria/carrito/compras.php" class="nav-link text-white $status3 menuu"> Compras </a>
+                      </li>
+                      <li class="nav-item menu-side">
+                          <a href="http://localhost/Libreria/carrito/infEnvio.php" class="nav-link text-white $status4 menuu"> Información de envio </a>
+                      </li>
+                  </ul>
+              </div>
+          MENU;
+      }
 ?>

@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="../../img/icono2.png" type="image/ico" />
     <link rel="apple-touch-icon" href="../../../img/icono2.png">
     <link rel="stylesheet" href="../../css/custom.css">
-    <link rel="stylesheet" href="../../../css/style2.css">
+    <link rel="stylesheet" href="../../css/style2.css">
     <script src="../../js/bootstrap.bundle.min.js"> </script>
     <link href ="../../libs/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <script async src="https://www.google.com/recaptcha/api.js"></script>
@@ -46,7 +46,7 @@
 <body>
     <?php include '../../modules/menu-footer.php'; ?>
     <?= menuAdmin("../.."); ?>
-<div class="container-fluid form-control bg-dark  bg-opacity-50" style="height: 100vh;">
+<div class="container-fluid">
     
         <p id="Titulo3" class="text-center p-5"> Bienvenid@ <br> ¿Que operación desea realizar? </p>
 

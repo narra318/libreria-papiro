@@ -17,8 +17,8 @@
     <link rel="shortcut icon" href="../../../img/icono2.png" type="image/ico" />
     <link rel="stylesheet" href="../../../css/custom.css">
     <link rel="stylesheet" href="../../../css/style2.css">
-    <script src="../../../js/bootstrap.bundle.min.js"> </script>
     <link href="../../../libs/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/jquery.dataTables.min.css">
     <style>
         body {
             background-image: url('../../../img/fondos/fondo-admin.jpg');
@@ -27,7 +27,7 @@
     </style>
 </head>
 
-<body>
+<body class="bg-dark">
     <?php include '../../../modules/menu-footer.php'; ?>
     <?= menuAdmin("../../../"); ?>
 
@@ -67,11 +67,11 @@
                     </div>
                 </form>
 
-                <div class="container overflow-auto p-4 pt-0 text-white"> 
+                <div class="container overflow-auto p-4 pt-0 text-white w-50"> 
                     <br><br>
-                    <p class="text-center fw-bold bg-dark w-25 mx-auto"> Las tematicas actuales son:  </p>
+                    <!-- <p class="text-center fw-bold bg-dark w-25 mx-auto"> Las tematicas actuales son:  </p> -->
 
-                    <table class="table overflow-auto w-50 mx-auto">
+                    <table class="table overflow-auto mx-auto" id="tabla">
                         <thead>
                             <tr class="text-white bg-info bg-opacity-75 text-center"> 
                                 <th class="border border-info"> ID </th>
@@ -97,6 +97,19 @@
                 </div>
             </div>
         </div>
+    </div>
+    
+    <script src="../../../js/bootstrap.bundle.min.js"> </script>
+    <script src="../../../js/jquery-3.6.1.min.js"> </script>
+    <script src="../../../js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#tabla').DataTable({
+                paging: true,
+                ordering: true,
+                info: false,
+            });
+        });
+    </script>
 </body>
-
 </html>

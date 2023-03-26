@@ -39,6 +39,14 @@
     <?php include '../../modules/menu-footer.php'; ?>
     <?= menu("../.."); ?>
 
+    <div class="mt-3">
+        <ul class="nav nav-pills justify-content-center">
+            <li role="presentation" class="active btn"><a href="../../index.php">Inicio</a></li>
+            <li role="presentation" class="btn"><a href="../../carrito/VerCarta.php">Carrito de Compras</a></li>
+            <li role="presentation" class="btn"><a href="../../carrito/Pagos.php">Pagar</a></li>
+        </ul>
+    </div>
+
     <div class="container-fluid text-light">
         <div class="row">
             <div class=" text-end mt-3">
@@ -74,7 +82,7 @@
                                             <small class="text"> ISBN: <?php echo $row['ISBN']; ?> </small></p>
                                             <p class="card-text"><span class="text-primary"><b>Precio: $<?php echo  number_format($row['precioLibro']); ?></b> </span></p>
 
-                                            <a type="button" href="descripcion.php?id=<?php echo $row['idLibro']; ?>" value="Ver más" class="btn btn-primary"> Ver más </a>
+                                            <a type="button" href="descripcion.php?id=<?php echo $row['idLibro']; ?>" value="Ver más" class="btn btn-primary"> Ver más </a><br><br>
                                         </div>
                                     </div>
                                 </div>

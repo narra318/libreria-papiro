@@ -7,7 +7,7 @@
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
     <title> Usuario </title>
     <meta charset="UTF-8">
@@ -17,20 +17,29 @@
     <link rel="shortcut icon" href="../../../img/icono2.png" type="image/ico" />
     <link rel="apple-touch-icon" href="../../../img/icono2.png">
     <link rel="stylesheet" href="../../../css/custom.css">
-    <script src="../../../js/bootstrap.bundle.min.js"> </script>
-    <script src="../../../js/jquery-3.6.1.min.js"> </script>
     <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="../../../css/login_reg.css">
     <link href ="../../../libs/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <!-- <style>
-        body{
-            background-image: url('../../../img/fondos/fondo3.jpg');
-            background-size: 100%;
+    <style>
+        .menu-side:hover{
+            color: #ffffff;
+            text-shadow: 0px 0px 20px #B9B4BF;
         }
-    </style> -->
+
+        .nav-pills .nav-link.active, .nav-pills .show > .nav-link{
+            background-color: #88456a;
+            color: #ffffff;
+            text-shadow: 0px 0px 10px #ffffff;
+        }
+    </style>
 </head>
 <body class="bg-secondary" onload="hora()">
     <?php include '../../../modules/menu-footer.php'; ?>
     <?= menu("../../.."); ?>
+
+    <div class="row me-0">
+        <div class="col-3"> <?=  menuSide("active", "","","","../../.."); ?> </div>
+        <div class="col-9 ms-0 contenido" style="height: 100vh; overflow: auto;">
 
     <div class="container">
     
@@ -45,29 +54,25 @@
         if (strtotime($hora) <= strtotime('12:00:00')){
             echo '<h3 class="text-start text-primary"> Buenos Días '.$_SESSION["Status"].' </h3>';
             echo "<p id='espacio' class='text-start'> <br>".$hora; echo "<br></p>";
-            // echo '<img src="./img/line20.gif" class="mt-4" alt="">';
 
         } elseif(strtotime($hora) <= strtotime('19:00:00')){
             echo '<h3 class="text-center text-primary"> Buenas Tardes '.$_SESSION["Status"].' </h3>';
             echo "<p id='espacio' class='text-center'> <br>".$hora; echo "<br></p>";
-            // echo '<img src="./img/summer23.gif" class="mt-4" alt="">';
             
         }elseif(strtotime($hora) <= strtotime('23:59:59')){
             echo '<h3 class="text-end text-primary"> Buenas Noches '.$_SESSION["Status"].' </h3>';
             echo "<p id='espacio' class='text-end'> <br>".$hora; echo "<br></p>";
-            // echo '<img src="./img/line25.gif" class="mt-4" alt="">';
 
         }
         
     ?>
     </div>
 <!-- Reloj Fin -->
-        <h2> Foros </h2>
+        <h2 id="Titulo1" class="text-center"> Foros </h2>
         <table class="table mt-5 mb-5 text-black" style="border: 1px solid purple;" width="620px">
             <thead class=" h4 text-center" id="tablac">
                 <th width="20px" style="border-right: 1px solid purple;" >  </th>
                 <th width="200px" style="border-right: 1px solid purple;" > Estado </th>
-                <!-- <th width="200px" style="border-right: 1px solid purple;" > Usuario </th> -->
                 <th width="300px" style="border-right: 1px solid purple;" >Libro</th>
                 <th width="200px" style="border-right: 1px solid purple;" >Autor</th>
                 <th width="100px" style="border-right: 1px solid purple;" >Respuestas</th>
@@ -105,8 +110,6 @@
         }
             echo "<td style='border-right: 1px solid purple;' > <a href='../../foros/foro.php?id=$id'>Ver</a></td>";
             echo "<td style='border-right: 1px solid purple;' >$estado</td>";
-            
-            // echo "<td style='border-right: 1px solid purple;' >$usuario</td>";
             echo "<td style='border-right: 1px solid purple;' >$titulo</td>";
             echo "<td style='border-right: 1px solid purple;' >$autor</td>";
             echo "<td style='border-right: 1px solid purple;' >$respuestas</td>";
@@ -118,9 +121,12 @@
         <div class="text-end mb-5"> 
             <a class="btn btn-primary rounded" type="button" href="../../../codigo/usuario/logout.php"> Cerrar Sesión </a>
         </div>
+    </div></div>
+ <?= footer(); ?>
     </div>
 
-<div class=""> <?= footer(); ?> </div> 
+    <script src="../../../js/bootstrap.bundle.min.js"> </script>
+    <script src="../../../js/jquery-3.6.1.min.js"> </script> 
     <script>
         function hora() {
             const fecha = new Date();

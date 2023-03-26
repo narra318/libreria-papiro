@@ -7,6 +7,11 @@
         unset($_SESSION["Foro2"]);
     }
 
+    if(isset($_SESSION['carritoIngreso'])){
+        echo $_SESSION['carritoIngreso'];
+        unset($_SESSION["carritoIngreso"]);
+    }
+
     if(isset($_SESSION["Status"])){
         header ('Location: ./logeado/index.php'); 
     }

@@ -16,7 +16,7 @@
 echo '<div class="container">
     <div class="row justify-content-center overflow-auto">
         <div class="col-md text-center text-white">
-            <table class="table bg-dark border border-primary bg-opacity-75 rounded mt-3">
+            <table class="table bg-dark border border-primary bg-opacity-75 rounded mt-3" id="usuarios">
                 <tr class="text-white bg-info bg-opacity-75"> 
                     <th class="border border-info"> ID </th>
                     <th class="border border-info"> Estado </th>
@@ -44,6 +44,12 @@ echo '<div class="container">
                     });
                     $(".linea").mouseout(function() {
                         $(this).attr("class", "bg-dark text-secondary bg-dark p-0");
+                    });
+
+                    $("#usuarios").DataTable({
+                        paging: true,
+                        ordering: true,
+                        info: true,
                     });
                 </script>';
            $stmt -> close();

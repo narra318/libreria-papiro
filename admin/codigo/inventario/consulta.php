@@ -21,36 +21,35 @@
         echo '<div class="container">
         <div class="row justify-content-center overflow-auto">
             <div class="col-md text-center text-white">
-                    <table class="table bg-dark border border-primary bg-opacity-75 rounded mt-3">
-                        <thead><tr class="text-white bg-info bg-opacity-50"> 
-                            <th class="border border-info"> ID </th>
-                            <th class="border border-info"> Nombre </th>
-                            <th class="border border-info"> Precio </th>
-                            <th class="border border-info"> Editorial </th>
-                            <th class="border border-info"> Paginas </th>
-                            <th class="border border-info"> Año </th>
-                            <th class="border border-info"> Pais </th>
-                            <th class="border border-info"> Tematica </th>
-                            <th class="border border-info"> ISBN </th>
-                            <th class="border border-info"> Categoria </th>
-                            <th class="border border-info"> Estado </th>
-                            <th class="border border-info"> Portada </th>
-                        </tr></thead>';            
+                <table class="table" id="productos">
+                    <thead>
+                        <tr class="text-white bg-info bg-opacity-75"> 
+                            <th class="border border-info" style="text-align: center;"> ID </th>
+                            <th class="border border-info" style="text-align: center;"> Estado </th>
+                            <th class="border border-info" style="text-align: center;"> Nombre </th>
+                            <th class="border border-info" style="text-align: center;"> Autor </th>
+                            <th class="border border-info" style="text-align: center;"> Precio </th>
+                            <th class="border border-info" style="text-align: center;"> Editorial </th>
+                            <th class="border border-info" style="text-align: center;"> Paginas </th>
+                            <th class="border border-info" style="text-align: center;"> ISBN </th>
+                            <th class="border border-info" style="text-align: center;"> Ver más </th>
+                            <th class="border border-info" style="text-align: center;"> Imagen </th>
+                        </tr>
+                    </thead>';            
                         
 
         while ($fila = mysqli_fetch_assoc($resultado)) {
+            $idLibro = $fila['idLibro'];
             echo "<tr class='linea bg-dark text-secondary'>
                     <td class='border border-info'> ".$fila['idLibro']." </td>
+                    <td class='border border-info'> ".$fila['estado']." </td>
                     <td class='border border-info'> ".$fila['nombreLibro']." </td>
+                    <td class='border border-info'> ".$fila['autor']." </td>
                     <td class='border border-info'> $".number_format($fila['precioLibro'])." COP </td>
                     <td class='border border-info'> ".$fila['nombreEditorial']." </td>
                     <td class='border border-info'> ".$fila['paginas']." </td>
-                    <td class='border border-info'> ".$fila['publicacion']." </td>
-                    <td class='border border-info'> ".$fila['nombrePais']." </td>
-                    <td class='border border-info'> ".$fila['tematica']." </td>
                     <td class='border border-info'> ".$fila['ISBN']." </td>
-                    <td class='border border-info'> ".$fila['categoria']." </td>
-                    <td class='border border-info'> ".$fila['estado']." </td>
+                    <td class='border border-info'> <a type='button' href='../../vistas/inventario/descripcion.php?id=$idLibro' value='Ver más' style='text-decoration: none; color: white;'> &nbsp;&nbsp; <i class='bi bi-eye'></i> &nbsp;&nbsp; </a> </td>
                     <td class='border border-info text-center'> <img src='../../codigo/inventario".$fila['img']."' alt='".$fila['nombreLibro']."' style='min-width: 50px; width: 50px; min-height: 50px;'>  </td>
                 </tr>";
         }
@@ -62,6 +61,12 @@
                 });
                 $(".linea").mouseout(function() {
                     $(this).attr("class", "bg-dark text-secondary bg-dark p-0");
+                });
+
+                $("#productos").DataTable({
+                    paging: true,
+                    ordering: true,
+                    info: true,
                 });
               </script>';
 

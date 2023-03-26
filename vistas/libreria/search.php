@@ -83,7 +83,7 @@
                             
                                 <div class="card-footer pb-4" style="background-color: transparent; border: transparent;">
                                     <div class="btn-group container-fluid">
-                                        <a class="btn fw-bold btn-primary bi bi-cart-plus rounded-pill btn-sm" type="button" href="#" class="producto"> Añadir </a> &nbsp; &nbsp; 
+                                        <a class="btn fw-bold btn-primary bi bi-cart-plus rounded-pill btn-sm producto" href="../../carrito/AccionCarta.php?action=addToCart&id=<?php echo $row["idLibro"]; ?>">Añadir </a> &nbsp; &nbsp; 
                                         <a class="btn fw-bold btn-primary bi bi-eye rounded-pill btn-sm" type="button" href="descripcion.php?id=<?php echo $row['idLibro']; ?>" class="producto"> Ver Producto </a>
                                     </div>
                                 </div>

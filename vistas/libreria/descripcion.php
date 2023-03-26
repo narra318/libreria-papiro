@@ -10,7 +10,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../img/icono2.png" type="image/ico" />
     <link rel="stylesheet" href="../../css/custom.css">
-    <script src="../../js/bootstrap.bundle.min.js"> </script>
     <link rel="stylesheet" href="../../css/style.css">
     <link href="../../libs/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
 </head>
@@ -38,7 +37,7 @@
             $resulset = $con->query($sql);
 
             while ($row = $resulset->fetch_assoc()) {
-                // echo "<script> document.getElementById('Titulo').innerHTML =".$row['nombreLibro']."</script>";
+                
             ?>
                 <h1 id="Titulo1" class="mt-5 mb-2 text-center"> <?php echo $row['nombreLibro']; ?> </h1>
                 <h2 id="Titulo4" class="mb-5 text-center"> <?php echo $row['autor']; ?> </h2>
@@ -87,8 +86,8 @@
                             <input type="hidden" name="cantidad" id="cantidad" value="1">
 
                             <div class="text-end">
-                                <a class="btn btn-outline-primary border border-primary" onclick="history.back()" type="button"> Volver </a>
-                                <button class="btn btn-primary" id="añadir" onclick="anadir()" type="submit">Añadir &nbsp; <i class="bi bi-cart-plus"></i> </button>
+                                <a class="btn btn-outline-primary border border-primary rounded" onclick="history.back()" type="button"> Volver </a>
+                                <a class="btn btn-primary rounded" href="../../carrito/AccionCarta.php?action=addToCart&id=<?php echo $row["idLibro"]; ?>">Añadir <i class="bi bi-cart-plus"></i> </a>
                             </div>
                         </form>
                     </div>
@@ -104,10 +103,6 @@
 
 
     <?= footer(); ?>
-    <script>
-        function anadir(){
-            document.getElementById('añadir').innerHTML = 'Añadido &nbsp; <i class="bi bi-cart-plus-fill"></i>';
-        }
-    </script>
+    <script src="../../js/bootstrap.bundle.min.js"> </script>
 </body>
 </html>
