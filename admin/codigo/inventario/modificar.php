@@ -23,20 +23,20 @@
     if(isset($_POST['modificar'])){
         
         $id= $_POST['id'];        
-        $idLibro = $conexion->real_escape_string($_POST['id']);
-        $nombre = $conexion->real_escape_string($_POST['nombreLibro']);
-        $autor = $conexion->real_escape_string($_POST['autor']);
-        $descripcion = $conexion->real_escape_string($_POST['descripcionLibro']);
-        $precio = $conexion->real_escape_string($_POST['precioLibro']);
-        $cantidad = $conexion->real_escape_string($_POST['cantidad']);
-        $editorial = $conexion->real_escape_string($_POST['nombreEditorial']);
-        $pag = $conexion->real_escape_string($_POST['paginas']);
-        $pub = $conexion->real_escape_string($_POST['publicacion']);
-        $pais = $conexion->real_escape_string($_POST['idPais']);
-        $tematica = $conexion->real_escape_string($_POST['tematica']);
-        $isbn = $conexion->real_escape_string($_POST['ISBN']);
-        $categoria = $conexion->real_escape_string($_POST['categoria']);
-        $estado = $conexion->real_escape_string($_POST['estado']);
+        $idLibro = $conexion->real_escape_string(htmlentities($_POST['id']));
+        $nombre = $conexion->real_escape_string(htmlentities($_POST['nombreLibro']));
+        $autor = $conexion->real_escape_string(htmlentities($_POST['autor']));
+        $descripcion = $conexion->real_escape_string(htmlentities($_POST['descripcionLibro']));
+        $precio = $conexion->real_escape_string(htmlentities($_POST['precioLibro']));
+        $cantidad = $conexion->real_escape_string(htmlentities($_POST['cantidad']));
+        $editorial = $conexion->real_escape_string(htmlentities($_POST['nombreEditorial']));
+        $pag = $conexion->real_escape_string(htmlentities($_POST['paginas']));
+        $pub = $conexion->real_escape_string(htmlentities($_POST['publicacion']));
+        $pais = $conexion->real_escape_string(htmlentities($_POST['idPais']));
+        $tematica = $conexion->real_escape_string(htmlentities($_POST['tematica']));
+        $isbn = $conexion->real_escape_string(htmlentities($_POST['ISBN']));
+        $categoria = $conexion->real_escape_string(htmlentities($_POST['categoria']));
+        $estado = $conexion->real_escape_string(htmlentities($_POST['estado']));
 
         $actualiza="UPDATE libro SET nombreLibro='$nombre', autor='$autor', descripcionLibro='$descripcion', precioLibro='$precio', cantidad='$cantidad', idEditorial='$editorial', paginas='$pag', publicacion='$pub', idPais='$pais', idTematica='$tematica', ISBN='$isbn', idCategoria='$categoria', idEstado='$estado' WHERE idLibro='$id'";
         
@@ -222,16 +222,10 @@
                             ?>
                         </select>
                     </div>
-
-                    <!-- <div class="form-floating m-4">
-                        <input type="file" name="imagen" id="imagen" class="form-control bg-dark bg-opacity-75 text-light border-bottom border-light" accept="image/*">
-                        <label for="imagen" class="text-light">Imagen</label>
-                    </div> -->
-
                 </div>
 
                 <div class="text-center m-4">
-                    <input type="submit" class="btn btn-light border rounded" id="modificar" name="modificar" value="Modificar"></button>
+                    <button type="submit" class="btn btn-light border rounded" id="modificar" name="modificar" value="Modificar"></button>
                     <a type="button" id="regresar" name="regresar" onclick="history.back()" class="btn btn-light border border-light rounded"> Volver </a>
                 </div>
             </form>

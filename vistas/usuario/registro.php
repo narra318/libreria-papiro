@@ -49,19 +49,19 @@
             <form role="form" name="registro" class="m-3" action="../../codigo/usuario/registro.php" method="post">
                 <div class="input-group">
                     <div class="form-floating m-4">
-                        <input type="text" placeholder="Ingrese su nombre" name="nombre" id="nombre" class="form-control bg-secondary bg-opacity-50 text-dark fw-semibold border-bottom border-primary" required>
+                        <input type="text" placeholder="Ingrese su nombre" name="nombre" id="nombre" class="form-control bg-secondary bg-opacity-50 text-dark fw-semibold border-bottom border-primary" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+(?:[ \t][a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+)*$" minlength="2" maxlength="25" required>
                         <label for="nombre" class="text-dark fw-semibold"> Nombre</label>
                     </div>
                     
                     <div class="form-floating m-4">
-                        <input type="text" placeholder="Ingrese su apellido" name="apellido" id="apellido" class="form-control bg-secondary bg-opacity-50 text-dark fw-semibold border-bottom border-primary" required>
+                        <input type="text" placeholder="Ingrese su apellido" name="apellido" id="apellido" class="form-control bg-secondary bg-opacity-50 text-dark fw-semibold border-bottom border-primary" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+(?:[ \t][a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+)*$" minlength="2" maxlength="25" required>
                         <label for="apellido" class="text-dark fw-semibold"> Apellido </label>
                     </div>    
                 </div>
 
                 <div class="input-group">
                     <div class="form-floating m-4">
-                        <input type="email"  placeholder="Ingrese su correo" name="correo" id="correo" class="form-control bg-secondary bg-opacity-50 text-dark fw-semibold border-bottom border-primary" required>
+                        <input type="email"  placeholder="Ingrese su correo" name="correo" id="correo" class="form-control bg-secondary bg-opacity-50 text-dark fw-semibold border-bottom border-primary" maxlength="50" required>
                         <label for="correo" class="text-dark fw-semibold"> <i class="bi bi-envelope"> &nbsp; </i> Correo</label>
                         <?php
                             if(isset($_SESSION["Correo"])){
@@ -75,7 +75,7 @@
                     </div>    
 
                     <div class="form-floating m-4">
-                        <input type="text" placeholder="Ingrese su usuario" name="usuario" id="usuario" class="form-control bg-secondary bg-opacity-50 text-dark fw-semibold border-bottom border-primary" required>
+                        <input type="text" placeholder="Ingrese su usuario" name="usuario" id="usuario" class="form-control bg-secondary bg-opacity-50 text-dark fw-semibold border-bottom border-primary" pattern="[A-Za-z0-9]+" maxlength="20" required>
                         <label for="usuario" class="text-dark fw-semibold">  <i class="bi bi-person"> &nbsp; </i> Usuario</label>
                         <?php
                             if(isset($_SESSION["user"])){
@@ -91,12 +91,12 @@
 
                 <div class="input-group">
                     <div class="form-floating m-4">
-                        <input type="password" placeholder="Ingrese su contraseña" name="pass" id="pass" class="form-control bg-secondary bg-opacity-75 text-dark fw-semibold border-bottom border-primary" required>
+                        <input type="password" placeholder="Ingrese su contraseña" name="pass" id="pass" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9]+(?:[ \t][a-zA-ZáéíóúÁÉÍÓÚñÑ0-9]+)*$" maxlength="25" class="form-control bg-secondary bg-opacity-75 text-dark fw-semibold border-bottom border-primary" required>
                         <label for="pass" class="text-dark fw-semibold">  <i class="bi bi-lock"> &nbsp; </i> Contraseña</label>
                     </div>
                     
                     <div class="form-floating m-4">
-                        <input type="password" placeholder="Ingrese su contraseña" name="pass2" id="pass2" class="form-control bg-secondary bg-opacity-75 text-dark fw-semibold border-bottom border-primary" required>
+                        <input type="password" placeholder="Ingrese su contraseña" name="pass2" id="pass2" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9]+(?:[ \t][a-zA-ZáéíóúÁÉÍÓÚñÑ0-9]+)*$" maxlength="25" class="form-control bg-secondary bg-opacity-75 text-dark fw-semibold border-bottom border-primary" required>
                         <label for="pass2" class="text-dark fw-semibold">  <i class="bi bi-lock-fill"> &nbsp; </i> Confirmar contraseña</label>
                     </div>    
                 </div>

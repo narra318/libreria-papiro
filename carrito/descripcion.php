@@ -1,7 +1,6 @@
 <?php ob_start(); session_start(); ?>
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
     <title> Información del pedido </title>
     <meta charset="UTF-8">
@@ -105,9 +104,9 @@
             <div class="overflow-auto p-4">
                     <table class="table border border-primary text-center text-primary">
                         <tr class="bg-info bg-opacity-50"> 
-                            <th class="border border-primary"> Usuario: </th> 
+                            <!-- <th class="border border-primary"> Usuario: </th>  -->
                             <th class="border border-primary"> Producto: </th> 
-                            <th class="border border-primary"> Orden id: </th> 
+                            <th class="border border-primary"> N° orden: </th> 
                             <th class="border border-primary"> Precio: </th> 
                             <th class="border border-primary"> Cant: </th> 
                             <th class="border border-primary"> Subtotal: </th> 
@@ -116,9 +115,9 @@
             <?php while ($row = $resulset->fetch_assoc()) { ?>
                 
                         <tr>
-                            <td class="border border-primary"> <?php echo $row['usuario']; ?> </td>
+                            <!-- <td class="border border-primary"> <?php  $row['usuario']; ?> </td> -->
                             <td class="border border-primary"> <?php echo $row['nombreLibro']; ?> </td>
-                            <td class="border border-primary"> #<?php echo $row['order_id']; ?> </td>
+                            <td class="border border-primary"> #APPR<?php echo $row['order_id']; ?> </td>
                             <td class="border border-primary"> $<?php echo number_format($row['precioLibro']); ?> COP </td>
                             <td class="border border-primary"> <?php echo $row['quantity']; ?> </td>
                             <td class="border border-primary"> $<?php echo number_format($row['precioLibro']*$row['quantity']); ?> COP </td>
@@ -132,8 +131,8 @@
 
 
 <?= footer(); ?>    </div>
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery-3.6.1.min.js"></script>
 </body>
 </html>

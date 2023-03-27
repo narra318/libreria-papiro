@@ -15,6 +15,19 @@
 
     $query = $db->query("SELECT * FROM clientes WHERE idUsuario = " . $_SESSION['idUsuario']);
     $custRow = $query->fetch_assoc();
+
+    
+    
+    include '../controller/conexion.php';
+    $conexion = new Configuracion();
+    $con = $conexion -> conectarDB();
+    $usuarioId = $_SESSION['idUsuario'];
+
+    $sql = "SELECT id, idUsuario, name, phone, ciudad, address, masInf FROM clientes 
+    WHERE idUsuario='$usuarioId';";
+
+    $infoEnv = $con->query($sql);
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -73,6 +86,13 @@
     <div class="row me-0">
         <div class="col-3"> <?=  menuSide("", "active","","","../"); ?> </div>
         <div class="col-9 ms-0 contenido" style="height: 100vh; overflow: auto;">
+        <?php
+            if (mysqli_num_rows($infoEnv) == 0) {  
+                $_SESSION['NoInfo'] = "Por favor agregue una dirección de envio.";
+                header("location: agregarInfo.php");
+            }else{ 
+        ?>
+
     <div class="container">
         <div class="panel panel-default">
             <div class="panel-body mt-5">
@@ -131,7 +151,7 @@
                 </div>
             </div>
         </div>
-        <!--Panek cierra-->
+        <!--Panek cierra--><?php } ?>
     </div></div><?= footer(); ?>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>

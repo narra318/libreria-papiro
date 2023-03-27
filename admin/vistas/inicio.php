@@ -18,9 +18,7 @@
     <link rel="apple-touch-icon" href="../../../img/icono2.png">
     <link rel="stylesheet" href="../../css/custom.css">
     <link rel="stylesheet" href="../../css/style2.css">
-    <script src="../../js/bootstrap.bundle.min.js"> </script>
     <link href ="../../libs/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-    <script async src="https://www.google.com/recaptcha/api.js"></script>
     <style>
         body{
             background-image: url('../../img/fondos/fondo-admin.jpg');
@@ -51,7 +49,12 @@
         <p id="Titulo3" class="text-center p-5"> Bienvenid@ <br> ¿Que operación desea realizar? </p>
 
         <div class="container justify-content-center ">
-        <div class="row mx-auto g-4">
+        
+        <div class="text-center d-grid m-5 mb-3 mt-3 mx-auto">
+            <a type="button" href="pedidos/" class="btn btn-dark bg-opacity-75 rounded p-3"> Ventas/Pedidos &nbsp; <i class="bi bi-table"></i> </a>
+        </div>
+        
+        <div class="row mx-auto g-4 mb-4">
             <div class="col-md-4">
                 <div class="card h-100 border-dark mb-3 bg-dark text-light rounded bg-opacity-75 p-4"">
                     <h4 class="card-header text-center"> Usuarios <i class="bi bi-person-rolodex ms-2"></i> </h4>
@@ -96,5 +99,7 @@
 
         
 </div>
+    <script src="../../js/bootstrap.bundle.min.js"> </script>
+    <script async src="https://www.google.com/recaptcha/api.js"></script>
 </body>
 </html>

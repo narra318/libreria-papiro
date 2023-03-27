@@ -37,7 +37,7 @@
         session_destroy();
     }
 ?>
-<body class="bg-info">
+<body class="bg-dark">
     <div class="container-fluid form-control bg-dark body bg-opacity-50" style="height: 100vh;">
 
         <div class="containerLoginAd p-5 mt-5 mb-5" style="width: 35em;">

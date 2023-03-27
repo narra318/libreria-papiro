@@ -82,6 +82,24 @@
 
         <div class="col-9 ms-0 sub-menu-cont" style="height: 100vh; overflow: auto;">
             <div class="container mt-5">
+                
+
+                <?php 
+                    if (mysqli_num_rows($orden) == 0) {  
+                        echo '
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <h1 class="text-center mt-5 mb-5" id="Titulo1">Pedidos  <i class="bi bi-bag"></i>  </h1>
+                            </div>
+                        </div>
+                        
+                        <p class="text-center text-dark h3"> No se han realizado pedidos...</p>
+                        
+                        <div class="text-center mt-4"><br><a href="../vistas/libreria/catalogo.php" class="btn btn-primary rounded"> Ir al catalogo &nbsp;&nbsp; <i class="bi bi-journal"></i></a></div>
+                        ';
+                    }else{ 
+                ?>
+                
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <h1 class="text-center mb-5" id="Titulo1"><i class="bi bi-bag"></i> Sus pedidos son:  </h1>
@@ -108,6 +126,7 @@
                                 </a>
                             CUADRO;
                         }
+                    }
                     ?>
             </div>
         </div>

@@ -12,7 +12,7 @@
         $buscar = mysqli_real_escape_string($con, $buscar);
     }
 
-    $registro_inicial = ($pagina_actual - 1) * $registros_por_pagina;
+    // $registro_inicial = ($pagina_actual - 1) * $registros_por_pagina;
 
     $consulta = "SELECT * FROM foro 
                 INNER JOIN usuario ON foro.idUsuario = usuario.idUsuario

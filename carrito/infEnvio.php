@@ -16,7 +16,6 @@
 
     $sql = "SELECT idUsuario, name, phone, ciudad, address, masInf FROM clientes WHERE idUsuario = '$usuarioId';";
 
-    // $sql = mysqli_real_escape_string($con, $sql);
     $infEnvio = $con->query($sql);
     
 ?>
@@ -65,43 +64,52 @@
     <div class="row me-0">
         <div class="col-3"> <?=  menuSide("", "","","active","../"); ?> </div>
         <div class="col-9 ms-0 contenido" style="height: 100vh; overflow: auto;">
-    <div class="container text-center p-5 h4">
-        <h1 class="text-center mb-5" id="Titulo1"> Su información de envio es: <i class="bi bi-send"></i> </h1>
-        <?php
-            while ($row = $infEnvio->fetch_assoc()) {
-        ?>
-        <span><p> Nombre: <?php echo $row['name'] ?></p></span>
-        <span><p> Telefono: <?php echo $row['phone'] ?></p></span>
-        <span><p> Dirección: <?php echo $row['address'] ?> | <?php echo $row['ciudad'] ?> </p></span>
-        <span><p> Más Info: <?php echo $row['masInf'] ?></p></span>
-        
-        <div class="text-center d-grid mt-5 mx-auto" style="padding-top: 60px; width: 50vw;"><button type="button" class="btn btn-primary rounded"> Editar &nbsp; <i class="bi bi-pencil-square"></i> </button></div>
-
-        <?php
-            } // endwhile
-        ?>
-    </div>
-</div>
-
-
-<?= footer(); ?>    </div>
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script>
-        function updateCartItem(obj, id) {
-            $.get("cartAction.php", {
-                action: "updateCartItem",
-                id: id,
-                qty: obj.value
-            }, function(data) {
-                if (data == 'ok') {
-                    location.reload();
-                } else {
-                    alert('Cart update failed, please try again.');
+            <?php
+                if(isset($_SESSION["actualizadoI"])){
+                    echo '<div class="alert alert-success m-0 alert-dismissible fade show text-center">
+                        <button class="btn-close" type="button" data-bs-dismiss="alert"></button>
+                        <strong> <i class="bi bi-cloud-check-fill"></i> </strong> &nbsp;';
+                    echo $_SESSION["actualizadoI"];
+                    echo '</div>';
+                    unset($_SESSION['actualizadoI']);
                 }
-            });
-        }
-    </script>
+
+                if(isset($_SESSION["creado"])){
+                    echo '<div class="alert alert-success m-0 alert-dismissible fade show text-center">
+                        <button class="btn-close" type="button" data-bs-dismiss="alert"></button>
+                        <strong> <i class="bi bi-cloud-check-fill"></i> </strong> &nbsp;';
+                    echo $_SESSION["creado"];
+                    echo '</div>';
+                    unset($_SESSION['creado']);
+                }
+
+                if (mysqli_num_rows($infEnvio) == 0) {  
+                    $_SESSION['NoInfo'] = "Por favor agregue una dirección de envio.";
+                    header("location: agregarInfo.php");
+                }else{ 
+            ?>
+            <div class="container text-center p-5 h4">
+                <h1 class="text-center mb-5" id="Titulo1"> Su información de envio es: <i class="bi bi-send"></i> </h1>
+                <?php
+                    while ($row = $infEnvio->fetch_assoc()) {
+                ?>
+                <span><p> Nombre: <?php echo $row['name'] ?></p></span>
+                <span><p> Telefono: <?php echo $row['phone'] ?></p></span>
+                <span><p> Dirección: <?php echo $row['address'] ?> | <?php echo $row['ciudad'] ?> </p></span>
+                <span><p> Más Info: <?php echo $row['masInf'] ?></p></span>
+                
+                <div class="text-center d-grid mt-5 mx-auto" style="padding-top: 60px; width: 50vw;"><a type="button" href="modInfoEnv.php" class="btn btn-primary rounded"> Editar &nbsp; <i class="bi bi-pencil-square"></i> </a></div>
+
+                <?php
+                    }} // endwhile
+                ?>
+            </div>
+        </div>
+    </div>
+
+    <?= footer(); ?>    
+    
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/jquery-3.6.1.min.js"></script>
 </body>
 </html>

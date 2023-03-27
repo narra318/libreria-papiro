@@ -87,6 +87,7 @@
       
               <div class="collapse navbar-collapse justify-content-end" id="menuR">
                   <ul class="navbar-nav me-3">
+                      <li class="nav-item"> <a class="nav-link me-2" href="http://localhost/Libreria/admin/vistas/pedidos/"> <i class="bi bi-bag-plus me-1"> </i> Pedidos </a> </li>
                       <li class="nav-item"> <a class="nav-link me-2" href="http://localhost/Libreria/admin/vistas/usuario/"> <i class="bi bi-person-rolodex me-1"> </i> Usuarios </a> </li>
                       <li class="nav-item"> <a class="nav-link me-2" href="http://localhost/Libreria/admin/vistas/inventario/"> <i class="bi bi-journals me-1"> </i> Inventario </a> </li>
       
@@ -118,7 +119,7 @@
           <<<MENU
               <div class="d-flex flex-column flex-shrink-0 p-3 pb-0 text-white bg-primary" style=" width: 20vw; height: 100%;">
               
-                  <img src="$img/img/iconoooo.png" alt="perrito con mariposas">
+                  <img src="$img/img/iconoooo.png"  alt="perrito con mariposas">
                   <hr>
                   <ul class="nav nav-pills flex-column mb-auto">
                       <li class="nav-item menu-side">
