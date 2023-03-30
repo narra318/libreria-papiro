@@ -1,4 +1,10 @@
-<?php ob_start(); session_start(); ?>
+<?php 
+    ob_start(); 
+    session_start(); 
+    if (!isset($_SESSION['Status'])) {
+        header('Location: ../index.php');
+    }
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -85,7 +91,10 @@
 
             ?>
             
-            <div class="mt-5 mb-2 "><a href="compras.php" class="btn btn-primary rounded" style="background-color: #53213d;">  <i class="bi bi-arrow-left"></i> </a></div>
+            <div class="mt-5 mb-2 ">
+                <a href="compras.php" class="btn btn-primary rounded" style="background-color: #53213d;">  <i class="bi bi-arrow-left"></i> </a>
+                <a href="factura.php?id=<?php echo $id ?>" class="btn btn-primary rounded" style="background-color: #53213d;" target="_blank"> Descargar factura  <i class="bi bi-arrow-down"></i> </a>
+            </div>
             <h1 id="Titulo1" class="mt-5 mb-2 text-center"> Información del pedido: </h1>
             
 

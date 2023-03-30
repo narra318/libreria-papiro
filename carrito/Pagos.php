@@ -146,7 +146,7 @@
                     <p class="text-uppercase">Más Inf: <?php echo $custRow['masInf']; ?></p>
                 </div>
                 <div class="footBtn mt-4">
-                    <a href="../vistas/libreria/catalogo.php" class="btn btn-primary rounded"><i class="glyphicon glyphicon-menu-left"></i> Volver al catalogo</a>
+                    <a href="verCarta.php" class="btn btn-primary rounded"><i class="glyphicon glyphicon-menu-left"></i> Volver </a>
                     <a href="AccionCarta.php?action=placeOrder" class="btn btn-primary rounded orderBtn">Realizar pedido <i class="glyphicon glyphicon-menu-right"></i></a>
                 </div>
             </div>

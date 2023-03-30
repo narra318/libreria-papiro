@@ -8,6 +8,7 @@ if (!isset($_SESSION['Status'])) {
 
 if (isset($_SESSION['Foro'])) {
     echo $_SESSION['Foro'];
+    // header('Location: ../libreria/foros.php');
     unset($_SESSION["Foro"]);
 }
 ?>
@@ -24,6 +25,7 @@ if (isset($_SESSION['Foro'])) {
     <link rel="apple-touch-icon" href="../../img/icono2.png">
     <link rel="stylesheet" href="../../css/custom.css">
     <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/jquery.dataTables.min.css">
     <link href="../../libs/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <style>
         #volver-a-foros {
@@ -33,6 +35,32 @@ if (isset($_SESSION['Foro'])) {
         #barra-busqueda {
             height: 50px;
             margin-top: 20px;
+        }
+
+        .dataTables_wrapper .dataTables_length,
+        .dataTables_wrapper .dataTables_filter {
+            color: transparent;
+            visibility: hidden;
+            display: none;
+            margin: 5px;
+        }
+
+        #tabla-foros {
+            border-collapse: collapse;
+        }
+
+        #tabla-foros th,
+        #tabla-foros td {
+            border: none;
+            padding: 10px;
+        }
+
+        #tabla-foros tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        #tabla-foros tr:nth-child(odd) {
+            background-color: #ffffff;
         }
     </style>
 </head>
@@ -56,26 +84,34 @@ if (isset($_SESSION['Foro'])) {
     <div class="container">
         <h1 id="Titulo1" class="mt-5 text-center"> Foros </h1>
         <p id="" class="mt-2 text-center text-info"> Sistema de Intercambio de libros </p>
-
-        <div class="titulo-barra">
-            <?= BarraBusqueda() ?>
+        <div id="crearForo" class="text-end mt-4 overflow-auto">
+            <a type="button" href="../../vistas/foros/formulario.php" class="btn btn-outline-primary border border-primary rounded">
+                Crear foro </a>
+        </div>
+        <div class="container mb-2">
+            <div class="form-floating mt-4">
+                <input type="text" class="form-control bg-white text-primary rounded text-center" name="buscar" id="buscar" placeholder=" ">
+                <label for="buscar" class="text-center text-info">Escriba el nombre o ISBN del libro</label>
+            </div>
         </div>
 
-        <div class="foros-container" id="foros-container">
-            <div class="text-end mt-4"><a type="button" href="../../vistas/foros/formulario.php" class="btn btn-outline-primary border border-primary rounded"> Crear foro </a></div>
-            <table id="tabla-foros" class="table mt-5 mb-5" width="620px">
-                <tr>
-                    <th width="20px"> </th>
-                    <th width="200px"> Creador </th>
-                    <th width="300px">Libro</th>
-                    <th width="200px">Autor</th>
-                    <th width="100px">Respuestas</th>
-                </tr>
-                <?php
+        <div class="container">
+            <div id="tablaForo">
+                <table id="tabla-foros" class="table overflow-auto">
+                    <thead>
+                        <tr>
+                            <th width="20px">  </th>
+                            <th width="200px"> Creador </th>
+                            <th width="300px">Libro</th>
+                            <th width="200px">Autor</th>
+                            <th width="100px">Respuestas</th>
+                        </tr>
+                    </thead>
+                    <?php
 
-                include_once "../../controller/conexion.php";
-                $con = new Configuracion;
-                $conexion = $con->conectarDB();
+                    include_once "../../controller/conexion.php";
+                    $con = new Configuracion;
+                    $conexion = $con->conectarDB();
 
                     $query = "SELECT s.idForo, f.idUsuario, f.nombreLibro , f.autorLibro, u.usuario, s.cantidad
                     FROM usuario u, foro f, (SELECT  f.id as idForo,  COUNT(r.idForo) as cantidad
@@ -85,61 +121,69 @@ if (isset($_SESSION['Foro'])) {
                     ORDER BY id DESC) s 
                     WHERE u.idUsuario = f.idUsuario
                     AND s.idForo = f.id";
-                $result = $conexion->query($query);
-                
-                $conexion = $con->cerrarConexion();
-                unset($conexion);   
-                unset($con);
-     
-                
-                while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
-                    $id = $row['idForo'];
-                    $idUsuario = $row['usuario'];
-                    $titulo = $row['nombreLibro'];
-                    $autor = $row['autorLibro'];
-                    $respuestas = $row['cantidad'];
-                    echo "<tr>";
-                    echo "<td> <a href='../foros/foro.php?id=$id'>Ver</a></td>";    
-                    echo "<td>$idUsuario</td>";
-                    echo "<td>$titulo</td>";
-                    echo "<td>$autor</td>";
-                    echo "<td>$respuestas</td>";
-                    echo "</tr>";
-                }
-                ?>
-            </table>
+                    $result = $conexion->query($query);
+
+                    $conexion = $con->cerrarConexion();
+                    unset($conexion);
+                    unset($con);
+
+
+                    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                        $id = $row['idForo'];
+                        $idUsuario = $row['usuario'];
+                        $titulo = $row['nombreLibro'];
+                        $autor = $row['autorLibro'];
+                        $respuestas = $row['cantidad'];
+                        echo "<tr>";
+                        echo "<td> <a href='../foros/foro.php?id=$id'>Ver</a></td>";
+                        echo "<td>$idUsuario</td>";
+                        echo "<td>$titulo</td>";
+                        echo "<td>$autor</td>";
+                        echo "<td>$respuestas</td>";
+                        echo "</tr>";
+                    }
+                    ?>
+                </table>
+            </div>
         </div>
     </div>
 
-    <div class="p-5" id="resultados"> </div>
-    <div class="p-5"> <a href="http://localhost/Libreria/vistas/libreria/foros.php" id="volver-a-foros">Volver a los foros</a>
+    <div class="p-5"> <a class="btn btn-primary" href="http://localhost/Libreria/vistas/libreria/foros.php" id="volver-a-foros">Volver a los foros</a>
     </div>
 
-    <div> <?= footer(); ?> </div>
+
 
     <script src="../../js/bootstrap.bundle.min.js"> </script>
+    <script src="../../js/jquery-3.6.1.min.js"> </script>
+    <script src="../../js/jquery.dataTables.min.js"></script>
     <script>
-        function buscar() {
-            var busqueda = document.getElementById('busqueda').value;
-
-            if (busqueda.trim() !== '') {
-                var xhttp = new XMLHttpRequest();
-                xhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("resultados").innerHTML = this.responseText;
-                        document.getElementById("tabla-foros").style.display = "none";
-                        document.getElementById('volver-a-foros').style.display = 'inline';
+        $(document).ready(function() {
+            //var busqueda = document.getElementById('busqueda').value;
+            var busqueda = $('#buscar')
+            var datos = $('#tablaForo')
+            busqueda.on('keyup', function() {
+                var valor = $(this).val();
+                console.log("TEST");
+                $.ajax({
+                    type: "get",
+                    url: "buscar.php",
+                    data: {
+                        parametro: valor
+                    },
+                    success: function(data) {
+                        datos.html(data);
                     }
-                };
-                xhttp.open("GET", "buscar.php?busqueda=" + busqueda, true);
-                xhttp.send();
-            } else {
-                document.getElementById("busqueda").value = "";
-                document.getElementById("resultados").innerHTML = "";
-                document.querySelector(".tabla-foros").style.display = "none";
-            }
-        }
+                });
+            });
+            $('#tabla-foros').DataTable({
+                paging: true,
+                ordering: true,
+                info: true
+
+            });
+        });
     </script>
+    <div> <?= footer(); ?> </div>
 </body>
 
 </html>

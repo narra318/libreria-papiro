@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-03-2023 a las 11:25:04
+-- Tiempo de generación: 27-03-2023 a las 04:39:41
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -63,10 +63,10 @@ INSERT INTO `categoria` (`idCategoria`, `categoria`) VALUES
 CREATE TABLE `clientes` (
   `id` int(11) NOT NULL,
   `idUsuario` int(11) NOT NULL,
-  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(60) COLLATE utf8_unicode_ci NOT NULL,
   `phone` varchar(15) COLLATE utf8_unicode_ci NOT NULL,
   `ciudad` varchar(25) COLLATE utf8_unicode_ci NOT NULL,
-  `address` text COLLATE utf8_unicode_ci NOT NULL,
+  `address` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `masInf` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
@@ -78,8 +78,11 @@ CREATE TABLE `clientes` (
 --
 
 INSERT INTO `clientes` (`id`, `idUsuario`, `name`, `phone`, `ciudad`, `address`, `masInf`, `created`, `modified`, `status`) VALUES
-(1, 3, 'ConfiguroWeb', '3022589741', 'Cali', 'Cali', '', '2022-02-17 08:21:25', '2018-02-17 08:21:25', '1'),
-(2, 1, 'Nikol Alexandra Ramírez Ramos', '3209549367', 'Tunja', 'Cr3 #23-20', 'Bloque 4 Apartamento 103', '2023-03-15 19:36:25', '2023-03-15 19:36:25', '1');
+(1, 2, 'Libreria Papiro', '3022589741', 'Cali', 'Cali', '----', '2022-02-17 08:21:25', '2018-02-17 08:21:25', '1'),
+(2, 1, 'Nikol Alexandra Ram&iacute;rez Ramos', '3209549367', 'Tunja', 'Cr3 #23-20', 'Bloque 4 Apartamento 103', '2023-03-15 19:36:25', '2023-03-15 19:36:25', '1'),
+(3, 37, 'Dennis Jessenia Morato Quintero ', '3123262225', 'Tokio', 'Carrera 21 #6-75 Sur', 'Vivo', '2023-03-24 16:26:54', '2023-03-24 16:26:54', '1'),
+(10, 41, 'Like Crazy', '3219403341', 'Tunja', 'Cr5 #95-30', '----', '2023-03-27 00:46:09', '2023-03-27 00:46:09', '1'),
+(11, 10, 'Pepe', '9840923482', 'Bogot&aacute;', 'Cr5 #95-30', '----', '2023-03-27 01:28:03', '2023-03-27 01:28:03', '1');
 
 -- --------------------------------------------------------
 
@@ -153,7 +156,8 @@ INSERT INTO `foro` (`id`, `idUsuario`, `nombreLibro`, `autorLibro`, `descripcion
 (5, 15, 'Lucky Boy (libro en Inglés)', 'Shanthi Sekeran', 'Two women. Two possible futures. One lucky boy. Eighteen years old and fizzing with optimism, Solimar Castro Valdez embarks on a perilous journey across the Mexican border. Weeks later, she arrives in Berkeley, California, dazed by first love found then lost, and pregnant. This was not the plan. Undocumented and unmoored, Soli discovers that her son, Mr. Ignacio, can become her touchstone, and motherhood her identity in a world where she&#039;s otherwise invisible. Kavya Reddy has created a beautiful life in Berkeley, but then she can&#039;t get pregnant and that beautiful life seems suddenly empty. When Soli is placed in immigrant detention, Ignacio comes under Kavya&#039;s care and she finally gets to be the singing, storytelling kind of mother she dreamed of being. But she builds her love on a fault line, her heart wrapped around someone else&#039;s child. &quot;Nacho&quot; to Soli, and &quot;Iggy&quot; to Kavya, the boy is steeped in love, but his destiny and that of his two mothers teeters between two worlds as Soli fights to get back to him. Lucky Boy is a moving and revelatory ode to the ever-changing boundaries of love. &quot;Swept me away and took a little piece of my heart with it. It&#039;s a perfect book.&quot; Edan Lepucki , New York Times bestselling author of California &quot;A heartfelt and moving novel that challenges the true meaning of home. A deeply beautiful book.&quot; Molly Antopol, author of The UnAmericans', 1, '2015-11-22 00:00:00', 0, 0, '2015-11-22 00:00:00'),
 (27, 1, 'Foro', 'Administrador', 'Este es un foro de prueba por administrador', 1, '2005-12-22 00:00:00', 0, 0, '2005-12-22 00:00:00'),
 (33, 37, 'Perdón a la lluvia -', ' Sara Búho', 'Descripci&oacute;n del libro', 1, '2014-02-23 00:00:00', 0, 0, '2014-02-23 00:00:00'),
-(34, 1, 'Prueba', 'autor', 'descripci&oacute;n', 1, '2014-02-23 00:00:00', 0, 0, '2014-02-23 00:00:00');
+(34, 1, 'Prueba', 'autor', 'descripci&oacute;n', 1, '2014-02-23 00:00:00', 0, 0, '2014-02-23 00:00:00'),
+(36, 37, 'change pt.2', 'Fool Me Twice', 'Que les importa solo que sepan que compre el libro y est&aacute; bueno  ', 1, '2024-03-23 00:00:00', 0, 0, '2024-03-23 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -195,7 +199,7 @@ INSERT INTO `libro` (`idLibro`, `nombreLibro`, `autor`, `descripcionLibro`, `pre
 (13, 'Sueño ', 'Iván Sánchez', ' Mientras un hombre misterioso no puede despertar de un terrible sueño en el que inquietantes escenas de desamor se van solapando, la hermosa Sofía viaja a un enclave paradisiaco para intentar resolver las dudas que pesan sobre su relación tras más de una década junto a su pareja. Sus largos paseos por la isla y un fascinante hombre llamado Alexandro le harán revivir sensaciones hace tiempo olvidadas y replantearse en qué consiste el amor y las razones que la han llevado hasta allí.\r\n\r\nEntretanto, la joven Danae, disgustada por tener que pasar las vacaciones alejada de su mejor amiga, descubre lo que significa que, por primera vez, se te desboque el corazón.\r\n\r\nUna novela intimista y reflexiva, a veces desgarradora, otras ilusionante y evocadora, sobre la naturaleza de las relaciones de pareja y las distintas etapas del amor.\r\n\r\nA veces, la verdadera naturaleza del amor se manifiesta solo a través de los sueños. ', 111593, 12, 2, '208', '2022', 73, 2, '9788408263432', 5, 1, '/img/Sueño.jpg'),
 (15, 'La Canción de Aquiles', 'Madeline Miller', 'Grecia en la era de los héroes. Patroclo, un príncipe joven y torpe, ha sido exiliado al reino de Ftía, donde vive a la sombra del rey Peleo y su hijo divino, Aquiles. Aquiles, el mejor de los griegos, es todo lo que no es Patroclo: fuerte, apuesto, hijo de una diosa. Un día Aquiles toma bajo su protección al lastimoso príncipe y ese vínculo provisional da paso a una sólida amistad mientras ambos se convierten en jóvenes habilidosos en las artes de la guerra. Pero el destino nunca está lejos de los talones de Aquiles. Cuando se extiende la noticia del rapto de Helena de Esparta, se convoca a los hombres de Grecia para asediar la ciudad de Troya. Aquiles, seducido por la promesa de un destino glorioso, se une a la causa, y Patroclo, dividido entre el amor y el miedo por su compañero, lo sigue a la guerra. Poco podía imaginar que los años siguientes iban a poner a prueba todo cuanto habían aprendido y todo cuanto valoraban profundamente.', 95749, 100, 2, '230', '2021', 146, 2, '9786075508054', 2, 1, '/img/aquiles.jpg'),
 (16, 'e', 'That', ' e ', 3, 45, 1, '34', '43', 3, 5, '3', 1, 1, '/img/1449378000.jpg'),
-(18, '5', 'Fool me twice', ' f ', 3, 98, 1, '43', '4', 5, 9, '4', 5, 1, '/img/1668975860.jpg'),
+(18, 'Change Pt.2', 'Fool me twice', ' f ', 3, 98, 1, '43', '4', 5, 9, '4', 5, 1, '/img/1668975860.jpg'),
 (19, 'Libro de prueba', 'Think I Lose', ' Esta descripción es de prueba ', 190000, 17, 1, '90', '2022', 30, 4, '091274482', 3, 1, '/img/1670289097.jpg'),
 (20, 'Libro de prueba 2', 'My Sanity', 'Este es el segundo libro de prueba', 90000, 56, 1, '123', '0912', 5, 1, '0912742821', 3, 1, '/img/1670290923.png'),
 (21, '1', 'Years Ago', '1', 1, 22, 1, '1', '1', 14, 5, '1', 1, 1, '/img/1670291077.png'),
@@ -224,14 +228,15 @@ CREATE TABLE `orden` (
 --
 
 INSERT INTO `orden` (`id`, `customer_id`, `total_price`, `created`, `modified`, `status`) VALUES
-(6, 1, 25.00, '2022-06-12 12:46:58', '2022-06-12 12:46:58', '1'),
-(7, 1, 40.00, '2022-06-12 13:08:08', '2022-06-12 13:08:08', '1'),
-(8, 1, 58000.00, '2023-03-15 17:07:50', '2023-03-15 17:07:50', '1'),
-(9, 2, 200630.00, '2023-03-15 20:33:41', '2023-03-15 20:33:41', '1'),
-(10, 2, 288087.00, '2023-03-15 21:54:31', '2023-03-15 21:54:31', '1'),
-(11, 2, 288087.00, '2023-03-15 21:58:28', '2023-03-15 21:58:28', '1'),
-(12, 2, 288087.00, '2023-03-15 21:58:33', '2023-03-15 21:58:33', '1'),
-(13, 2, 288087.00, '2023-03-15 22:04:00', '2023-03-15 22:04:00', '1');
+(6, 1, 122334.00, '2022-06-12 12:46:58', '2022-06-12 12:46:58', '1'),
+(7, 1, 133654.00, '2022-06-12 13:08:08', '2022-06-12 13:08:08', '1'),
+(8, 1, 303091.00, '2023-03-15 17:07:50', '2023-03-15 17:07:50', '0'),
+(13, 2, 288087.00, '2023-03-15 22:04:00', '2023-03-15 22:04:00', '0'),
+(14, 2, 90454.00, '2023-03-22 11:52:13', '2023-03-22 11:52:13', '0'),
+(15, 2, 180908.00, '2023-03-24 09:13:51', '2023-03-24 09:13:51', '1'),
+(16, 3, 369336.00, '2023-03-24 10:31:17', '2023-03-24 10:31:17', '1'),
+(17, 3, 212788.00, '2023-03-24 10:40:19', '2023-03-24 10:40:19', '1'),
+(18, 11, 642186.00, '2023-03-26 19:58:17', '2023-03-26 19:58:17', '1');
 
 -- --------------------------------------------------------
 
@@ -251,14 +256,26 @@ CREATE TABLE `orden_articulos` (
 --
 
 INSERT INTO `orden_articulos` (`id`, `order_id`, `product_id`, `quantity`) VALUES
-(1, 6, 2, 1),
+(1, 6, 12, 1),
 (2, 7, 3, 1),
-(3, 7, 4, 1),
-(4, 8, 1, 1),
-(5, 8, 4, 2),
-(6, 9, 18, 1),
+(3, 7, 6, 1),
+(4, 8, 13, 1),
+(5, 8, 15, 2),
 (7, 13, 7, 1),
-(8, 13, 6, 4);
+(8, 13, 6, 4),
+(9, 14, 3, 1),
+(10, 15, 9, 1),
+(11, 15, 3, 1),
+(12, 16, 27, 1),
+(13, 16, 20, 1),
+(14, 16, 12, 1),
+(15, 16, 18, 1),
+(16, 17, 3, 1),
+(17, 17, 12, 1),
+(18, 18, 26, 1),
+(19, 18, 25, 1),
+(20, 18, 13, 2),
+(21, 18, 19, 1);
 
 -- --------------------------------------------------------
 
@@ -521,6 +538,64 @@ INSERT INTO `pais` (`idPais`, `nombrePais`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `respuestas`
+--
+
+CREATE TABLE `respuestas` (
+  `idRespuesta` int(11) NOT NULL,
+  `idUsuario` int(11) NOT NULL,
+  `idForo` int(11) NOT NULL,
+  `respuesta` varchar(255) NOT NULL,
+  `fecha` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `respuestas`
+--
+
+INSERT INTO `respuestas` (`idRespuesta`, `idUsuario`, `idForo`, `respuesta`, `fecha`) VALUES
+(6, 1, 1, '123', '2023-03-20 20:06:56'),
+(7, 39, 34, 'sdasdasd', '2023-03-20 20:19:45'),
+(8, 39, 34, 'sdasdasdaa1', '2023-03-20 20:21:37'),
+(9, 39, 34, 'prueba 1', '2023-03-20 20:24:12'),
+(10, 39, 34, 'prueba 1', '2023-03-20 20:25:32'),
+(11, 39, 34, 'prueba 11345982374', '2023-03-20 20:30:04'),
+(12, 39, 34, 'prueba 11345982371', '2023-03-20 20:30:49'),
+(13, 39, 34, 'prueba 11345982372', '2023-03-20 20:32:14'),
+(14, 39, 34, 'prueba 1134598', '2023-03-20 20:33:09'),
+(15, 39, 34, 'prueba 113', '2023-03-20 20:35:27'),
+(16, 39, 34, 'prueba 113w', '2023-03-20 20:39:32'),
+(17, 39, 34, 'prueba 113waaa', '2023-03-20 20:40:30'),
+(18, 39, 34, 'prueba 113waaaaa', '2023-03-20 20:44:16'),
+(19, 39, 34, 'prueba 113waaaaa', '2023-03-20 20:44:49'),
+(20, 39, 34, 'baaa', '2023-03-20 23:53:50'),
+(21, 37, 33, 's', '2023-03-20 23:57:20'),
+(22, 37, 34, 'asl}', '2023-03-21 00:32:21'),
+(23, 37, 4, 'hola, me encantÃ³ el libro\r\n', '2023-03-21 04:25:01'),
+(24, 37, 4, 'hola, me encantÃ³ el libro\r\n', '2023-03-21 04:26:30'),
+(25, 37, 4, 'a', '2023-03-21 04:26:46'),
+(26, 37, 4, 'v', '2023-03-21 04:29:32'),
+(27, 37, 4, 'v', '2023-03-21 04:32:15'),
+(28, 37, 4, 'zz', '2023-03-21 04:32:43'),
+(29, 37, 4, 'v', '2023-03-21 04:33:54'),
+(30, 37, 27, 'v', '2023-03-21 04:34:20'),
+(31, 37, 27, 'vv', '2023-03-21 04:34:37'),
+(32, 37, 27, 'v', '2023-03-21 04:36:51'),
+(33, 37, 5, 'vvvb', '2023-03-21 04:37:12'),
+(34, 37, 5, 'vbv', '2023-03-21 04:39:46'),
+(35, 37, 33, 'bv', '2023-03-21 04:43:00'),
+(36, 37, 33, 'gg', '2023-03-21 04:46:35'),
+(37, 37, 33, 'gggokgogk', '2023-03-21 04:46:58'),
+(38, 39, 34, 'Holaaaaaaaaaa Nikol', '2023-03-21 12:51:26'),
+(39, 39, 1, 'Comentario', '2023-03-21 12:51:45'),
+(40, 39, 33, 'fgggf', '2023-03-21 12:59:58'),
+(41, 39, 5, 'g', '2023-03-21 13:03:42'),
+(42, 39, 1, 'ghhghgh', '2023-03-21 13:37:08'),
+(43, 14, 1, ':)', '2023-03-22 15:44:13');
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `roles`
 --
 
@@ -614,7 +689,7 @@ INSERT INTO `usuario` (`idUsuario`, `nombreUsuario`, `apellidoUsuario`, `correoU
 (37, 'Dennis', 'Morato', 'dennis23@gmail.com', 3, 'Dennis23', 'Hwnc', 1, 24),
 (38, 'Nikol', 'Ram&iacute;rez', 'nnnn@gmail.com', 3, 'Nnn', 'HgLesw==', 1, 241),
 (39, 'Alexandraa', 'Ramoss', 'Alexandraa@gmail.com', 3, 'Alexandraa', 'HgLesw==', 1, 241),
-(40, 'Alexandraa', 'Ramos', 'Alexandraaa@gmail.com', 3, 'Alexandraaa', 'HgLesw==', 1, 241);
+(41, 'Like', 'Crazy', 'likeCrazy@gmail.com', 3, 'LikeCrazy', 'QlKE5NWhIgJg', 1, 241);
 
 --
 -- Índices para tablas volcadas
@@ -688,6 +763,14 @@ ALTER TABLE `pais`
   ADD PRIMARY KEY (`idPais`);
 
 --
+-- Indices de la tabla `respuestas`
+--
+ALTER TABLE `respuestas`
+  ADD PRIMARY KEY (`idRespuesta`),
+  ADD KEY `idUsuario` (`idUsuario`),
+  ADD KEY `idForo` (`idForo`);
+
+--
 -- Indices de la tabla `roles`
 --
 ALTER TABLE `roles`
@@ -725,7 +808,7 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `editorial`
@@ -743,7 +826,7 @@ ALTER TABLE `estado`
 -- AUTO_INCREMENT de la tabla `foro`
 --
 ALTER TABLE `foro`
-  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT de la tabla `libro`
@@ -755,19 +838,25 @@ ALTER TABLE `libro`
 -- AUTO_INCREMENT de la tabla `orden`
 --
 ALTER TABLE `orden`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_articulos`
 --
 ALTER TABLE `orden_articulos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `pais`
 --
 ALTER TABLE `pais`
   MODIFY `idPais` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=242;
+
+--
+-- AUTO_INCREMENT de la tabla `respuestas`
+--
+ALTER TABLE `respuestas`
+  MODIFY `idRespuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -785,7 +874,7 @@ ALTER TABLE `tematica`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- Restricciones para tablas volcadas
@@ -825,6 +914,13 @@ ALTER TABLE `orden`
 --
 ALTER TABLE `orden_articulos`
   ADD CONSTRAINT `orden_articulos_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `orden` (`id`) ON UPDATE CASCADE;
+
+--
+-- Filtros para la tabla `respuestas`
+--
+ALTER TABLE `respuestas`
+  ADD CONSTRAINT `respuestas_ibfk_1` FOREIGN KEY (`idUsuario`) REFERENCES `usuario` (`idUsuario`),
+  ADD CONSTRAINT `respuestas_ibfk_2` FOREIGN KEY (`idForo`) REFERENCES `foro` (`id`);
 
 --
 -- Filtros para la tabla `usuario`

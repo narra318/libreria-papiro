@@ -85,6 +85,10 @@
             $estado = $fila['status'];
             if($estado == 1){
                 $estado = "Sin enviar &nbsp; <i class= 'bi bi-x-circle'></i";
+
+            }elseif ($estado == 2) {
+                $estado = "Enviado &nbsp; <i class= 'bi bi-send'></i";
+
             }else{
                 $estado = "Entregado &nbsp; <i class= 'bi bi-check2-circle'></i";
             }
@@ -93,7 +97,7 @@
             <td class='border border-info text-center '> #APPR".$id." </td>
             <td class='border border-info text-center'> ".$usuario." </td>
             <td class='border border-info text-center'> $".$total." COP </td>
-            <td class='border border-info text-center' id='Link'> <a href='estado.php?id=".$id."'> $estado > </a> </td>
+            <td class='border border-info text-center' id='Link'> <a href='estado.php?id=".$id."'> $estado </a> </td>
             <td class='border border-info text-center'> ".$fecha." </td>
             <td class='border border-info text-center' id='Link'> <a href='detalle.php?id=".$id."'> <i class= 'bi bi-eye'></i> </a> </td>
             </tr>";

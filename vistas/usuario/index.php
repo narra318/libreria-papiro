@@ -62,6 +62,9 @@
                 <input type="password"" class="form-control bg-secondary bg-opacity-75 text-dark border-bottom border-primary" id="password" placeholder="Ingrese su Contraseña" name="password" required>
                 <label for="password" style="color: var(--primary)">  <i class="bi bi-lock"></i> Password:</label>
             </div>
+            <div class="form-floating m-4">
+                <a href="../../codigo/usuario/restablecer_contrasena.php" class="btn btn-link">¿Olvidaste tu contraseña?</a>
+            </div>
 
             <div class="text-end mt-5 mb-4">
                 <div class="btn-group mt-2">

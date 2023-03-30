@@ -5,8 +5,8 @@
         $_SESSION['carritoIngreso'] = "<script> alert('Por favor inicie sesión para añadir productos al carrito'); </script>";
         header('Location: ../vistas/usuario/');
     }
-
-$cart = new Cart;
+    include "configuracion.php";
+    $cart = new Cart;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -64,15 +64,21 @@ $cart = new Cart;
                         </tr>
                     </thead>
                     <tbody>
-                        <?php
+                        <?php                            
                         if ($cart->total_items() > 0) {
                             $cartItems = $cart->contents();
+
                             foreach ($cartItems as $item) :
+                                $nombreLibro = $item["name"];
+                                $query = $db->query("SELECT cantidad FROM libro WHERE nombreLibro = '$nombreLibro'");
+                                $row = $query->fetch_assoc();
+                                $cant = $row["cantidad"];
                         ?>
+                        
                                 <tr>
                                     <td><?php echo $item["name"]; ?></td>
                                     <td><?php echo '$' . number_format($item["price"]) . ' COP'; ?></td>
-                                    <td><input type="number" class="m-2 text-center" value="<?php echo $item["qty"]; ?>" onchange="updateCartItem(this, '<?php echo $item['rowid']; ?>')"></td>
+                                    <td> <input type="number" min="1" max="<?php echo $cant ?>" class="m-4 mb-1 mt-2 text-center" style="" value="<?php echo $item["qty"] ?>" onchange="updateCartItem(this, '<?php echo $item['rowid']; ?>')"></td>
                                     <td><?php echo '$' . number_format($item["subtotal"]) . ' COP'; ?></td>
                                     <td>
                                         <a href="AccionCarta.php?action=removeCartItem&id=<?php echo $item["rowid"]; ?>" class="btn btn-danger rounded-pill" onclick="return confirm('¿Confirma eliminar?')"> <i class="bi bi-trash"></i></a>
@@ -82,7 +88,7 @@ $cart = new Cart;
                         } else { ?>
                             <tr>
                                 <td colspan="5">
-                                    <p>No has solicitado ningún producto.....</p>
+                                    <p>No has solicitado ningún producto...</p>
                                 </td>
                             <?php } ?>
                     </tbody>
@@ -107,7 +113,7 @@ $cart = new Cart;
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>
         function updateCartItem(obj, id) {
-            $.get("cartAction.php", {
+            $.get("AccionCarta.php", {
                 action: "updateCartItem",
                 id: id,
                 qty: obj.value
@@ -115,7 +121,7 @@ $cart = new Cart;
                 if (data == 'ok') {
                     location.reload();
                 } else {
-                    alert('Cart update failed, please try again.');
+                    alert('No se pudo actualizar el carrito,por favor intente de nuevo.');
                 }
             });
         }

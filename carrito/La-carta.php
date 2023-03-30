@@ -20,7 +20,6 @@ class Cart {
 		// rearrange the newest first
 		$cart = array_reverse($this->cart_contents);
 
-		// remove these so they don't create a problem when showing the cart table
 		unset($cart['total_items']);
 		unset($cart['cart_total']);
 
