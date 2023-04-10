@@ -13,7 +13,7 @@ if (!isset($_SESSION['Status'])) {
 $con = new Configuracion;
 $conexion = $con->conectarDB();
 
-if (isset($_GET["id"])) {
+if (isset($_GET['id'])) {
 	$idForo = $_GET['id'];
 	$idUsuario = $_SESSION['idUsuario'];
 
@@ -68,13 +68,19 @@ if (isset($_GET["id"])) {
 		echo "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
 		unset($_SESSION['mensaje']);
 	}
+	
+	if (isset($_SESSION['ErrorDB'])) {
+		echo "<div class='alert alert-warning text-center alert-dismissible fade show' role='alert'> <b><i class='bi bi-exclamation-circle'></i></b> &nbsp;" . $_SESSION['ErrorDB'];
+		echo "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
+		unset($_SESSION['ErrorDB']);
+	}
 
 	?>
 	<div class="container">
 		<p class="text-end mt-5" id="" style="color: black;">Creado por <?php echo $nombreUsuario ?></p>
 		<h1 class="text-center mt-5" id="Titulo2"><?php echo $titulo ?></h1>
 		<h3 class="text-center"><b>Autor:</b> <?php echo $autor ?></h3>
-		<p class="p-5" id="parrafo-msj"><b>Descripcion:</b> <?php echo $mensaje ?></p>
+		<p class="p-5 text-dark" id="parrafo-msj"> <?php echo $mensaje ?></p>
 
 		<div id="comentarios" class="mt-5">
 
@@ -97,7 +103,7 @@ if (isset($_GET["id"])) {
 				<input type="hidden" name="foro" id="foro" value="<?php echo $idForo ?>">
 				<input type="hidden" name="usuario" id="usuario" value="<?php echo $idUsuario ?>">
 
-				<button type="submit" id="enviar-comentario" class="btn btn-outline-primary mt-3">Enviar</button>
+				<button type="submit" id="enviar-comentario" class="btn btn-outline-primary border border-primary rounded mt-3">Enviar</button>
 			</form>
 
 			<p class="mt-5 " style="width: 6rem;"> Respuestas:</p>

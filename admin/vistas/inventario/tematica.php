@@ -33,14 +33,7 @@
 
     <?php   
     
-    if(isset($_SESSION["ErrorDB"])){
-        echo '<div class="alert alert-success m-0 alert-dismissible fade show">
-            <button class="btn-close" type="button" data-bs-dismiss="alert"></button>
-            <strong> Exito:</strong> ';
-        echo $_SESSION["ErrorDB"];
-        echo '</div>';
-        unset($_SESSION['ErrorDB']);
-    }
+
 
     include "../../../controller/conexion.php";
     $conn = new Configuracion();
@@ -58,18 +51,27 @@
 
                 <form action="../../codigo/inventario/tematica.php" method="POST">
                     <div class="form-floating m-4 mx-auto" style="width: 50%;">
-                        <input type="text" placeholder="Ingrese el nombre del producto" name="nueva-tematica" id="nueva-tematica" class="form-control bg-dark bg-opacity-75 text-light border-bottom border-light " required>
+                        <input type="text" placeholder="Ingrese el nombre del producto"  minlength="3" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+(?:[ \t][a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+)*$"  name="nueva-tematica" id="nueva-tematica" class="form-control bg-dark bg-opacity-75 text-light border-bottom border-light " required>
                         <label for="nueva-tematica" class="text-light">Ingrese una nueva Tematica</label>
+                        <?php
+                                if(isset($_SESSION["ErrorDB"])){
+                                    echo '<div class="alert alert-warning m-0 alert-dismissible fade show">
+                                        <button class="btn-close" type="button" data-bs-dismiss="alert"></button>
+                                        <i class="bi bi-exclamation-circle"></i> <strong> Error:</strong> ';
+                                    echo $_SESSION["ErrorDB"];
+                                    echo '</div>';
+                                    unset($_SESSION['ErrorDB']);
+                                }
+                        ?>
                     </div>
                     <div class="text-center m-4">
                         <button type="submit" class="btn btn-light border rounded">Agregar Tematica</button>
-                        <a type="button" id="regresar" name="regresar" onclick="history.back()" class="btn btn-light border border-light rounded"> Volver </a>
+                        <a type="button" id="regresar" name="regresar"  href="agregar-producto.php" class="btn btn-light border border-light rounded"> Volver </a>
                     </div>
                 </form>
 
                 <div class="container overflow-auto p-4 pt-0 text-white w-50"> 
                     <br><br>
-                    <!-- <p class="text-center fw-bold bg-dark w-25 mx-auto"> Las tematicas actuales son:  </p> -->
 
                     <table class="table overflow-auto mx-auto" id="tabla">
                         <thead>

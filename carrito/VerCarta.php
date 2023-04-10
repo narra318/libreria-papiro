@@ -54,7 +54,7 @@
             <div class="panel-body">
                 <h1 class="text-center mb-5" id="Titulo1">Carrito de compras <i class="bi bi-cart"></i> </h1>
                 <table class="table text-dark">
-                    <thead>
+                    <thead class="text-center">
                         <tr class="text-dark">
                             <th>Producto</th>
                             <th>Precio</th>
@@ -63,7 +63,7 @@
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody class="text-center">
                         <?php                            
                         if ($cart->total_items() > 0) {
                             $cartItems = $cart->contents();
@@ -78,7 +78,7 @@
                                 <tr>
                                     <td><?php echo $item["name"]; ?></td>
                                     <td><?php echo '$' . number_format($item["price"]) . ' COP'; ?></td>
-                                    <td> <input type="number" min="1" max="<?php echo $cant ?>" class="m-4 mb-1 mt-2 text-center" style="" value="<?php echo $item["qty"] ?>" onchange="updateCartItem(this, '<?php echo $item['rowid']; ?>')"></td>
+                                    <td> <input type="number" min="1" max="<?php echo $cant ?>" class="m-4 mb-1 mt-2 text-center bg-secondary" style="width:max-content; border: solid 1px #88456a;" value="<?php echo $item["qty"] ?>" onchange="updateCartItem(this, '<?php echo $item['rowid']; ?>')"></td>
                                     <td><?php echo '$' . number_format($item["subtotal"]) . ' COP'; ?></td>
                                     <td>
                                         <a href="AccionCarta.php?action=removeCartItem&id=<?php echo $item["rowid"]; ?>" class="btn btn-danger rounded-pill" onclick="return confirm('¿Confirma eliminar?')"> <i class="bi bi-trash"></i></a>
@@ -109,6 +109,7 @@
     </div></div><?= footer(); ?>
     </div>
     
+    <script src="../js/jquery-3.6.1.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>

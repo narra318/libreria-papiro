@@ -88,7 +88,11 @@
                 unset($_SESSION['NoInfo']);
             }
             if(isset($_SESSION["ErrorDB"])){
-                echo '<script> alert('.$_SESSION["ErrorDB"].'); </script>';                
+                echo '<div class="alert alert-danger m-0 alert-dismissible fade show text-center">
+                    <button class="btn-close" type="button" data-bs-dismiss="alert"></button>
+                    <strong> <i class="bi bi-exclamation-circle-fill"></i> </strong> &nbsp;';
+                echo $_SESSION['ErrorDB'];
+                echo '</div>';
                 unset($_SESSION["ErrorDB"]);
             }
         

@@ -123,7 +123,7 @@
                                     <p>Si no solicitaste un restablecimiento de contraseña, no se requiere ninguna otra acción.</p>
                                 </div></body></html>";
 
-                            echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>" . $msg;
+                            echo "<div class='alert alert-success alert-dismissible fade show' role='alert'> Se han enviado las instrucciones a su correo" ;
                             echo "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
                         }
                     } else {

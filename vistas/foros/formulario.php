@@ -1,26 +1,26 @@
 <?php
-ob_start();
-session_start();
+    ob_start();
+    session_start();
 
-if (isset($_GET["respuestas"])) {
-    $respuestas = $_GET['respuestas'];
-} else {
-    $respuestas = 0;
-}
-if (isset($_GET["identificador"])) {
-    $identificador = $_GET['identificador'];
-} else {
-    $identificador = 0;
-}
+    if (isset($_GET["respuestas"])) {
+        $respuestas = $_GET['respuestas'];
+    } else {
+        $respuestas = 0;
+    }
+    if (isset($_GET["identificador"])) {
+        $identificador = $_GET['identificador'];
+    } else {
+        $identificador = 0;
+    }
 
-if (!isset($_SESSION['Status'])) {
-    $_SESSION['Foro'] = "<script> alert('Por favor inicie sesión para crear un foro'); </script>";
-    header('Location: ../libreria/foros.php');
-}
+    if (!isset($_SESSION['Status'])) {
+        $_SESSION['Foro'] = "<script> alert('Por favor inicie sesión para crear un foro'); </script>";
+        header('Location: ../libreria/foros.php');
+    }
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
     <title>Foros</title>
@@ -38,6 +38,16 @@ if (!isset($_SESSION['Status'])) {
 <body class="bg-secondary">
     <?php include '../../modules/menu-footer.php'; ?>
     <?= menu("../.."); ?>
+    <?php 
+        if(isset($_SESSION["ErrorDB"])){
+            echo '<div class="alert alert-warning m-0 alert-dismissible fade show text-center">
+                <button class="btn-close" type="button" data-bs-dismiss="alert"></button>
+                <strong> <i class="bi bi-exclamation-circle-fill"></i> </strong> &nbsp;';
+            echo $_SESSION['ErrorDB'];
+            echo '</div>';
+            unset($_SESSION["ErrorDB"]);
+        }
+    ?>
 
     <div class="container">
         <h1 id="Titulo1" class="mt-5 text-center">Crear Foro</h1>
@@ -63,7 +73,7 @@ if (!isset($_SESSION['Status'])) {
 
                             <div class="form-group">
                                 <label for="mensaje" class="mb-2 mt-4 text-info">Descripción:</label>
-                                <textarea name="mensaje" id="mensaje" class="form-control" placeholder="Lumpen pone voz a los desgarradas vivencias de los excluidos..." required></textarea>
+                                <textarea name="mensaje" minlength="100" maxlength="3000" id="mensaje" class="form-control" placeholder="Lumpen pone voz a los desgarradas vivencias de los excluidos..." required></textarea>
                             </div>
 
                             <div class="text-end m-4 p-4">

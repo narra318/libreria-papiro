@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 27-03-2023 a las 04:39:41
+-- Tiempo de generación: 30-03-2023 a las 14:43:38
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -37,12 +37,6 @@ CREATE TABLE `categoria` (
 --
 
 INSERT INTO `categoria` (`idCategoria`, `categoria`) VALUES
-(17, ''),
-(15, 'ae'),
-(16, 'ae'),
-(18, 'ae'),
-(13, 'apio'),
-(14, 'apio'),
 (6, 'Aventura'),
 (3, 'Ciencia Ficción'),
 (1, 'Ficción Adolescente'),
@@ -82,7 +76,8 @@ INSERT INTO `clientes` (`id`, `idUsuario`, `name`, `phone`, `ciudad`, `address`,
 (2, 1, 'Nikol Alexandra Ram&iacute;rez Ramos', '3209549367', 'Tunja', 'Cr3 #23-20', 'Bloque 4 Apartamento 103', '2023-03-15 19:36:25', '2023-03-15 19:36:25', '1'),
 (3, 37, 'Dennis Jessenia Morato Quintero ', '3123262225', 'Tokio', 'Carrera 21 #6-75 Sur', 'Vivo', '2023-03-24 16:26:54', '2023-03-24 16:26:54', '1'),
 (10, 41, 'Like Crazy', '3219403341', 'Tunja', 'Cr5 #95-30', '----', '2023-03-27 00:46:09', '2023-03-27 00:46:09', '1'),
-(11, 10, 'Pepe', '9840923482', 'Bogot&aacute;', 'Cr5 #95-30', '----', '2023-03-27 01:28:03', '2023-03-27 01:28:03', '1');
+(11, 10, 'Pepe', '9840923482', 'Bogot&aacute;', 'Cr5 #95-30', '----', '2023-03-27 01:28:03', '2023-03-27 01:28:03', '1'),
+(12, 42, 'Cepillo II Cepillin', '3219403341', 'Barranquilla', 'Carrera 21 #6-75 Sur', '----', '2023-03-27 17:05:46', '2023-03-27 17:05:46', '1');
 
 -- --------------------------------------------------------
 
@@ -101,11 +96,15 @@ CREATE TABLE `editorial` (
 
 INSERT INTO `editorial` (`idEditorial`, `nombreEditorial`) VALUES
 (5, 'Booket'),
+(7, 'Carvajal Ediciones'),
 (3, 'Espasa'),
 (1, 'Flower'),
+(8, 'Luna Libros'),
 (4, 'Lunwerg Editores'),
+(9, 'Panamericana Editorial'),
 (6, 'Panini'),
-(2, 'Planeta');
+(2, 'Planeta'),
+(10, 'Vicens Vives');
 
 -- --------------------------------------------------------
 
@@ -206,7 +205,8 @@ INSERT INTO `libro` (`idLibro`, `nombreLibro`, `autor`, `descripcionLibro`, `pre
 (24, '3', 'Everyting Change', '3', 2323232, 33, 1, '333', '543', 14, 5, '332323', 1, 1, '/img/PortadaPredeterminada.jpg'),
 (25, 'Ma City', 'BTS', '   El lugar que más me gusta en el mundo\r\nNaturaleza y ciudad, lugares para construir\r\nPara mí, me gusta más el parque Lake que el río Han\r\nIncluso si eres pequeño, me abrazas tan plácidamente\r\nCuando se siente como si me fuera a olvidar de mis raíces\r\nEn ese lugar, encuentro el yo que se había desvanecido\r\nRecuerdo tu aroma y todo\r\nEres mi verano, otoño, invierno y cada primavera   ', 120000, 10, 1, '90', '2015', 58, 4, '20130613', 3, 1, '/img/1674325593.jpg'),
 (26, 'Inner Child', 'V', 'The smiling kid,\nThe child who used to just laugh brightly\nWhen I see you like that\nI keep laughing\n \nThe tingling sun and that summer&#039;s air\nThe grey-lit streets&#039; sounds that were so cold\nI draw in a breath and knock at your door', 109000, 5, 1, '210', '2020', 58, 2, '20200222', 4, 1, '/img/1674329922.jpg'),
-(27, 'Inner Child', 'Dennis', ' Libro de aventura por Dennis ', 156999, 10, 1, '583', '2023', 7, 2, '8923478789837329', 6, 1, '/img/1676379244.jpg');
+(27, 'Inner Child', 'Dennis', ' Libro de aventura por Dennis ', 156999, 10, 1, '583', '2023', 7, 2, '8923478789837329', 6, 1, '/img/1676379244.jpg'),
+(29, 'El retrato de Dorian Gray', 'Oscar Wilde', 'Dorian Gray es un hombre que busca la inmortalidad y para encontrarla, para no envejecer jam&aacute;s y no perder esa belleza de la que tanto alardea tiene que matar. En una reflexi&oacute;n bastante profunda acerca del bien y del mal Oscar Wilde nos ense&ntilde;a lo que puede ocurrir si llegamos a aspirar a ser Dios.', 36000, 60, 2, '277', '1890', 180, 2, '9789583001437', 3, 1, '/img/1680141988.jpg');
 
 -- --------------------------------------------------------
 
@@ -220,7 +220,7 @@ CREATE TABLE `orden` (
   `total_price` float(10,2) NOT NULL,
   `created` datetime NOT NULL,
   `modified` datetime NOT NULL,
-  `status` enum('1','0') COLLATE utf8_unicode_ci NOT NULL DEFAULT '1'
+  `status` enum('1','0','2') COLLATE utf8_unicode_ci NOT NULL DEFAULT '1'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -231,12 +231,14 @@ INSERT INTO `orden` (`id`, `customer_id`, `total_price`, `created`, `modified`, 
 (6, 1, 122334.00, '2022-06-12 12:46:58', '2022-06-12 12:46:58', '1'),
 (7, 1, 133654.00, '2022-06-12 13:08:08', '2022-06-12 13:08:08', '1'),
 (8, 1, 303091.00, '2023-03-15 17:07:50', '2023-03-15 17:07:50', '0'),
-(13, 2, 288087.00, '2023-03-15 22:04:00', '2023-03-15 22:04:00', '0'),
-(14, 2, 90454.00, '2023-03-22 11:52:13', '2023-03-22 11:52:13', '0'),
-(15, 2, 180908.00, '2023-03-24 09:13:51', '2023-03-24 09:13:51', '1'),
-(16, 3, 369336.00, '2023-03-24 10:31:17', '2023-03-24 10:31:17', '1'),
-(17, 3, 212788.00, '2023-03-24 10:40:19', '2023-03-24 10:40:19', '1'),
-(18, 11, 642186.00, '2023-03-26 19:58:17', '2023-03-26 19:58:17', '1');
+(13, 2, 288087.00, '2023-03-15 22:04:00', '2023-03-15 22:04:00', '2'),
+(14, 2, 90454.00, '2023-03-22 11:52:13', '2023-03-22 11:52:13', '2'),
+(15, 2, 180908.00, '2023-03-24 09:13:51', '2023-03-24 09:13:51', '0'),
+(16, 3, 369336.00, '2023-03-24 10:31:17', '2023-03-24 10:31:17', '0'),
+(17, 3, 212788.00, '2023-03-24 10:40:19', '2023-03-24 10:40:19', '2'),
+(18, 11, 642186.00, '2023-03-26 19:58:17', '2023-03-26 19:58:17', '1'),
+(19, 12, 2522686.00, '2023-03-27 10:06:07', '2023-03-27 10:06:07', '1'),
+(20, 12, 559449.00, '2023-03-27 11:47:03', '2023-03-27 11:47:03', '1');
 
 -- --------------------------------------------------------
 
@@ -275,7 +277,13 @@ INSERT INTO `orden_articulos` (`id`, `order_id`, `product_id`, `quantity`) VALUE
 (18, 18, 26, 1),
 (19, 18, 25, 1),
 (20, 18, 13, 2),
-(21, 18, 19, 1);
+(21, 18, 19, 1),
+(22, 19, 24, 1),
+(23, 19, 26, 1),
+(24, 19, 9, 1),
+(25, 20, 7, 1),
+(26, 20, 6, 4),
+(27, 20, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -630,17 +638,22 @@ CREATE TABLE `tematica` (
 
 INSERT INTO `tematica` (`idTematica`, `tematica`) VALUES
 (4, 'Arte'),
+(15, 'Biográficos y autobiográficos'),
 (12, 'Booket'),
 (3, 'Ciencias'),
 (6, 'Cómics'),
 (11, 'Derecho'),
+(13, 'Didáctico y lúdico'),
 (9, 'Economía'),
 (10, 'Fotografía'),
 (1, 'Historia'),
 (5, 'Idiomas'),
 (7, 'Informática'),
 (2, 'Literatura'),
-(8, 'Medicina');
+(8, 'Medicina'),
+(17, 'Religioso'),
+(14, 'Técnico'),
+(16, 'Viajes');
 
 -- --------------------------------------------------------
 
@@ -689,7 +702,8 @@ INSERT INTO `usuario` (`idUsuario`, `nombreUsuario`, `apellidoUsuario`, `correoU
 (37, 'Dennis', 'Morato', 'dennis23@gmail.com', 3, 'Dennis23', 'Hwnc', 1, 24),
 (38, 'Nikol', 'Ram&iacute;rez', 'nnnn@gmail.com', 3, 'Nnn', 'HgLesw==', 1, 241),
 (39, 'Alexandraa', 'Ramoss', 'Alexandraa@gmail.com', 3, 'Alexandraa', 'HgLesw==', 1, 241),
-(41, 'Like', 'Crazy', 'likeCrazy@gmail.com', 3, 'LikeCrazy', 'QlKE5NWhIgJg', 1, 241);
+(41, 'Like', 'Crazy', 'likeCrazy@gmail.com', 3, 'LikeCrazy', 'QlKE5NWhIgJg', 1, 241),
+(42, 'Cepillo II', 'Cepillin', 'holasoygerman@gmail.com', 3, 'ZapatosSucios2', 'HwnctaM=', 1, 241);
 
 --
 -- Índices para tablas volcadas
@@ -808,13 +822,13 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `editorial`
 --
 ALTER TABLE `editorial`
-  MODIFY `idEditorial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idEditorial` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de la tabla `estado`
@@ -832,19 +846,19 @@ ALTER TABLE `foro`
 -- AUTO_INCREMENT de la tabla `libro`
 --
 ALTER TABLE `libro`
-  MODIFY `idLibro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `idLibro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
 -- AUTO_INCREMENT de la tabla `orden`
 --
 ALTER TABLE `orden`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `orden_articulos`
 --
 ALTER TABLE `orden_articulos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT de la tabla `pais`
@@ -868,13 +882,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT de la tabla `tematica`
 --
 ALTER TABLE `tematica`
-  MODIFY `idTematica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idTematica` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- Restricciones para tablas volcadas

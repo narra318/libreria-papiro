@@ -13,7 +13,7 @@ $query = "SELECT s.idForo, f.idUsuario, f.nombreLibro , f.autorLibro,
 u.usuario, s.cantidad
 FROM usuario u, foro f, (SELECT  f.id as idForo,  COUNT(r.idForo) as cantidad
 FROM respuestas r RIGHT JOIN foro f ON  r.idForo = f.id
-WHERE f.idEstado = 1 AND nombreLibro LIKE '%$busqueda%'
+WHERE f.idEstado = 1 AND (nombreLibro LIKE '%$busqueda%' OR autorLibro LIKE '%$busqueda%')
 GROUP BY f.id 
 ORDER BY id DESC) s 
 WHERE u.idUsuario = f.idUsuario
@@ -28,11 +28,11 @@ if (mysqli_num_rows($result) > 0) {
     <table id="tabla-foros" class="table p-10px" >
     <thead>
                 <tr>
-                    <th width="20px">  </th>
-                    <th width="200px"> Creador </th>
-                    <th width="300px">Libro</th>
-                    <th width="200px">Autor</th>
-                    <th width="100px">Respuestas</th>                    
+                    <th width="20px" class="border">  </th>
+                    <th width="200px" class="text-center border"> Creador </th>
+                    <th width="300px" class="text-center border">Libro</th>
+                    <th width="200px" class="text-center border">Autor</th>
+                    <th width="100px" class="text-center border">Respuestas</th>                    
                 </tr>
                 </thead>
                 <tbody>
@@ -43,10 +43,10 @@ if (mysqli_num_rows($result) > 0) {
         echo "
         <tr>
         <td> <a href='../foros/foro.php?id=$id'>Ver</a></td>                    
-                    <td class='border border-info'> ".$row['usuario']." </td>                                   
-                    <td class='border border-info'> ".$row['nombreLibro']." </td>
-                    <td class='border border-info'> ".$row['autorLibro']." </td>       
-                    <td class='border border-info'> ".$row['cantidad']." </td>                                                      
+                    <td class='border'> ".$row['usuario']." </td>                                   
+                    <td class='border'> ".$row['nombreLibro']." </td>
+                    <td class='border'> ".$row['autorLibro']." </td>       
+                    <td class='border'> ".$row['cantidad']." </td>                                                      
                 </tr>";
         
     }

@@ -20,8 +20,7 @@ $resultComentarios = $stmt->get_result();
 
 if (mysqli_num_rows($resultComentarios) > 0) {
 	while ($row = mysqli_fetch_array($resultComentarios, MYSQLI_ASSOC)) {
-		// mostrar la información del comentario
-		echo "<div class='card mb-3'>";
+		echo "<div class='card mb-5'>";
 		echo "<div class='card-body'>";
 		echo "<div class='d-flex justify-content-between align-items-center'>";
 		echo "<h5 class = 'title'>".$row['usuario']."</h5>";
@@ -33,7 +32,7 @@ if (mysqli_num_rows($resultComentarios) > 0) {
 	}
 	$con->cerrarConexion();
 } else {
-	echo "<h5> No hay comentarios aún.</h5>";
+	echo "<h5 class='mb-5'> No hay comentarios aún.</h5>";
 }
 
 if (!$resultComentarios) {

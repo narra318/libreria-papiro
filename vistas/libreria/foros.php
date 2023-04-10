@@ -22,6 +22,7 @@ if (isset($_SESSION['Foro'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../img/icono2.png" type="image/ico" />
+    <meta name="description" content="Se puede encontrar foros creados por los usuarios sobre diferente material de lectura">
     <link rel="apple-touch-icon" href="../../img/icono2.png">
     <link rel="stylesheet" href="../../css/custom.css">
     <link rel="stylesheet" href="../../css/style.css">
@@ -83,7 +84,6 @@ if (isset($_SESSION['Foro'])) {
 
     <div class="container">
         <h1 id="Titulo1" class="mt-5 text-center"> Foros </h1>
-        <p id="" class="mt-2 text-center text-info"> Sistema de Intercambio de libros </p>
         <div id="crearForo" class="text-end mt-4 overflow-auto">
             <a type="button" href="../../vistas/foros/formulario.php" class="btn btn-outline-primary border border-primary rounded">
                 Crear foro </a>
@@ -91,20 +91,20 @@ if (isset($_SESSION['Foro'])) {
         <div class="container mb-2">
             <div class="form-floating mt-4">
                 <input type="text" class="form-control bg-white text-primary rounded text-center" name="buscar" id="buscar" placeholder=" ">
-                <label for="buscar" class="text-center text-info">Escriba el nombre o ISBN del libro</label>
+                <label for="buscar" class="text-center text-info">Escriba el nombre del libro o autor del material que desea buscar </label>
             </div>
         </div>
 
         <div class="container">
-            <div id="tablaForo">
+            <div id="tablaForo" class="overflow-auto">
                 <table id="tabla-foros" class="table overflow-auto">
                     <thead>
                         <tr>
                             <th width="20px">  </th>
-                            <th width="200px"> Creador </th>
-                            <th width="300px">Libro</th>
-                            <th width="200px">Autor</th>
-                            <th width="100px">Respuestas</th>
+                            <th width="200px" class="text-center border"> Creador </th>
+                            <th width="300px" class="text-center border">Libro</th>
+                            <th width="200px" class="text-center border">Autor</th>
+                            <th width="100px" class="text-center border">Respuestas</th>
                         </tr>
                     </thead>
                     <?php
@@ -135,11 +135,11 @@ if (isset($_SESSION['Foro'])) {
                         $autor = $row['autorLibro'];
                         $respuestas = $row['cantidad'];
                         echo "<tr>";
-                        echo "<td> <a href='../foros/foro.php?id=$id'>Ver</a></td>";
-                        echo "<td>$idUsuario</td>";
-                        echo "<td>$titulo</td>";
-                        echo "<td>$autor</td>";
-                        echo "<td>$respuestas</td>";
+                        echo "<td class='border'> <a href='../foros/foro.php?id=$id' aria-label='Ver más'><i class='bi bi-eye'></i></a></td>";
+                        echo "<td class='border'>$idUsuario</td>";
+                        echo "<td class='border'>$titulo</td>";
+                        echo "<td class='border'>$autor</td>";
+                        echo "<td class='text-center border'>$respuestas</td>";
                         echo "</tr>";
                     }
                     ?>

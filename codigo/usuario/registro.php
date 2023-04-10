@@ -19,7 +19,10 @@ class Registro{
         $usuario = "SELECT * FROM usuario WHERE usuario='" . $_POST['usuario'] . "';";
         $resultset2 = $con -> query($usuario);
 
-        if($resultset -> num_rows > 0){
+        if(trim(htmlentities($_POST['nombre'])) == "" OR trim(htmlentities($_POST['apellido'])) == ""  OR trim(htmlentities($_POST['correo'])) == ""  OR trim(htmlentities($_POST['usuario'])) == ""  OR trim(htmlentities($_POST['pass'])) == "" ){
+            $_SESSION["ErrorDB"]= 'No se permiten espacios en blanco.';
+            header('location: ../../vistas/usuario/registro.php');
+        }elseif($resultset -> num_rows > 0){
             $_SESSION["Correo"] = 'El correo ya existe, por favor inicie sesión o utilice otro.';
             header('Location: ../../vistas/usuario/registro.php');
         }

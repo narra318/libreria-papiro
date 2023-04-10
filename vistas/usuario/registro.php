@@ -26,12 +26,12 @@
     <?= menu("../.."); ?>
 
     <?php 
-
         if(isset($_SESSION["ErrorDB"])){
-            echo '<div class="alert alert-danger m-0">
-            <strong>ERROR:</strong> ';
+            echo '<div class="alert alert-warning m-0 alert-dismissible text-center fade show">
+            <button class="btn-close" type="button" data-bs-dismiss="alert"></button>
+            <strong> <i class="bi bi-exclamation-circle"></i> ERROR:</strong> ';
             echo $_SESSION["ErrorDB"];
-            '</div>';
+            echo '</div>';
 
             unset($_SESSION["ErrorDB"]);
         }  
@@ -116,7 +116,5 @@
 
     <script src="../../js/bootstrap.bundle.min.js"> </script>
     <script src="../../js/script/validar-password.js"></script>
-    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 </html>

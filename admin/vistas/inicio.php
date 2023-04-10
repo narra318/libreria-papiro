@@ -83,18 +83,14 @@
                 <div class="card h-100 border-dark mb-3 bg-dark text-light rounded bg-opacity-75 p-4">
                     <h4 class="card-header text-center"> Foros <i class="bi bi-body-text ms-2"></i> </h4>
                     <div class="card-body text-secondary">
-                        <p class="card-text" id="Link">
-                            <a href="./foro/gestor.php"> <i class="bi bi-input-cursor-text pe-3"></i> Gestionar Intercambio <br></a>
-                            <a href="./foro/formulario.php"> <i class="bi bi-input-cursor-text pe-3"></i> Agregar Foro <br></a>
+                        <p class="card-text" id="Link"><a href="./foro/formulario.php"> <i class="bi bi-input-cursor-text pe-3"></i> Agregar Foro <br></a>
                             <a href="./foro/aprobar.php"> <i class="bi bi-input-cursor-text pe-3"></i> Habilitar / Eliminar Foro <br></a>
                             <a href="./foro/consultar.php"> <i class="bi bi-input-cursor-text pe-3"></i> Listar / Inhabilitar Foro <br></a>
-                            <!-- <a href="./foro/eliminar.php"> <i class="bi bi-input-cursor-text pe-3"></i> Eliminar Foro <br> </a> -->
                         </p>
                     </div>
                 </div>
             </div>
         </div>
-            <!-- <a type="button" href="../codigo/controller/logout.php" class="btn btn-outline-secondary border mt-5"> Cerrar Sesión </a> -->
         </div>
 
         

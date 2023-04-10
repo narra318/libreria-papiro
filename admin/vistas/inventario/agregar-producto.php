@@ -23,10 +23,15 @@
             background-image: url('../../../img/fondos/fondo-admin.jpg');
             background-size: 100%;
         }
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button{
+            -webkit-appearance: none;
+        }
     </style>
 </head>
 
-<body class="bg-info">
+<body class="bg-dark">
     <?php include '../../../modules/menu-footer.php'; ?>
     <?= menuAdmin("../../../"); ?>
 
@@ -48,13 +53,13 @@
             <strong> Exito:</strong> ';
         echo $_SESSION["exito"];
         echo '</div>';
-        unset($_SESSION['exito']);
+        unset($_SESSION["exito"]);
     }
 
     if(isset($_SESSION["ErrorDB"])){
-        echo '<div class="alert alert-danger m-0 alert-dismissible fade show">
+        echo '<div class="alert alert-warning m-0 alert-dismissible text-center fade show">
             <button class="btn-close" type="button" data-bs-dismiss="alert"></button>
-            <strong> Error:</strong> ';
+            <strong> <i class="bi bi-exclamation-circle"></i> Error:</strong> ';
         echo $_SESSION["ErrorDB"];
         echo '</div>';
         unset($_SESSION['ErrorDB']);
@@ -79,9 +84,9 @@
         <div class="row justify-content-center">
             <div class=" col-md-6 p-5 justify-content-center">
 
-                <form action="../../codigo/inventario/agregar.php" method="POST" enctype="multipart/form-data" class="" id="form-agregar">
+                <form action="../../codigo/inventario/agregar.php" method="POST" enctype="multipart/form-data" id="form-agregar">
                     <div class="form-floating m-4">
-                        <input type="text" placeholder="Ingrese el nombre del producto" name="nombreProducto" id="nombreProducto" class="form-control bg-dark bg-opacity-75 text-light border-bottom border-light " required>
+                        <input type="text" maxlength="65" placeholder="Ingrese el nombre del producto" name="nombreProducto" id="nombreProducto" class="form-control bg-dark bg-opacity-75 text-light border-bottom border-light " required>
                         <label for="nombreProducto" class="text-light">Nombre</label>
                     </div>
 
@@ -91,24 +96,24 @@
                     </div>
 
                     <div class="form-floating m-4">
-                        <input type="number" placeholder="Ingrese el precio del producto" name="precioProducto" id="precioProducto" class="form-control bg-dark bg-opacity-75 text-light border-bottom border-light " required>
+                        <input type="number" min="100" placeholder="Ingrese el precio del producto" name="precioProducto" id="precioProducto" class="form-control bg-dark bg-opacity-75 text-light border-bottom border-light " required>
                         <label for="precioProducto" class="text-light">Precio</label>
                     </div>
                     <div class="form-floating m-4">
-                        <input type="text" placeholder="Ingrese el precio del producto" name="ISBN" id="ISBN" class="form-control bg-dark bg-opacity-75 text-light border-bottom border-light " required>
+                        <input type="text" pattern="[0-9]+" minlength="10" maxlength="13" placeholder="Ingrese el ISBN del libro"  name="ISBN" id="ISBN" class="form-control bg-dark bg-opacity-75 text-light border-bottom border-light " required>
                         <label for="ISBN" class="text-light">ISBN</label>
                     </div>
                     
                     <div class="row m-4 ms-3 me-3">
                         <div class="col">
                             <div class="form-floating">
-                                <input type="number" placeholder="Ingrese el número de páginas" name="n-paginas" id="n-paginas" class="form-control bg-dark bg-opacity-75 text-light border-bottom border-light " required>
+                                <input type="number" placeholder="Ingrese el número de páginas" min="1" name="n-paginas" id="n-paginas" class="form-control bg-dark bg-opacity-75 text-light border-bottom border-light " required>
                                 <label for="n-paginas" class="text-light">Número de Páginas</label>
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-floating">
-                                <input type="number" placeholder="Ingrese la cantidad" name="cantidad" id="cantidad" class="form-control bg-dark bg-opacity-75 text-light border-bottom border-light " required>
+                                <input type="number" min="1" placeholder="Ingrese la cantidad" name="cantidad" id="cantidad" class="form-control bg-dark bg-opacity-75 text-light border-bottom border-light " required>
                                 <label for="cantidad" class="text-light">Cantidad</label>
                             </div>
                         </div>
@@ -133,7 +138,7 @@
             </div>
             <div class="col-md-6 p-5 justify-content-center">
                 <div class="form-floating m-4">
-                    <input type="text" placeholder="Ingrese el número de páginas" name="autor" id="autor" class="form-control bg-dark bg-opacity-75 text-light border-bottom border-light " required>
+                    <input type="text" maxlength="60" placeholder="Ingrese el número de páginas" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+(?:[ \t][a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+)*$" name="autor" id="autor" class="form-control bg-dark bg-opacity-75 text-light border-bottom border-light " required>
                     <label for="n-paginas" class="text-light">Autor(a)</label>
                 </div>
 
@@ -170,7 +175,7 @@
                     </select>
                 </div>
                 <div class="form-floating m-4">
-                    <input type="number" placeholder="Ingrese el número de páginas" name="publicacion" id="publicacion" class="form-control bg-dark bg-opacity-75 text-light border-bottom border-light ">
+                    <input type="number" min="1000" placeholder="Ingrese el número de páginas" name="publicacion" id="publicacion" class="form-control bg-dark bg-opacity-75 text-light border-bottom border-light ">
                     <label for="publicacion" class="text-light">Año de Publicación</label>
                 </div>
                 <div class="form-floating m-4">
@@ -193,8 +198,8 @@
                 </div>
 
                 <div class="form-floating m-4">
-                    <input type="file" placeholder="Seleccione la imagen " name="archivoSubir" id="archivoSubir"  class=" form-control bg-dark bg-opacity-75 text-light border-bottom border-light " required>
-                    <p class="text-end text-primary"> Recomendado: 662 x 1000 px </p>
+                    <input type="file" placeholder="Seleccione la imagen" onchange="vExtension()" name="archivoSubir" id="archivoSubir"  class=" form-control bg-dark bg-opacity-75 text-light border-bottom border-light " required>
+                    <p class="text-end text-light"> Recomendado: 662 x 1000 px </p>
                 </div>
 
                 <div class="form-floating m-4">
@@ -219,13 +224,29 @@
 
                 <div class="text-center m-4">
                     <input type="submit" class="btn btn-light border rounded" id="btn-agregar" name="btn-agregar" value="Agregar producto "></button>
-                    <a type="button" id="regresar" name="regresar" onclick="history.back()" class="btn btn-light border border-light rounded"> Volver </a>
+                    <a type="button" id="regresar" name="regresar" href="./index.php" class="btn btn-light border border-light rounded"> Volver </a>
                 </div>
             </form>
         </div>
     </div>
 
     <script src="../../../js/bootstrap.bundle.min.js"> </script>
+    <script src="../../../js/jquery-3.6.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var img = $('#archivoSubir');
+
+            img.on('change', function() {
+                var imgName = $(this).val().split('\\').pop();
+                var imgExt = imgName.split('.').pop().toLowerCase();
+                if ($.inArray(imgExt, ['png', 'jpg', 'jpeg']) == -1) {
+                    alert('El tipo de archivo no es válido. Las extensiones permitidas son: png, jpg y jpeg.');
+                    $(this).val('');
+                }
+            });
+        });
+        
+    </script>
 </body>
 
 </html>

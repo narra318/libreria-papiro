@@ -5,8 +5,12 @@
   $con = $conexion->conectarDB();
   if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
-    $pwd = md5($_POST['pwd']);
-    $cpwd = md5($_POST['cpwd']);
+    
+    include '../../controller/seguridad.php';
+        $encriptar = new Seguridad();
+        $pwd = $encriptar->encriptarP($_POST["pwd"]);
+        $cpwd = $encriptar->encriptarP($_POST["cpwd"]);
+   
     if ($pwd == $cpwd) {
       $reset_pwd = mysqli_query($con, "UPDATE usuario SET contrasenaUsuario='$pwd' WHERE correoUsuario='$email'");
       if ($reset_pwd > 0) {
@@ -80,14 +84,14 @@
         <form id="validate_form" class="ms-2 me-2" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
           <input type="hidden" name="email" value="<?php echo $email; ?>" />
           <div class="form-floating m-4">
-            <input type="password" name="pwd" id="pwd" placeholder="Ingrese la contraseña" required data-parsley-type="pwd" data-parsley-trigger="keyup" class="form-control bg-secondary bg-opacity-75 text-dark border-bottom border-primary" />
+            <input type="password" name="pwd" id="pwd" placeholder="Ingrese la contraseña" required  class="form-control bg-secondary bg-opacity-75 text-dark border-bottom border-primary" />
             <label for="pwd" style="color: var(--primary)"> <i class="bi bi-lock-fill"></i>Contraseña:</label>
           </div>
 
 
 
           <div class="form-floating m-4">
-            <input type="password" name="cpwd" id="cpwd" placeholder="Ingrese nuevamente la contraseña" required data-parsley-type="pwd" data-parsley-trigger="keyup" class="form-control bg-secondary bg-opacity-75 text-dark border-bottom border-primary" />
+            <input type="password" name="cpwd" id="cpwd" placeholder="Ingrese nuevamente la contraseña" required  class="form-control bg-secondary bg-opacity-75 text-dark border-bottom border-primary" />
             <label for="cpwd" style="color: var(--primary)"> <i class="bi bi-lock-fill"></i>Confirmar Contraseña:</label>
           </div>
           <div class="text-end mt-5 mb-4">

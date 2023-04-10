@@ -31,21 +31,10 @@
     <?php include '../../../modules/menu-footer.php'; ?>
     <?= menuAdmin("../../../"); ?>
 
-    
     <?php
-
-    if (isset($_SESSION["ErrorDB"])) {
-        echo '<div class="alert alert-success m-0 alert-dismissible fade show">
-            <button class="btn-close" type="button" data-bs-dismiss="alert"></button>
-            <strong> Error:</strong> ';
-        echo $_SESSION["ErrorDB"];
-        echo '</div>';
-        unset($_SESSION['ErrorDB']);
-    }
-
-    include "../../../controller/conexion.php";
-    $conn = new Configuracion();
-    $con = $conn->conectarDB();
+        include "../../../controller/conexion.php";
+        $conn = new Configuracion();
+        $con = $conn->conectarDB();
     ?>
     <div class="container-fluid p-5">
         <div class="float-end me-5">
@@ -58,14 +47,24 @@
         <div class="row justify-content-center">
             <div class=" col-md-12 justify-content-center">
 
-                <form action="../../codigo/inventario/categoria.php" class="p-5" method="POST" class="">
+                <form action="../../codigo/inventario/categoria.php" class="p-5" method="POST">
                     <div class="form-floating mx-auto" style="width: 50%;">
-                        <input type="text" placeholder="Ingrese el nombre del producto" name="nueva-categoria" id="nueva-categoria" class="form-control bg-dark bg-opacity-75 mx-auto text-light border-bottom border-light" required>
+                        <input type="text" placeholder="Ingrese el nombre del producto" name="nueva-categoria" minlength="3" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+(?:[ \t][a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+)*$" id="nueva-categoria" class="form-control bg-dark bg-opacity-75 mx-auto text-light border-bottom border-light" required>
                         <label for="nueva-categoria" class="text-light">Ingrese una nueva Categoria</label>
+                        <?php
+                            if (isset($_SESSION["ErrorDB"])) {
+                                echo '<div class="alert alert-warning m-0 alert-dismissible fade show">
+                                    <button class="btn-close" type="button" data-bs-dismiss="alert"></button>
+                                    <i class="bi bi-exclamation-circle"></i> <strong> Error:</strong> ';
+                                echo $_SESSION["ErrorDB"];
+                                echo '</div>';
+                                unset($_SESSION['ErrorDB']);
+                            }
+                        ?>
                     </div>
                     <div class="text-center m-4 mb-0">
                         <button type="submit" class="btn btn-light border rounded">Agregar categoria</button>
-                        <a type="button" id="regresar" name="regresar" onclick="history.back()" class="btn btn-light border border-light rounded"> Volver </a>
+                        <a type="button" href="agregar-producto.php" id="regresar" name="regresar" class="btn btn-light border border-light rounded"> Volver </a>
                     </div>
                 </form>
 
@@ -107,7 +106,7 @@
                 paging: true,
                 ordering: true,
                 info: false,
-            });
+            });            
         });
     </script>
 </body>

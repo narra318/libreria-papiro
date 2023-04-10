@@ -28,11 +28,17 @@
             $masInf="----";
         }
 
-        $actualiza="UPDATE clientes SET name='$nombre', phone='$telefono', ciudad='$ciudad', address='$direccion', masInf='$masInf' WHERE idUsuario='$usuarioId';";
-        
-        $actualizar= $con->query($actualiza);
-        $_SESSION["actualizadoI"] = "Su información de envio ha sido actualizada.";
-        header("location: infEnvio.php");
+        if(trim($nombre) == "" OR trim($telefono) == ""  OR trim($ciudad) == ""  OR trim($direccion) == ""  OR trim($masInf) == "" ){
+            $_SESSION["ErrorDB"]= 'No se permiten espacios en blanco.';
+            // header('location: modInfEnvio.php');
+        }else{  
+
+            $actualiza="UPDATE clientes SET name='$nombre', phone='$telefono', ciudad='$ciudad', address='$direccion', masInf='$masInf' WHERE idUsuario='$usuarioId';";
+            
+            $actualizar= $con->query($actualiza);
+            $_SESSION["actualizadoI"] = "Su información de envio ha sido actualizada.";
+            header("location: infEnvio.php");
+        }
     }
 ?>
 <!DOCTYPE html>
@@ -96,6 +102,19 @@
         <div class="col-3"> <?=  menuSide("", "","","active","../"); ?> </div>
 
         <div class="col-9 ms-0 sub-menu-cont" style="height: 100vh; overflow: auto;">
+
+        <?php 
+
+            if(isset($_SESSION["ErrorDB"])){
+                echo '<div class="alert alert-warning m-0 alert-dismissible fade show text-center">
+                    <button class="btn-close" type="button" data-bs-dismiss="alert"></button>
+                    <strong> <i class="bi bi-exclamation-circle-fill"></i> </strong> &nbsp;';
+                echo $_SESSION['ErrorDB'];
+                echo '</div>';
+                unset($_SESSION["ErrorDB"]);
+            }
+
+        ?>
 
         <?php if (mysqli_num_rows($modificar) == 0) { 
             header("location: infEnvio.php");

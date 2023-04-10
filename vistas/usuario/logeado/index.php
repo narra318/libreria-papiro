@@ -48,14 +48,7 @@ if (!isset($_SESSION['Status'])) {
 
                 <!-- Reloj Inicio -->
                 <div class="mt-5">
-                <table class="table mt-5 mb-5 text-black" style="border: 1px solid purple;" width="620px">
-                        <thead class=" h4 text-center" id="tablac">
-                            <th width="20px" style="border-right: 1px solid purple;"> </th>
-                            <th width="200px" style="border-right: 1px solid purple;"> Estado </th>
-                            <th width="300px" style="border-right: 1px solid purple;">Libro</th>
-                            <th width="200px" style="border-right: 1px solid purple;">Autor</th>
-                            <th width="100px" style="border-right: 1px solid purple;">Respuestas</th>
-                        </thead>
+
                     <?php
                     date_default_timezone_set("America/Bogota");
 
@@ -82,7 +75,7 @@ if (!isset($_SESSION['Status'])) {
                 <h2 id="Titulo1" class="text-center"> Foros </h2>
 
 
-                <?php
+            <?php
                 include "../../../controller/conexion.php";
                 $con = new Configuracion;
                 $conexion = $con->conectarDB();
@@ -97,7 +90,7 @@ if (!isset($_SESSION['Status'])) {
                     SELECT f.id AS idForo, COUNT(r.idForo) AS cantidad
                     FROM foro f
                     LEFT JOIN respuestas r ON r.idForo = f.id
-                    WHERE f.idEstado = 1
+                    WHERE f.idEstado = 1 OR f.idEstado = 2
                     GROUP BY f.id
                 ) s ON s.idForo = f.id
                 WHERE u.idUsuario = $idd";
@@ -109,6 +102,17 @@ if (!isset($_SESSION['Status'])) {
                 }
 
                 if (mysqli_num_rows($result) > 0) {
+            ?>
+
+                <table class="table mt-5 mb-5 text-black" style="border: 1px solid purple;" width="620px">
+                        <thead class=" h4 text-center" id="tablac">
+                            <th width="20px" style="border-right: 1px solid purple;"> </th>
+                            <th width="200px" style="border-right: 1px solid purple;"> Estado </th>
+                            <th width="300px" style="border-right: 1px solid purple;">Libro</th>
+                            <th width="200px" style="border-right: 1px solid purple;">Autor</th>
+                            <th width="100px" style="border-right: 1px solid purple;">Respuestas</th>
+                        </thead>
+            <?php
                     while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
                         $id = $row['idForo'];
                         $estado = $row['estado'];

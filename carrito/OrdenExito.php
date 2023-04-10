@@ -42,7 +42,7 @@
       <div class="panel-body">
         <h1 id="Titulo1">Estado de tu Pedido</h1>
         <p class="fw-bold text-dark">La Orden se ha enviado exitósamente. El ID de tu pedido es #APPR<?php echo $_GET['id']; ?></p>
-        <a class="btn btn-primary rounded-pill mt-3" href="../vistas/usuario/logeado/"> Ver Pedido </a>
+        <a class="btn btn-primary rounded-pill mt-3" href="../vistas/usuario/logeado/"> Volver </a>
       </div>
     </div>
   </div>

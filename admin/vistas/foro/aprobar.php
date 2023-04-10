@@ -71,9 +71,9 @@
                 <tr class="text-white bg-info bg-opacity-75"> 
                     <th class="border border-info"> ID </th>
                     <th class="border border-info"> Estado </th>
+                    <th class="border border-info"> Usuario </th>
                     <th class="border border-info"> Nombre </th>
                     <th class="border border-info"> Autor </th>
-                    <th class="border border-info"> Usuario </th>
                     <th class="border border-info"> Descripción </th>
                     <th class="border border-info"> <i class="bi bi-p encil"> </i> </th>
                     <th class="border border-info"> <i class="bi bi-t rash"> </i> </th>
