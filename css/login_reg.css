@@ -24,13 +24,29 @@
     min-height: 80vh;
 }
 
-.containerLogin
-{
+.containerLogin {
     padding: 10em;
     border-radius: 20px;
     border: 1px solid var(--primary);
     box-shadow: -5px -5px 15px var(--info);
-}
+    max-width: 100%;
+    margin: 0 auto;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+  
+  @media (max-width: 768px) {
+    .containerLogin {
+      padding: 5em;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .containerLogin {
+      padding: 3em;
+    }
+  }
+  
 
 .containerLoginAd
 {

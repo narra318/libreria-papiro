@@ -47,8 +47,8 @@
     <?= menu("../"); ?>
 
     <div class="row me-0">
-        <div class="col-3"> <?=  menuSide("", "active","","","../"); ?> </div>
-        <div class="col-9 ms-0 contenido" style="height: 100vh; overflow: auto;">
+        <div class="col-md-3"> <?=  menuSide("", "active","","","../"); ?> </div>
+        <div class="col-md-9 ms-0 contenido" style="height: 100vh; overflow: auto;">
     <div class="container mt-5">
         <div class="panel panel-default">
             <div class="panel-body">
@@ -110,6 +110,7 @@
     </div>
     
     <script src="../js/jquery-3.6.1.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script>

@@ -62,8 +62,8 @@
     <?= menu("../"); ?>
 
     <div class="row me-0">
-        <div class="col-3"> <?=  menuSide("", "","","active","../"); ?> </div>
-        <div class="col-9 ms-0 contenido" style="height: 100vh; overflow: auto;">
+        <div class="col-md-3"> <?=  menuSide("", "","","active","../"); ?> </div>
+        <div class="col-md-9 ms-0 contenido" style="height: 100vh; overflow: auto;">
             <?php
                 if(isset($_SESSION["actualizadoI"])){
                     echo '<div class="alert alert-success m-0 alert-dismissible fade show text-center">

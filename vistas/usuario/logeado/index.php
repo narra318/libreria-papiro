@@ -1,16 +1,16 @@
 <?php
-ob_start();
-session_start();
-if (!isset($_SESSION['Status'])) {
-    header('Location: ../index.php');
-}
+    ob_start();
+    session_start();
+    if (!isset($_SESSION['Status'])) {
+        header('Location: ../index.php');
+    }
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
-    <title> Inicio de Usuario </title>
+    <title> Usuario </title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="Este pagina es la de inicio de los usuarios, donde podran revisar su información.">
@@ -41,8 +41,8 @@ if (!isset($_SESSION['Status'])) {
     <?= menu("../../.."); ?>
 
     <div class="row me-0">
-        <div class="col-3"> <?= menuSide("active", "", "", "", "../../../"); ?> </div>
-        <div class="col-9 ms-0 contenido" style="height: 100vh; overflow: auto;">
+        <div class="col-md-3"> <?= menuSide("active", "", "", "", "../../../"); ?> </div>
+        <div class="col-md-9 ms-0 contenido" style="height: 100vh; overflow: auto;">
 
             <div class="container">
 
@@ -72,7 +72,7 @@ if (!isset($_SESSION['Status'])) {
                     ?>
                 </div>
                 <!-- Reloj Fin -->
-                <h2 id="Titulo1" class="text-center"> Foros </h2>
+                <h2 id="Titulo1" class="text-center"> Mis Foros </h2>
 
 
             <?php

@@ -74,14 +74,14 @@
     <?= menu("../"); ?>
 
     <div class="row me-0">
-        <div class="col-3"> <?=  menuSide("", "","","active","../"); ?> </div>
+        <div class="col-md-3"> <?=  menuSide("", "","","active","../"); ?> </div>
 
-        <div class="col-9 ms-0 sub-menu-cont" style="height: 100vh; overflow: auto;">
+        <div class="col-md-9 ms-0 sub-menu-cont" style="height: 100vh; overflow: auto;">
 
         <?php
             if(isset($_SESSION['NoInfo'])){
-                echo '<div class="alert alert-danger m-0 alert-dismissible fade show text-center">
-                    <button class="btn-close" type="button" data-bs-dismiss="alert"></button>
+                echo '<div class="alert alert-info rounded m-0 alert-dismissible fade show text-center">
+                    <button class="btn-close" type="button" data-bs-dismiss="alert" aria-label="Cerrar"></button>
                     <strong> <i class="bi bi-exclamation-circle-fill"></i> </strong> &nbsp;';
                 echo $_SESSION['NoInfo'];
                 echo '</div>';
@@ -106,26 +106,35 @@
                     <label for="nombre" class="text-dark fw-semibold"> Nombre Completo</label>
                 </div>
 
-                <div class="input-group">
-                    <div class="form-floating m-4">
-                        <input type="text" placeholder="Ingrese su teléfono" pattern="[0-9]{1,10}" minlength="9" maxlength="10" name="telefono" id="telefono" class="form-control bg-secondary bg-opacity-50 text-dark fw-semibold border-bottom border-primary" required>
-                        <label for="telefono" class="text-dark fw-semibold"> Teléfono</label>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-floating m-4">
+                            <input type="text" placeholder="Ingrese su teléfono" pattern="[0-9]{1,10}" minlength="9" maxlength="10" name="telefono" id="telefono" class="form-control bg-secondary bg-opacity-50 text-dark fw-semibold border-bottom border-primary" required>
+                            <label for="telefono" class="text-dark fw-semibold"> Teléfono</label>
+                        </div>
                     </div>
-                    
-                    <div class="form-floating m-4">
-                        <input type="text" placeholder="Ingrese su ciudad" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+(?:[ \t][a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+)*$" maxlength="25" name="ciudad" id="ciudad" class="form-control bg-secondary bg-opacity-50 text-dark fw-semibold border-bottom border-primary" required>
-                        <label for="ciudad" class="text-dark fw-semibold"> Ciudad </label>
+                        
+                    <div class="col-md-6">
+                        <div class="form-floating m-4">
+                            <input type="text" placeholder="Ingrese su ciudad" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+(?:[ \t][a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+)*$" maxlength="25" name="ciudad" id="ciudad" class="form-control bg-secondary bg-opacity-50 text-dark fw-semibold border-bottom border-primary" required>
+                            <label for="ciudad" class="text-dark fw-semibold"> Ciudad </label>
+                        </div>    
                     </div>    
                 </div>
-                <div class="input-group">
-                    <div class="form-floating m-4">
-                        <input type="text" placeholder="Ingrese su dirección" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9@#\$\-]+(?:[ \t][a-zA-ZáéíóúÁÉÍÓÚñÑ0-9@#\$\-]+)*$" maxlength="50" name="direccion" id="direccion" class="form-control bg-secondary bg-opacity-50 text-dark fw-semibold border-bottom border-primary" required>
-                        <label for="direccion" class="text-dark fw-semibold"> Dirección </label>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-floating m-4">
+                            <input type="text" placeholder="Ingrese su dirección" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9@#\$\-]+(?:[ \t][a-zA-ZáéíóúÁÉÍÓÚñÑ0-9@#\$\-]+)*$" maxlength="50" name="direccion" id="direccion" class="form-control bg-secondary bg-opacity-50 text-dark fw-semibold border-bottom border-primary" required>
+                            <label for="direccion" class="text-dark fw-semibold"> Dirección </label>
+                        </div>
                     </div>
-                    
-                    <div class="form-floating m-4">
-                        <input type="text" placeholder="Ingrese más información si es necesaria" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9]+(?:[ \t][a-zA-ZáéíóúÁÉÍÓÚñÑ0-9]+)*$" maxlength="40" name="masInfo" id="masInfo" class="form-control bg-secondary bg-opacity-50 text-dark fw-semibold border-bottom border-primary">
-                        <label for="masInfo" class="text-dark fw-semibold"> Más Información (Edificio/Apto) </label>
+                        
+                    <div class="col-md-6">
+                        <div class="form-floating m-4">
+                            <input type="text" placeholder="Ingrese más información si es necesaria" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ0-9]+(?:[ \t][a-zA-ZáéíóúÁÉÍÓÚñÑ0-9]+)*$" maxlength="40" name="masInfo" id="masInfo" class="form-control bg-secondary bg-opacity-50 text-dark fw-semibold border-bottom border-primary">
+                            <label for="masInfo" class="text-dark fw-semibold"> Más Información (Edificio/Apto) </label>
+                        </div>    
                     </div>    
                 </div>
 

@@ -37,9 +37,10 @@
     <?= menu("../.."); ?>
 
     <?php 
-        if(isset($_SESSION["Error"])){
-            echo '<div class="alert alert-danger m-0"><i class="bi bi-exclamation-diamond-fill"> </i>';
-            echo $_SESSION["Error"];
+         if(isset($_SESSION["Error"])){
+            echo '<div class="alert alert-info rounded m-0 text-center alert-dismissible fade show" role="alert">
+                <i class="bi bi-exclamation-diamond-fill">  </i>' . $_SESSION["Error"] . '
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
             echo '</div>';
             unset($_SESSION["Error"]);
         }

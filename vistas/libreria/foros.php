@@ -1,16 +1,15 @@
 <?php
-ob_start();
-session_start();
-if (!isset($_SESSION['Status'])) {
-    $_SESSION['Foro2'] = "<script> alert('Por favor inicie sesión para ver los foros'); </script>";
-    header('Location: ../../vistas/usuario/index.php');
-}
+    ob_start();
+    session_start();
+    if (!isset($_SESSION['Status'])) {
+        $_SESSION['Foro2'] = "<script> alert('Por favor inicie sesión para ver los foros'); </script>";
+        header('Location: ../../vistas/usuario/index.php');
+    }
 
-if (isset($_SESSION['Foro'])) {
-    echo $_SESSION['Foro'];
-    // header('Location: ../libreria/foros.php');
-    unset($_SESSION["Foro"]);
-}
+    if (isset($_SESSION['Foro'])) {
+        echo $_SESSION['Foro'];
+        unset($_SESSION["Foro"]);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -28,6 +27,7 @@ if (isset($_SESSION['Foro'])) {
     <link rel="stylesheet" href="../../css/style.css">
     <link rel="stylesheet" href="../../css/jquery.dataTables.min.css">
     <link href="../../libs/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <style>
         #volver-a-foros {
             display: none;
@@ -82,83 +82,120 @@ if (isset($_SESSION['Foro'])) {
     }
     ?>
 
-    <div class="container">
+    <div class="container pb-4">
         <h1 id="Titulo1" class="mt-5 text-center"> Foros </h1>
         <div id="crearForo" class="text-end mt-4 overflow-auto">
-            <a type="button" href="../../vistas/foros/formulario.php" class="btn btn-outline-primary border border-primary rounded">
-                Crear foro </a>
+            <a type="button" href="../../vistas/foros/formulario.php" class="btn btn-outline-primary border border-primary rounded me-3">
+                Crear foro 
+            </a>
         </div>
         <div class="container mb-2">
             <div class="form-floating mt-4">
                 <input type="text" class="form-control bg-white text-primary rounded text-center" name="buscar" id="buscar" placeholder=" ">
-                <label for="buscar" class="text-center text-info">Escriba el nombre del libro o autor del material que desea buscar </label>
+                <label for="buscar" class="text-center text-info">Escriba el nombre o autor del libro que desea buscar </label>
             </div>
         </div>
 
         <div class="container">
-            <div id="tablaForo" class="overflow-auto">
-                <table id="tabla-foros" class="table overflow-auto">
-                    <thead>
-                        <tr>
-                            <th width="20px">  </th>
-                            <th width="200px" class="text-center border"> Creador </th>
-                            <th width="300px" class="text-center border">Libro</th>
-                            <th width="200px" class="text-center border">Autor</th>
-                            <th width="100px" class="text-center border">Respuestas</th>
-                        </tr>
-                    </thead>
-                    <?php
-
+            <div id="tablaForo">
+                <?php
                     include_once "../../controller/conexion.php";
                     $con = new Configuracion;
                     $conexion = $con->conectarDB();
-
-                    $query = "SELECT s.idForo, f.idUsuario, f.nombreLibro , f.autorLibro, u.usuario, s.cantidad
-                    FROM usuario u, foro f, (SELECT  f.id as idForo,  COUNT(r.idForo) as cantidad
-                    FROM respuestas r RIGHT JOIN foro f ON  r.idForo = f.id
-                    WHERE f.idEstado = 1
-                    GROUP BY f.id
-                    ORDER BY id DESC) s 
+                    
+                    $query = "SELECT s.idForo, f.idUsuario, f.nombreLibro, f.autorLibro, u.usuario, s.cantidad
+                    FROM usuario u, foro f, (SELECT f.id as idForo, COUNT(r.idForo) as cantidad
+                        FROM respuestas r RIGHT JOIN foro f ON r.idForo = f.id
+                        WHERE f.idEstado = 1
+                        GROUP BY f.id
+                        ORDER BY id DESC) s
                     WHERE u.idUsuario = f.idUsuario
                     AND s.idForo = f.id";
-                    $result = $conexion->query($query);
-
-                    $conexion = $con->cerrarConexion();
-                    unset($conexion);
-                    unset($con);
-
-
-                    while ($row = mysqli_fetch_array($result, MYSQLI_ASSOC)) {
+                
+                    $result = mysqli_query($conexion, $query);
+                    $totalFilas = mysqli_num_rows($result);
+                    
+                    $limite = 6;
+                    $paginaActual = isset($_GET['p']) && is_numeric($_GET['p']) ? (int)$_GET['p'] : 1;
+                    
+                    $totalPaginas = ceil($totalFilas / $limite);
+                    $offset = ($paginaActual - 1) * $limite;
+                    
+                    $queryLimit = $query . " LIMIT $offset, $limite";
+                    $resultLimit = mysqli_query($conexion, $queryLimit);
+                    
+                    while ($row = mysqli_fetch_array($resultLimit, MYSQLI_ASSOC)) {
                         $id = $row['idForo'];
                         $idUsuario = $row['usuario'];
                         $titulo = $row['nombreLibro'];
                         $autor = $row['autorLibro'];
                         $respuestas = $row['cantidad'];
-                        echo "<tr>";
-                        echo "<td class='border'> <a href='../foros/foro.php?id=$id' aria-label='Ver más'><i class='bi bi-eye'></i></a></td>";
-                        echo "<td class='border'>$idUsuario</td>";
-                        echo "<td class='border'>$titulo</td>";
-                        echo "<td class='border'>$autor</td>";
-                        echo "<td class='text-center border'>$respuestas</td>";
-                        echo "</tr>";
-                    }
-                    ?>
-                </table>
+                ?>
+                    <div class="row mt-3 forum-card">
+                        <div class="col-12">
+                            <div class="card forum-card-border-color forum-card-background-color forum-text-color">
+                                <div class="card-body d-flex justify-content-between">
+                                    <div class="col-5">
+                                        <h5 class="card-subtitle mb-2">Creador: <?php echo $idUsuario; ?></h5 style=" font-size: 16px;">
+                                        <h4 class="card-text mb-2"><?php echo $titulo; ?></h4>
+                                        <p class="card-tittle mb-0" style="opacity: 0.7;"><?php echo $autor; ?></p>
+                                    </div>
+                                    <div class="col-6 d-flex flex-row-reverse align-items-center text-dark">
+                                        <span class="card-text mb-0" style="font-size: 1.2rem;"><i class="bi bi-chat-left" style="font-size: 1.4rem;"></i>  &nbsp; <?php echo $respuestas; ?></span>
+                                        <a class="me-5" href="../foros/foro.php?id=<?php echo $id; ?>" aria-label="Ver más"> <img class="libroE" src="https://img.icons8.com/ios-glyphs/30/null/open-book--v2.png"/> </a>
+                                    </div>
+                                    <div class="col-1 d-flex align-items-center justify-content-center">
+                                        <!-- Columna vacía para centrar el contenido -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <?php } $filas = mysqli_fetch_all($resultLimit, MYSQLI_ASSOC);?>
+
+                <div class="container mt-5 text-center">
+                    <ul class="pagination justify-content-center">
+                        <?php  if($paginaActual > 1): ?>
+                            <li class="page-item me-3">
+                                <a class="rounded btn btn-outline-primary border border-primary btn-sm" href="foros.php?p=<?php echo $paginaActual-1; ?>"> Anterior </a>
+                            </li>
+                        <?php endif ?>
+                        
+                        <?php
+                            if ($totalFilas > ($paginaActual * $limite) - $limite + count($filas)) :
+                                for ($pagina = 1; $pagina <= $totalPaginas; $pagina += 1) :
+                        ?>
+                                    <li class="page-item me-2"><a class="btn btn-outline-primary border border-primary btn-sm rounded-pill" href="foros.php?p=<?php echo $pagina ?>"><?php echo $pagina ?></a></li>
+                        <?php
+                                endfor;
+                            endif;
+                        ?>
+
+                        <?php if ($paginaActual < $totalPaginas) : ?>
+                            <li class="page-item ms-2">
+                                <a class="btn btn-outline-primary border border-primary btn-sm rounded" href="foros.php?p=<?php echo $paginaActual + 1; ?>">
+                                    Siguiente
+                                </a>
+                            </li>
+                        <?php endif ?>
+                    </ul>
+                </div>
             </div>
         </div>
+
     </div>
-
-    <div class="p-5"> <a class="btn btn-primary" href="http://localhost/Libreria/vistas/libreria/foros.php" id="volver-a-foros">Volver a los foros</a>
-    </div>
-
-
 
     <script src="../../js/bootstrap.bundle.min.js"> </script>
     <script src="../../js/jquery-3.6.1.min.js"> </script>
-    <script src="../../js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function() {
-            //var busqueda = document.getElementById('busqueda').value;
+            var icono = $(".libroE");
+            icono.hover(function() {
+                $(this).attr("src", "../../img/iconos/libro-abierto.gif");
+            }, function() {
+                $(this).attr("src", "https://img.icons8.com/ios-glyphs/30/null/open-book--v2.png");
+            });
+            
             var busqueda = $('#buscar')
             var datos = $('#tablaForo')
             busqueda.on('keyup', function() {
@@ -175,12 +212,7 @@ if (isset($_SESSION['Foro'])) {
                     }
                 });
             });
-            $('#tabla-foros').DataTable({
-                paging: true,
-                ordering: true,
-                info: true
-
-            });
+            
         });
     </script>
     <div> <?= footer(); ?> </div>

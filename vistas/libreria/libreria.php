@@ -28,8 +28,8 @@
                     Queremos que las librerías sean santuarios a los que se acuda buscando mucho más de lo que se puede encontrar en un almacén. Que los escritores y los artistas sean auténticas estrellas capaces de influir en el espíritu de su época.
                     Librerías entre cuyas estanterías nacieron escritores, artistas, músicos, cineastas, actores, pero también locos, dementes, profetas, políticos y otros Quijotes necesarios para que una sociedad sea libre y sueñe.
                     <br><br>
-                    La Librería Papiro de Colombia fue fundada en la ciudad de Barranquilla en septiembre de 1941, y fue pionera en la modalidad de autoservicio y en la venta y distribución de revistas en el país.
-                    En la Librería Papiro nos destacamos también por la novedosa integración de heladerías y cafeterías dentro de nuestras sedes (en las de Cali particularmente); en la actualidad contamos con 31 Agencias a nivel Nacional, librerías en seis ciudades (Bogotá, Cali, Medellín, Barranquilla, Cartagena y Pereira) situadas en los mejores centros comerciales de cada una de estas ciudades.
+                    La Librería Papiro de Colombia fue fundada en la ciudad de Tunja en septiembre de 1941, y fue pionera en la modalidad de autoservicio y en la venta y distribución de revistas en el país.
+                    En la Librería Papiro nos destacamos también por la novedosa integración de heladerías y cafeterías dentro de nuestras sedes (en las de Cali particularmente); en la actualidad contamos con 31 Agencias a nivel Nacional, librerías en seis ciudades (Bogotá, Cali, Medellín, Tunja, Cartagena y Pereira) situadas en los mejores centros comerciales de cada una de estas ciudades.
                 </p>
             </div>
         </div>

@@ -3,6 +3,10 @@
     session_start();
     if(!isset($_SESSION['Admin'])){
         header('Location: ../../index.php');
+        exit();
+    }elseif($_GET['id']==""){
+        header('Location: ../../vistas/inventario/modificarp-listar.php');
+        exit();
     }
 
     include "../../codigo/controller/conexion.php";
@@ -16,13 +20,13 @@
             INNER JOIN tematica ON libro.idTematica = tematica.idTematica  
             INNER JOIN categoria ON libro.idCategoria = categoria.idCategoria   
             INNER JOIN estado ON libro.idEstado = estado.idEstado 
-    WHERE idLibro='$id' LIMIT 21;";
+    WHERE idLibro='$id'";
 
     $modificar= $conexion->query($sql);
     $dato= $modificar->fetch_array();
 
     if(isset($_POST['modificar'])){
-        
+
         $id= $_POST['id'];        
         $idLibro = $conexion->real_escape_string(htmlentities($_POST['id']));
         $nombre = $conexion->real_escape_string(htmlentities($_POST['nombreLibro']));
@@ -38,8 +42,42 @@
         $isbn = $conexion->real_escape_string(htmlentities($_POST['ISBN']));
         $categoria = $conexion->real_escape_string(htmlentities($_POST['categoria']));
         $estado = $conexion->real_escape_string(htmlentities($_POST['estado']));
+        $imgdir = "";
+        
+        // echo "Hola";
 
-        $actualiza="UPDATE libro SET nombreLibro='$nombre', autor='$autor', descripcionLibro='$descripcion', precioLibro='$precio', cantidad='$cantidad', idEditorial='$editorial', paginas='$pag', publicacion='$pub', idPais='$pais', idTematica='$tematica', ISBN='$isbn', idCategoria='$categoria', idEstado='$estado' WHERE idLibro='$id'";
+        // if(!empty($_POST["imagenCortada"]))
+        // {
+        //     $directorio = "/img/";  
+        //     $estados = 1;
+
+        //     $date = new DateTime();
+        //     $timestamp = $date->getTimestamp();
+
+        //     $data = $_POST["imagenCortada"];
+        //     $image_array_1 = explode(";", $data);
+        //     $image_array_2 = explode(",", $image_array_1[1]);
+        //     $data = base64_decode($image_array_2[1]);
+        //     $imageName = $timestamp. '.jpg';
+    
+        //     // Verificar si el archivo es apto para subir
+        //     if($estados == 1){
+        //         file_put_contents('img/'.$imageName, $data);
+        //     }
+
+        //     $imgdir = $directorio.$imageName;
+        // }
+
+        // if($dato["img"] != $imgdir AND $dato["img"] != "/img/PortadaPredeterminada.jpg"){
+        //     $actualiza="UPDATE libro SET nombreLibro='$nombre', autor='$autor', descripcionLibro='$descripcion', precioLibro='$precio', cantidad='$cantidad', idEditorial='$editorial', paginas='$pag', publicacion='$pub', idPais='$pais', idTematica='$tematica', ISBN='$isbn', idCategoria='$categoria', idEstado='$estado', img='$imgdir' WHERE idLibro='$id'";
+        //     $ruta_imagen = ".".$dato["img"];
+        //     unlink($ruta_imagen);
+        // }elseif($dato["img"] != $imgdir){
+        //     $actualiza="UPDATE libro SET nombreLibro='$nombre', autor='$autor', descripcionLibro='$descripcion', precioLibro='$precio', cantidad='$cantidad', idEditorial='$editorial', paginas='$pag', publicacion='$pub', idPais='$pais', idTematica='$tematica', ISBN='$isbn', idCategoria='$categoria', idEstado='$estado', img='$imgdir' WHERE idLibro='$id'";
+        // }
+        // else{
+            $actualiza="UPDATE libro SET nombreLibro='$nombre', autor='$autor', descripcionLibro='$descripcion', precioLibro='$precio', cantidad='$cantidad', idEditorial='$editorial', paginas='$pag', publicacion='$pub', idPais='$pais', idTematica='$tematica', ISBN='$isbn', idCategoria='$categoria', idEstado='$estado' WHERE idLibro='$id'";
+        // }
         
         if(trim(htmlentities($_POST['nombreLibro'])) == "" OR trim(htmlentities($_POST['autor'])) == ""  
         OR trim(htmlentities($_POST['descripcionLibro'])) == ""  OR trim(htmlentities($_POST['precioLibro'])) == ""  
@@ -73,6 +111,7 @@
     <link rel="shortcut icon" href="../../../img/icono2.png" type="image/ico" />
     <link rel="stylesheet" href="../../../css/custom.css">
     <link rel="stylesheet" href="../../../css/style2.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css">
     <link href ="../../../libs/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <style>
         body{
@@ -100,7 +139,6 @@
     <?= menuAdmin("../../../"); ?>
 
     <?php
-        
         if(isset($_SESSION["actualizadoE"])){
             echo '<div class="alert alert-warning m-0 alert-dismissible fade show text-center">
                 <button class="btn-close" type="button" data-bs-dismiss="alert"></button>
@@ -117,7 +155,7 @@
 
         <div class="row justify-content-center">
             <div class=" col-md-6 p-5 justify-content-center">
-            <form action="<?php echo $_SERVER['PHP_SELF'].'?id='.$id ?>" method="POST">
+            <form id="form" action="<?php echo $_SERVER['PHP_SELF'].'?id='.$id ?>" enctype="multipart/form-data" method="POST">
                 <input type="hidden" name="id" id="id" value="<?php echo $dato['idLibro'];?>">
                 
                     <div class="form-floating m-4">
@@ -255,6 +293,41 @@
                             ?>
                         </select>
                     </div>
+
+                    <!-- Modificar imagen -->
+                    <!-- <div class="input-group">
+                        <div class="form-floating m-4 mt-2 me-2">
+                        <input type="file" placeholder="Seleccione la imagen" accept=".png, .jpg, .jpeg" name="archivoSubir" id="archivoSubir"  class="form-control bg-dark bg-opacity-75 text-light border-bottom border-light">
+                        </div>
+                        <button type="button"  data-bs-toggle="modal" data-bs-target="#staticBackdrop" class="input-group-text m-4 mt-2 bg-dark bg-opacity-75 text-light border-bottom border-light"><i class="bi bi-eye"></i></button>
+                    </div>
+                    
+                    <p class="text-end text-light me-4 ms-4"> Recomendado: 662 x 1000 px </p> -->
+
+                    <!-- Modal Imagen -->
+                        <div class="modal fade" id="staticBackdrop" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content p-3 bg-dark border-info rounded text-center bg-opacity-75" style="box-shadow: 0px 0px 15px var(--bs-cyan);">
+                                    <div class="modal-header border-dark mb-4">
+                                        <h1 class="modal-title text-info h4 mx-auto" id="staticBackdropLabel">Portada del libro <?php echo $dato['nombreLibro'];?></h1>
+                                    </div>
+
+                                    <label class="p-4 border-primary border"> <img src='.<?php echo $dato['img'];?>' alt='Portada del libro <?php echo $dato['nombreLibro'];?>' style='min-width: 262px; width: 262px; min-height: 400px;' ></label>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- Fin Modal Imagen -->
+                    
+                    <!-- Croppie -->
+                        <div class="container"> 
+                            <div class="card" id="subirImagen" style='display:none; background: transparent;'>
+                                <div class="card-body mx-auto">
+                                    <div id="imgEditando"></div>
+                                    <input type="hidden" id="imagenCortada" name="imagenCortada">
+                                </div>
+                            </div>
+                        </div>
+                    <!-- Croppie -->
                 </div>
 
                 <div class="text-center m-4">
@@ -266,5 +339,71 @@
     </div>
 
     <script src="../../../js/bootstrap.bundle.min.js"> </script>
+    <script src="../../../js/jquery-3.6.1.min.js"> </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var enviarFormulario = false;
+            var img = $('#archivoSubir');
+
+            img.on('change', function() {
+                var imgName = $(this).val().split('\\').pop();
+                var imgExt = imgName.split('.').pop().toLowerCase();
+                if ($.inArray(imgExt, ['png', 'jpg', 'jpeg']) == -1) {
+                    alert('El tipo de archivo no es válido. Las extensiones permitidas son: png, jpg y jpeg.');
+                    $(this).val('');
+                }
+            });
+            
+            // Croppie
+            img.on('change', function(){
+				$('#imgEditando').croppie({
+					viewport: {
+						width: 262,
+						height: 400,
+					},
+					boundary: {
+						width: 300,
+						height: 450
+					}
+				});
+
+				var reader = new FileReader();
+				reader.onload = function (e) {
+					$('#imgEditando').croppie('bind', {
+						url: e.target.result
+					});
+				}
+
+				reader.readAsDataURL(this.files[0]);
+                $('#subirImagen').show();
+
+                if(img.prop('files').length > 0){
+                    console.log("Hola");
+
+                    $('#form').submit(function(e){
+                        e.preventDefault();
+
+                        if(enviarFormulario){
+                            $(this).off('submit').submit();
+                        }else{
+                            $('#imgEditando').croppie('result', {
+                                type: 'canvas',
+                                size: 'viewport'
+                            }).then(function(response){
+                                $('#imagenCortada').val(response);
+                                enviarFormulario = true;
+                                console.log($('#imagenCortada').val());
+
+                                $('#form').off('submit').submit();
+                            });
+                        }
+                    });
+                };
+			});
+
+        });
+        
+    </script>
 </body>
 </html>

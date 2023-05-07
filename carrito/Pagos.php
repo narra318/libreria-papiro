@@ -10,7 +10,7 @@
 
 
     if ($cart->total_items() <= 0) {
-        header("Location: ../vistas/libreria/catalogo.php");
+        header("Location: NoProd.php");
     }
 
     $query = $db->query("SELECT * FROM clientes WHERE idUsuario = " . $_SESSION['idUsuario']);
@@ -84,8 +84,8 @@
     <?= menu("../"); ?>
 
     <div class="row me-0">
-        <div class="col-3"> <?=  menuSide("", "active","","","../"); ?> </div>
-        <div class="col-9 ms-0 contenido" style="height: 100vh; overflow: auto;">
+        <div class="col-md-3"> <?=  menuSide("", "active","","","../"); ?> </div>
+        <div class="col-md-9 ms-0 contenido" style="height: 100vh; overflow: auto;">
         <?php
             if (mysqli_num_rows($infoEnv) == 0) {  
                 $_SESSION['NoInfo'] = "Por favor agregue una dirección de envio.";
@@ -154,6 +154,8 @@
         <!--Panek cierra--><?php } ?>
     </div></div><?= footer(); ?>
     </div>
+    <script src="../js/jquery-3.6.1.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </body>

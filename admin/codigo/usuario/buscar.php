@@ -13,7 +13,7 @@
     INNER JOIN pais ON usuario.idPais = pais.idPais 
     INNER JOIN estado ON usuario.idEstado = estado.idEstado 
     INNER JOIN roles ON usuario.idRol = roles.idRol 
-    WHERE (usuario.usuario LIKE '%$busqueda%' OR usuario.correoUsuario LIKE '%$busqueda%') LIMIT 21;";
+    WHERE (usuario.usuario LIKE '%$busqueda%' OR usuario.correoUsuario LIKE '%$busqueda%');";
 
     $resultado = mysqli_query($conexion, $sql);
 

@@ -103,7 +103,7 @@
                         </div>
                         <div class="text-end m-4 p-4 pb-0">
                             <button type="submit" class="btn btn-light rounded" name=""> Crear Foro </button>
-                            <a type="button" id="regresar" name="regresar" onclick="history.back()" class="btn btn-outline-light border border-primary rounded"> Volver </a>
+                            <a type="button" id="regresar" name="regresar" onclick="return confirm('La información no se guardara ¿Desea regresar?')"  href="./" class="btn btn-outline-light border border-primary rounded"> Volver </a>
                         </div>
                     </form>
                 </div>

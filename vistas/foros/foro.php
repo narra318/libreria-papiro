@@ -58,6 +58,11 @@ if (isset($_GET['id'])) {
 	<link rel="stylesheet" href="../../css/style.css">
 	<script src="../../js/jquery-3.6.1.min.js"></script>
 	<link href="../../libs/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+	<style>
+		.comentario:nth-child(n+5) {
+			display: none;
+		}
+	</style>
 </head>
 
 <body class="bg-secondary">
@@ -68,11 +73,11 @@ if (isset($_GET['id'])) {
 		echo "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
 		unset($_SESSION['mensaje']);
 	}
-	
-	if (isset($_SESSION['ErrorDB'])) {
-		echo "<div class='alert alert-warning text-center alert-dismissible fade show' role='alert'> <b><i class='bi bi-exclamation-circle'></i></b> &nbsp;" . $_SESSION['ErrorDB'];
+
+	if (isset($_SESSION['Error'])) {
+		echo "<div class='alert alert-secondary rounded text-center alert-dismissible fade show' role='alert'> <b><i class='bi bi-exclamation-circle'></i></b> &nbsp;" . $_SESSION['Error'];
 		echo "<button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button></div>";
-		unset($_SESSION['ErrorDB']);
+		unset($_SESSION['Error']);
 	}
 
 	?>
@@ -90,51 +95,33 @@ if (isset($_GET['id'])) {
 
 		</div>
 
-		<div class="text-end pe-5">
-			<button type="button" class="btn btn-outline-primary rounded border border-primary" onclick="mostrarTextArea()" id="responder-foro"> Responder</button>
-			<a href="../libreria/foros.php" class="btn btn-outline-primary border border-primary rounded">Volver</a>
-		</div>
+		<form action="ingresar_comentario.php" method="POST" id="nuevo-comentario">
+			<div class="text-end pe-5">
+				<button type="submit" id="enviar-comentario" class="btn btn-outline-primary border border-primary rounded" >Enviar</button>
+				<a href="../libreria/foros.php" class="btn btn-outline-primary border border-primary rounded">Volver</a>
+			</div>
+			<textarea class="form-control mt-3 rounded" rows="3" name="comentario" id="comentario" placeholder="Escribe tu comentario"></textarea>
+			<input type="hidden" name="foro" id="foro" value="<?php echo $idForo ?>">
+			<input type="hidden" name="usuario" id="usuario" value="<?php echo $idUsuario ?>">
+		</form>
 
 		<div>
-
-
-			<form action="ingresar_comentario.php" method="POST" id="nuevo-comentario" style="display:none;">
-				<textarea class="form-control mt-3" rows="3" name="comentario" id="comentario" placeholder="Escribe tu comentario"></textarea>
-				<input type="hidden" name="foro" id="foro" value="<?php echo $idForo ?>">
-				<input type="hidden" name="usuario" id="usuario" value="<?php echo $idUsuario ?>">
-
-				<button type="submit" id="enviar-comentario" class="btn btn-outline-primary border border-primary rounded mt-3">Enviar</button>
-			</form>
-
-			<p class="mt-5 " style="width: 6rem;"> Respuestas:</p>
+			<p class="mt-5 text-dark fw-bold " style="width: 6rem;"> Comentarios:</p>
 			<hr>
 
 			<div id="respuestas">
 
-				<?php
-				include "ver-respuestas.php";
-
-				?>
+				<?php include "ver-respuestas.php";	?>
 
 			</div>
-
-			<?php
-
-
-			?>
-
 		</div>
-
 	</div>
+
+	<div class="mb-3"> &nbsp; </div>
 
 	<div><?= footer(); ?></div>
 
-	<script>
-		function mostrarTextArea() {
-			document.getElementById("nuevo-comentario").style.display = "block";
-		}
-	</script>
+	<script src="../../js/jquery-3.6.1.min.js"></script>
 
 </body>
-
 </html>

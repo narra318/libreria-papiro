@@ -52,6 +52,14 @@ if(isset($_REQUEST['action']) && !empty($_REQUEST['action'])){
             $cartItems = $cart->contents();
             foreach($cartItems as $item){
                 $sql .= "INSERT INTO orden_articulos (order_id, product_id, quantity) VALUES ('".$orderID."', '".$item['id']."', '".$item['qty']."');";
+                
+                $cantQuery = $db->query("SELECT cantidad FROM libro WHERE idLibro=".$item['id'].";");
+                $cantRow = $cantQuery->fetch_assoc();
+                $cant = $cantRow['cantidad'];
+                $cantidad =  $cant - (int)$item['qty'];
+            
+                $act = "UPDATE libro SET cantidad = $cantidad WHERE idLibro=".$item['id'].";";
+                $final = $db -> query($act);
             }
             // insert order items into database
             $insertOrderItems = $db->multi_query($sql);

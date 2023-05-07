@@ -4,6 +4,9 @@
     if (!isset($_SESSION['Status'])) {
         header('Location: ../index.php');
     }
+
+    $nombreImagen = "../img/icono2.png";
+    $imagenBase64 = "data:image/png;base64," . base64_encode(file_get_contents($nombreImagen));
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -12,12 +15,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/custom.css">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="shortcut icon" href="<?php echo $imagenBase64 ?>" type="image/ico" />
     <link href="../libs/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
 </head>
 
 <body style="margin: 50px; margin-top: 20px;">
+
     <div class="row me-0 justify-content-center mx-auto p-5">
             <?php
                 include "../controller/conexion.php";
@@ -45,16 +48,23 @@
                     $id = $fila['id'];
                     $total = number_format($fila['total_price']);
             ?>
-            
-            <h1 id="Titulo1" style="text-align: center;"> Factura de la compra: #APPR<?php echo $id ?> </h1>
 
+
+            <div style="margin-top: 50px;"> <img src="<?php echo $imagenBase64 ?>" style="width: 150px; margin-top: -40px;" alt="Logo de libreria"> </div>
+
+
+            <div style="text-align: center; margin-top: -280px; margin-left: 80;">
+                <h1 id="Titulo1" style="text-align: center;"> Factura de compra </h1>
+                <p style="font-size: 16px; margin-top: 10px;">Número de factura: #APPR<?php echo $id ?></p>
+            </div>
             
-            <div class="row">
-                <div class="col"><p> Fecha de compra: <?php echo $created ?></p>
+            <div class="row" style="margin-top: 50px;">
+                <p style="font-size: 16px; margin-top: 10px;"> Fecha de compra: <?php echo date("d/m/Y", strtotime($created)) ?></p>
+                <!-- <div class="col"><p></p> -->
                 <p> Nombre: <?php echo $nombre ?></p>
                 <p> Télefono: <?php echo $tel ?></p>
                 <p> Dirección: <?php echo $fila['address'], "  " ,$fila['ciudad'] ?></p></div>
-                <div class="col"><p style="color: red; text-align: right">Total: $<?php echo $total ?> COP </p></div>
+                <div class="col"><h2 style="color: #53213d; text-align: right">Total: $<?php echo $total ?> COP </h2></div>
             </div>
 
             <?php } ?>
@@ -62,18 +72,18 @@
             <div class="overflow-auto p-4" style="text-align: center;">
                 <table style="border-color: 1px solid black; border-collapse: collapse; width: 100%">
                     <tr> 
-                        <th class="border border-primary" style="border: 1px solid black; padding: 10px;" > Producto: </th> 
-                        <th class="border border-primary" style="border: 1px solid black; padding: 10px;"> Precio: </th> 
-                        <th class="border border-primary" style="border: 1px solid black; padding: 10px;"> Cant: </th> 
-                        <th class="border border-primary" style="border: 1px solid black; padding: 10px;"> Subtotal: </th> 
+                        <th class="border border-primary" style="border: 1px solid #53213d; padding: 10px; background-color: #a07d94a8;" > Producto: </th> 
+                        <th class="border border-primary" style="border: 1px solid #53213d; padding: 10px; background-color: #a07d94a8;"> Precio: </th> 
+                        <th class="border border-primary" style="border: 1px solid #53213d; padding: 10px; background-color: #a07d94a8;"> Cant: </th> 
+                        <th class="border border-primary" style="border: 1px solid #53213d; padding: 10px; background-color: #a07d94a8;"> Subtotal: </th> 
                     </tr>
                     
                 <?php while ($row = $resulset->fetch_assoc()) { ?>
                     <tr>
-                        <td class="border border-primary"  style="border: 1px solid black; padding: 20px;" > <?php echo $row['nombreLibro']; ?> </td>
-                        <td class="border border-primary"  style="border: 1px solid black; padding: 20px;" > $<?php echo number_format($row['precioLibro']); ?> COP </td>
-                        <td class="border border-primary"  style="border: 1px solid black; padding: 20px; text-align: center;" > <?php echo $row['quantity']; ?> </td>
-                        <td class="border border-primary"  style="border: 1px solid black; padding: 20px;" > $<?php echo number_format($row['precioLibro']*$row['quantity']); ?> COP </td>
+                        <td class="border border-primary"  style="border: 1px solid #53213d; background-color: #b9b4bf76; padding: 20px;" > <?php echo $row['nombreLibro']; ?> </td>
+                        <td class="border border-primary"  style="border: 1px solid #53213d; background-color: #b9b4bf76; padding: 20px;" > $<?php echo number_format($row['precioLibro']); ?> COP </td>
+                        <td class="border border-primary"  style="border: 1px solid #53213d; background-color: #b9b4bf76; padding: 20px; text-align: center;" > <?php echo $row['quantity']; ?> </td>
+                        <td class="border border-primary"  style="border: 1px solid #53213d; background-color: #b9b4bf76; padding: 20px;" > $<?php echo number_format($row['precioLibro']*$row['quantity']); ?> COP </td>
                     </tr>
                 <?php } ?>
                 </table>

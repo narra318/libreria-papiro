@@ -63,8 +63,8 @@
     <?= menu("../"); ?>
 
     <div class="row me-0">
-        <div class="col-3"> <?=  menuSide("", "","active","","../"); ?> </div>
-        <div class="col-9 ms-0 contenido" style="height: 100vh; overflow: auto;">
+        <div class="col-md-3"> <?=  menuSide("", "","active","","../"); ?> </div>
+        <div class="col-md-9 ms-0 contenido" style="height: 100vh; overflow: auto;">
             <?php
                 include "../controller/conexion.php";
 
@@ -113,7 +113,6 @@
             <div class="overflow-auto p-4">
                     <table class="table border border-primary text-center text-primary">
                         <tr class="bg-info bg-opacity-50"> 
-                            <!-- <th class="border border-primary"> Usuario: </th>  -->
                             <th class="border border-primary"> Producto: </th> 
                             <th class="border border-primary"> N° orden: </th> 
                             <th class="border border-primary"> Precio: </th> 
@@ -124,7 +123,6 @@
             <?php while ($row = $resulset->fetch_assoc()) { ?>
                 
                         <tr>
-                            <!-- <td class="border border-primary"> <?php  $row['usuario']; ?> </td> -->
                             <td class="border border-primary"> <?php echo $row['nombreLibro']; ?> </td>
                             <td class="border border-primary"> #APPR<?php echo $row['order_id']; ?> </td>
                             <td class="border border-primary"> $<?php echo number_format($row['precioLibro']); ?> COP </td>

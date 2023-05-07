@@ -10,14 +10,25 @@
 
     include '../controller/conexion.php';
     $conexion = new Configuracion();
-    $con = $conexion -> conectarDB();
+    $con = $conexion->conectarDB();
     $usuarioId = $_SESSION['idUsuario'];
+
+    $limite = 5;
+    $paginaActual = isset($_GET['p']) && is_numeric($_GET['p']) ? (int)$_GET['p'] : 1;
+
+    $totalOrdenes = mysqli_num_rows(mysqli_query($con, "SELECT orden.id FROM orden INNER JOIN clientes WHERE clientes.idUsuario = '$usuarioId' AND orden.customer_id = clientes.id;"));
+    $totalPaginas = ceil($totalOrdenes / $limite);
+
+    $offset = ($paginaActual - 1) * $limite;
 
     $sql = "SELECT orden.id, orden.customer_id, orden.total_price, orden.created, orden.status 
     FROM orden INNER JOIN clientes
-    WHERE clientes.idUsuario = '$usuarioId' AND orden.customer_id = clientes.id ORDER BY created DESC;";
+    WHERE clientes.idUsuario = '$usuarioId' AND orden.customer_id = clientes.id
+    ORDER BY created DESC
+    LIMIT $offset, $limite";
 
     $orden = mysqli_query($con, $sql);
+
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -78,12 +89,10 @@
     <?= menu("../"); ?>
 
     <div class="row me-0">
-        <div class="col-3"> <?=  menuSide("", "","active","","../"); ?> </div>
+        <div class="col-md-3"> <?=  menuSide("", "","active","","../"); ?> </div>
 
-        <div class="col-9 ms-0 sub-menu-cont" style="height: 100vh; overflow: auto;">
+        <div class="col-md-9 ms-0 sub-menu-cont" style="height: 100vh; overflow: auto;">
             <div class="container mt-5">
-                
-
                 <?php 
                     if (mysqli_num_rows($orden) == 0) {  
                         echo '
@@ -127,15 +136,45 @@
                             CUADRO;
                         }
                     }
+
+                    
+                    $filas = mysqli_fetch_all($orden, MYSQLI_ASSOC);
+
                     ?>
+                    <div class="container mt-5 text-center">
+                        <ul class="pagination justify-content-center">
+                            <?php  if($paginaActual > 1): ?>
+                                <li class="page-item me-3">
+                                    <a class="rounded btn btn-outline-primary border border-primary btn-sm" href="compras.php?p=<?php echo $paginaActual-1; ?>"> Anterior </a>
+                                </li>
+                            <?php endif ?>
+                            
+                            <?php
+                                if ($totalOrdenes > ($paginaActual * $limite) - $limite + count($filas)) :
+                                    for ($pagina = 1; $pagina <= $totalPaginas; $pagina += 1) :
+                            ?>
+                                        <li class="page-item me-2"><a class="btn btn-outline-primary border border-primary btn-sm rounded-pill" href="compras.php?p=<?php echo $pagina ?>"><?php echo $pagina ?></a></li>
+                            <?php
+                                    endfor;
+                                endif;
+                            ?>
+
+                            <?php if ($paginaActual < $totalPaginas) : ?>
+                                <li class="page-item ms-2">
+                                    <a class="btn btn-outline-primary border border-primary btn-sm rounded" href="compras.php?p=<?php echo $paginaActual + 1; ?>">
+                                        Siguiente
+                                    </a>
+                                </li>
+                            <?php endif ?>
+                        </ul>
+                    </div>
             </div>
         </div>
     </div>
 
 
 <?= footer(); ?>    </div>
-    
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../js/jquery-3.6.1.min.js"></script>
+    <script src="../js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

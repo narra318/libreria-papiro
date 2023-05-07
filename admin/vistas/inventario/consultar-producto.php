@@ -82,8 +82,7 @@
                     INNER JOIN editorial ON libro.idEditorial = editorial.idEditorial  
                     INNER JOIN tematica ON libro.idTematica = tematica.idTematica  
                     INNER JOIN categoria ON libro.idCategoria = categoria.idCategoria   
-                    INNER JOIN estado ON libro.idEstado = estado.idEstado 
-                LIMIT 21;";
+                    INNER JOIN estado ON libro.idEstado = estado.idEstado";
 
                 $productos = mysqli_query($conexion, $sql);
                 

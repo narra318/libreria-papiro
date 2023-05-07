@@ -5,6 +5,9 @@
  * Copyright 2011-2022 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
+
+@import url('https://fonts.googleapis.com/css2?family=Darumadrop+One&family=Montserrat&display=swap');
+
 :root {
   --bs-blue: #007bff;
   --bs-indigo: #26111D;
@@ -49,7 +52,8 @@
   --bs-black-rgb: 0, 0, 0;
   --bs-body-color-rgb: 85, 89, 92;
   --bs-body-bg-rgb: 255, 255, 255;
-  --bs-font-sans-serif: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  /* --bs-font-sans-serif: "Nunito Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; */
+  --bs-font-sans-serif: 'Montserrat';
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
   --bs-body-font-family: var(--bs-font-sans-serif);
@@ -3928,7 +3932,7 @@ textarea.form-control-lg {
   --bs-nav-link-font-weight: ;
   --bs-nav-link-color: var(--bs-link-color);
   --bs-nav-link-hover-color: var(--bs-link-hover-color);
-  --bs-nav-link-disabled-color: #919aa1;
+  --bs-nav-link-disabled-color: rgb(255 255 255 / 75%);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
