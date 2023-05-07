@@ -3,7 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
+<<<<<<< HEAD
 -- Tiempo de generación: 07-05-2023 a las 22:57:12
+=======
+-- Tiempo de generación: 27-03-2023 a las 04:39:41
+>>>>>>> 2790b7a75acebd8407557a46b1e33ac06803e2f6
 -- Versión del servidor: 10.4.24-MariaDB
 -- Versión de PHP: 8.1.6
 
@@ -75,10 +79,14 @@ INSERT INTO `clientes` (`id`, `idUsuario`, `name`, `phone`, `ciudad`, `address`,
 (2, 1, 'Nikol Alexandra Ram&iacute;rez Ramos', '3209549367', 'Tunja', 'Cr3 #23-20', 'Bloque 4 Apartamento 103', '2023-03-15 19:36:25', '2023-03-15 19:36:25', '1'),
 (3, 37, 'Dennis Jessenia Morato Quintero ', '3123262225', 'Tokio', 'Carrera 21 #6-75 Sur', 'Vivo', '2023-03-24 16:26:54', '2023-03-24 16:26:54', '1'),
 (10, 41, 'Like Crazy', '3219403341', 'Tunja', 'Cr5 #95-30', '----', '2023-03-27 00:46:09', '2023-03-27 00:46:09', '1'),
+<<<<<<< HEAD
 (11, 10, 'Pepe', '9840923482', 'Bogot&aacute;', 'Cr5 #95-30', '----', '2023-03-27 01:28:03', '2023-03-27 01:28:03', '1'),
 (12, 42, 'Cepillo II Cepillin', '3219403341', 'Barranquilla', 'Carrera 21 #6-75 Sur', '----', '2023-03-27 17:05:46', '2023-03-27 17:05:46', '1'),
 (13, 14, 'Nikol', '3219403341', 'Tunja', 'Cr5 #95-30', '----', '2023-03-30 14:48:06', '2023-03-30 14:48:06', '1'),
 (14, 47, 'Dennis Jessenia Morato Quintero ', '3123262225', 'Buenos Aires', 'mz 15 -67', 'Es un edificio grande', '2023-05-04 13:47:43', '2023-05-04 13:47:43', '1');
+=======
+(11, 10, 'Pepe', '9840923482', 'Bogot&aacute;', 'Cr5 #95-30', '----', '2023-03-27 01:28:03', '2023-03-27 01:28:03', '1');
+>>>>>>> 2790b7a75acebd8407557a46b1e33ac06803e2f6
 
 -- --------------------------------------------------------
 
@@ -159,8 +167,12 @@ INSERT INTO `foro` (`id`, `idUsuario`, `nombreLibro`, `autorLibro`, `descripcion
 (27, 1, 'Foro', 'Administrador', 'Este es un foro de prueba por administrador', 1, '2005-12-22 00:00:00', 0, 0, '2005-12-22 00:00:00'),
 (33, 37, 'Perdón a la lluvia -', ' Sara Búho', 'Descripci&oacute;n del libro', 1, '2014-02-23 00:00:00', 0, 0, '2014-02-23 00:00:00'),
 (34, 1, 'Prueba', 'autor', 'descripci&oacute;n', 1, '2014-02-23 00:00:00', 0, 0, '2014-02-23 00:00:00'),
+<<<<<<< HEAD
 (36, 37, 'change pt.2', 'Fool Me Twice', 'Que les importa solo que sepan que compre el libro y est&aacute; bueno  ', 1, '2024-03-23 00:00:00', 0, 0, '2024-03-23 00:00:00'),
 (40, 1, 'El gato que amaba los libros', 'Sosuke Natsukawa', 'Hab&iacute;a un gato aficionado a los libros, hacia referencia a que el gato era m&aacute;s aut&oacute;nomo y m&aacute;s independientes que nosotros los humanos. Que buen Libro!!!!', 2, '2005-05-23 00:00:00', 0, 0, '2005-05-23 00:00:00');
+=======
+(36, 37, 'change pt.2', 'Fool Me Twice', 'Que les importa solo que sepan que compre el libro y est&aacute; bueno  ', 1, '2024-03-23 00:00:00', 0, 0, '2024-03-23 00:00:00');
+>>>>>>> 2790b7a75acebd8407557a46b1e33ac06803e2f6
 
 -- --------------------------------------------------------
 
@@ -204,6 +216,7 @@ INSERT INTO `libro` (`idLibro`, `nombreLibro`, `autor`, `descripcionLibro`, `pre
 (12, 'Los hombres de Federico', 'Ana Bernal', '   Un año después, las mujeres de Federico se reúnen de nuevo en la Huerta de San Vicente ante la llamada de Novia, pero ellas ya no son las mismas y el entorno también ha cambiado por un paisaje sombrío y bañado en rojo. El encuentro se complicará cuando las protagonistas descubran que García Lorca creó un manuscrito sobre sus nuevas vidas que deja una puerta abierta a que otros personajes se adueñen de la historia. Las mujeres se darán cuenta de que algo no va bien cuando ocurran situaciones extrañas en la casa y su angustia irá en aumento con los rumores de que los hombres de Federico (las antiguas parejas o amantes de ellas) quieren llegar hasta el lugar con propósitos desconocidos. Solo la magia y mantenerse juntas podrán ayudarlas a enfrentarse a la incertidumbre y a los peligros que les depara esa imprevista llegada.   ', 122334, 8, 4, '170', '2022', 73, 2, '9788418820861', 5, 1, '/img/federico.jpg'),
 (13, 'Sueño ', 'Iván Sánchez', ' Mientras un hombre misterioso no puede despertar de un terrible sueño en el que inquietantes escenas de desamor se van solapando, la hermosa Sofía viaja a un enclave paradisiaco para intentar resolver las dudas que pesan sobre su relación tras más de una década junto a su pareja. Sus largos paseos por la isla y un fascinante hombre llamado Alexandro le harán revivir sensaciones hace tiempo olvidadas y replantearse en qué consiste el amor y las razones que la han llevado hasta allí.\r\n\r\nEntretanto, la joven Danae, disgustada por tener que pasar las vacaciones alejada de su mejor amiga, descubre lo que significa que, por primera vez, se te desboque el corazón.\r\n\r\nUna novela intimista y reflexiva, a veces desgarradora, otras ilusionante y evocadora, sobre la naturaleza de las relaciones de pareja y las distintas etapas del amor.\r\n\r\nA veces, la verdadera naturaleza del amor se manifiesta solo a través de los sueños. ', 111593, 12, 2, '208', '2022', 73, 2, '9788408263432', 5, 1, '/img/Sueño.jpg'),
 (15, 'La Canción de Aquiles', 'Madeline Miller', 'Grecia en la era de los héroes. Patroclo, un príncipe joven y torpe, ha sido exiliado al reino de Ftía, donde vive a la sombra del rey Peleo y su hijo divino, Aquiles. Aquiles, el mejor de los griegos, es todo lo que no es Patroclo: fuerte, apuesto, hijo de una diosa. Un día Aquiles toma bajo su protección al lastimoso príncipe y ese vínculo provisional da paso a una sólida amistad mientras ambos se convierten en jóvenes habilidosos en las artes de la guerra. Pero el destino nunca está lejos de los talones de Aquiles. Cuando se extiende la noticia del rapto de Helena de Esparta, se convoca a los hombres de Grecia para asediar la ciudad de Troya. Aquiles, seducido por la promesa de un destino glorioso, se une a la causa, y Patroclo, dividido entre el amor y el miedo por su compañero, lo sigue a la guerra. Poco podía imaginar que los años siguientes iban a poner a prueba todo cuanto habían aprendido y todo cuanto valoraban profundamente.', 95749, 100, 2, '230', '2021', 146, 2, '9786075508054', 2, 1, '/img/aquiles.jpg'),
+<<<<<<< HEAD
 (16, 'People Pt.2', 'Agust D', ' So time is yet ', 30000, 45, 1, '34', '1450', 3, 5, '3452764578234', 1, 2, '/img/1449378000.jpg'),
 (18, 'Change Pt.2', 'Fool me twice', '  f  ', 300, 98, 1, '43', '1500', 5, 9, '4523576522311', 5, 2, '/img/1668975860.jpg'),
 (19, 'La Teor&iacute;a de los Archipi&eacute;lagos', 'Alice Kellen', '&laquo;La teor&iacute;a de los archipi&eacute;lagos viene a decir que todos somos islas, llegamos solos a este mundo y nos vamos exactamente igual, pero necesitamos tener otras islas alrededor para sentirnos felices en medio de ese mar que une tanto como separa. Yo siempre he pensado que ser&iacute;a una isla peque&ntilde;ita, de esas en las que hay tres palmeras, una playa, dos rocas y poco m&aacute;s; me he sentido invisible durante gran parte de mi vida. Pero entonces apareciste t&uacute;, que sin duda ser&iacute;as una isla volc&aacute;nica llena de grutas y flores. Y es la primera vez que me pregunto si dos islas pueden tocarse en la profundidad del oc&eacute;ano, aunque nadie sea capaz de verlo. Si eso existe, si entre los corales y sedimentos y lo que sea que nos ancla en medio del mar hay un punto de uni&oacute;n, sin duda somos t&uacute; y yo. Y, si no es as&iacute;, estamos tan cerca que estoy convencido de poder llegar nadando hasta ti&raquo;.', 190000, 17, 2, '90', '2022', 192, 2, '0912744822351', 5, 1, '/img/1670289097.jpg'),
@@ -220,6 +233,17 @@ INSERT INTO `libro` (`idLibro`, `nombreLibro`, `autor`, `descripcionLibro`, `pre
 (69, 'People Pt.2', 'Agust D', 'That&#039;s why I&#039;m the cautious type\r\nI want, a sincere connection with others\r\nForever&#039;s something like a sand castle, you know\r\nIt comes crumbling down at the calmest of waves', 108000, 12, 10, '256', '2023', 58, 15, '3748328378753', 4, 1, '/img/1681441448.jpg'),
 (76, 'Palabras para sanar', 'rupi kaur', 'rupi kaur nos introduce en su mundo de escritura y creatividad a trav&eacute;s de su cuarta obra, sanar con palabras, en la que revela el poder curativo de las palabras y explica c&oacute;mo el acto de escribir ha sido una experiencia cat&aacute;rtica que la ayud&oacute; a sanar. En este viaje hacia una misma, nos propone una autoexploraci&oacute;n consciente y liberadora a trav&eacute;s de la escritura.\r\n  Esta colecci&oacute;n de ejercicios de escritura guiada ideados por la autora invita a explorar temas como el trauma, la p&eacute;rdida, la angustia, el amor o la sanaci&oacute;n convirti&eacute;ndose en una poderosa herramienta de creatividad y autoconocimiento. Solo te pide que no tengas miedo a mostrarte vulnerable y honesta, tanto contigo misma como con la p&aacute;gina. No necesitas ser escritora para emprender este camino; solo necesitas comenzar a escribir, eso es todo.', 65000, 12, 2, '320', '2023', 188, 4, '9786287582569', 4, 1, '/img/1683157959.jpg'),
 (77, 'La mujer que mov&iacute;a monta&ntilde;as', 'Salom&oacute;n Ganitsky', 'Este libro reconstruye la vida de una mujer adelantada a su tiempo que pens&oacute; que era posible, desde la empresa, contribuir a la cultura y las artes en un pa&iacute;s con inmensas necesidades. L&iacute;a de Ganitsky fue a la vez mecenas, empresaria y una figura eminente para la sociedad colombiana del siglo pasado. Como si fuera un mosaico, en estas p&aacute;ginas se re&uacute;nen los testimonios de personas que conocieron a L&iacute;a en los distintos &aacute;mbitos en que dej&oacute; huella: el familiar, el laboral, el social, el cultural, el art&iacute;stico y de ellos resulta evidente su tes&oacute;n, su capacidad para el trabajo, su habilidad para las relaciones interpersonales, sus niveles de exigencia, su deseo de estudiar y aprender, su talento para la cocina, su don de liderazgo y su inmensa sensibilidad art&iacute;stica y human&iacute;stica.\r\nCreadora de Asociaci&oacute;n Colombo-China, cofundadora del Teatro Libre de Bogot&aacute; e impulsora de la Colecci&oacute;n Sim&oacute;n y Lola Guberek, que dej&oacute; una estupendo cat&aacute;logo editorial en los a&ntilde;os setenta y ochenta del siglo XX, L&iacute;a adem&aacute;s cre&oacute; el Colegio Menorah y su vida, como se lee en esta p&aacute;ginas, fue una conjunci&oacute;n fascinante de inteligencia y sensibilidad.', 59000, 8, 2, '288', '2022', 200, 15, '9786287568563', 5, 1, '/img/1683158117.jpg');
+=======
+(16, 'e', 'That', ' e ', 3, 45, 1, '34', '43', 3, 5, '3', 1, 1, '/img/1449378000.jpg'),
+(18, 'Change Pt.2', 'Fool me twice', ' f ', 3, 98, 1, '43', '4', 5, 9, '4', 5, 1, '/img/1668975860.jpg'),
+(19, 'Libro de prueba', 'Think I Lose', ' Esta descripción es de prueba ', 190000, 17, 1, '90', '2022', 30, 4, '091274482', 3, 1, '/img/1670289097.jpg'),
+(20, 'Libro de prueba 2', 'My Sanity', 'Este es el segundo libro de prueba', 90000, 56, 1, '123', '0912', 5, 1, '0912742821', 3, 1, '/img/1670290923.png'),
+(21, '1', 'Years Ago', '1', 1, 22, 1, '1', '1', 14, 5, '1', 1, 1, '/img/1670291077.png'),
+(24, '3', 'Everyting Change', '3', 2323232, 33, 1, '333', '543', 14, 5, '332323', 1, 1, '/img/PortadaPredeterminada.jpg'),
+(25, 'Ma City', 'BTS', '   El lugar que más me gusta en el mundo\r\nNaturaleza y ciudad, lugares para construir\r\nPara mí, me gusta más el parque Lake que el río Han\r\nIncluso si eres pequeño, me abrazas tan plácidamente\r\nCuando se siente como si me fuera a olvidar de mis raíces\r\nEn ese lugar, encuentro el yo que se había desvanecido\r\nRecuerdo tu aroma y todo\r\nEres mi verano, otoño, invierno y cada primavera   ', 120000, 10, 1, '90', '2015', 58, 4, '20130613', 3, 1, '/img/1674325593.jpg'),
+(26, 'Inner Child', 'V', 'The smiling kid,\nThe child who used to just laugh brightly\nWhen I see you like that\nI keep laughing\n \nThe tingling sun and that summer&#039;s air\nThe grey-lit streets&#039; sounds that were so cold\nI draw in a breath and knock at your door', 109000, 5, 1, '210', '2020', 58, 2, '20200222', 4, 1, '/img/1674329922.jpg'),
+(27, 'Inner Child', 'Dennis', ' Libro de aventura por Dennis ', 156999, 10, 1, '583', '2023', 7, 2, '8923478789837329', 6, 1, '/img/1676379244.jpg');
+>>>>>>> 2790b7a75acebd8407557a46b1e33ac06803e2f6
 
 -- --------------------------------------------------------
 
@@ -244,6 +268,7 @@ INSERT INTO `orden` (`id`, `customer_id`, `total_price`, `created`, `modified`, 
 (6, 1, 122334.00, '2022-06-12 12:46:58', '2022-06-12 12:46:58', '1'),
 (7, 1, 133654.00, '2022-06-12 13:08:08', '2022-06-12 13:08:08', '1'),
 (8, 1, 303091.00, '2023-03-15 17:07:50', '2023-03-15 17:07:50', '0'),
+<<<<<<< HEAD
 (13, 2, 288087.00, '2023-03-15 22:04:00', '2023-03-15 22:04:00', '2'),
 (14, 2, 90454.00, '2023-03-22 11:52:13', '2023-03-22 11:52:13', '2'),
 (15, 2, 180908.00, '2023-03-24 09:13:51', '2023-03-24 09:13:51', '0'),
@@ -261,6 +286,14 @@ INSERT INTO `orden` (`id`, `customer_id`, `total_price`, `created`, `modified`, 
 (27, 2, 12345.00, '2023-04-25 09:45:55', '2023-04-25 09:45:55', '1'),
 (28, 2, 12345.00, '2023-04-25 10:39:25', '2023-04-25 10:39:25', '1'),
 (29, 14, 130000.00, '2023-05-04 06:48:19', '2023-05-04 06:48:19', '1');
+=======
+(13, 2, 288087.00, '2023-03-15 22:04:00', '2023-03-15 22:04:00', '0'),
+(14, 2, 90454.00, '2023-03-22 11:52:13', '2023-03-22 11:52:13', '0'),
+(15, 2, 180908.00, '2023-03-24 09:13:51', '2023-03-24 09:13:51', '1'),
+(16, 3, 369336.00, '2023-03-24 10:31:17', '2023-03-24 10:31:17', '1'),
+(17, 3, 212788.00, '2023-03-24 10:40:19', '2023-03-24 10:40:19', '1'),
+(18, 11, 642186.00, '2023-03-26 19:58:17', '2023-03-26 19:58:17', '1');
+>>>>>>> 2790b7a75acebd8407557a46b1e33ac06803e2f6
 
 -- --------------------------------------------------------
 
@@ -299,6 +332,7 @@ INSERT INTO `orden_articulos` (`id`, `order_id`, `product_id`, `quantity`) VALUE
 (18, 18, 26, 1),
 (19, 18, 25, 1),
 (20, 18, 13, 2),
+<<<<<<< HEAD
 (21, 18, 19, 1),
 (22, 19, 24, 1),
 (23, 19, 26, 1),
@@ -313,6 +347,9 @@ INSERT INTO `orden_articulos` (`id`, `order_id`, `product_id`, `quantity`) VALUE
 (32, 27, 33, 1),
 (33, 28, 33, 1),
 (34, 29, 2, 2);
+=======
+(21, 18, 19, 1);
+>>>>>>> 2790b7a75acebd8407557a46b1e33ac06803e2f6
 
 -- --------------------------------------------------------
 
@@ -596,6 +633,18 @@ INSERT INTO `respuestas` (`idRespuesta`, `idUsuario`, `idForo`, `respuesta`, `fe
 (8, 39, 34, 'sdasdasdaa1', '2023-03-20 20:21:37'),
 (9, 39, 34, 'prueba 1', '2023-03-20 20:24:12'),
 (10, 39, 34, 'prueba 1', '2023-03-20 20:25:32'),
+<<<<<<< HEAD
+=======
+(11, 39, 34, 'prueba 11345982374', '2023-03-20 20:30:04'),
+(12, 39, 34, 'prueba 11345982371', '2023-03-20 20:30:49'),
+(13, 39, 34, 'prueba 11345982372', '2023-03-20 20:32:14'),
+(14, 39, 34, 'prueba 1134598', '2023-03-20 20:33:09'),
+(15, 39, 34, 'prueba 113', '2023-03-20 20:35:27'),
+(16, 39, 34, 'prueba 113w', '2023-03-20 20:39:32'),
+(17, 39, 34, 'prueba 113waaa', '2023-03-20 20:40:30'),
+(18, 39, 34, 'prueba 113waaaaa', '2023-03-20 20:44:16'),
+(19, 39, 34, 'prueba 113waaaaa', '2023-03-20 20:44:49'),
+>>>>>>> 2790b7a75acebd8407557a46b1e33ac06803e2f6
 (20, 39, 34, 'baaa', '2023-03-20 23:53:50'),
 (21, 37, 33, 's', '2023-03-20 23:57:20'),
 (22, 37, 34, 'asl}', '2023-03-21 00:32:21'),
@@ -605,12 +654,22 @@ INSERT INTO `respuestas` (`idRespuesta`, `idUsuario`, `idForo`, `respuesta`, `fe
 (26, 37, 4, 'v', '2023-03-21 04:29:32'),
 (27, 37, 4, 'v', '2023-03-21 04:32:15'),
 (28, 37, 4, 'zz', '2023-03-21 04:32:43'),
+<<<<<<< HEAD
+=======
+(29, 37, 4, 'v', '2023-03-21 04:33:54'),
+(30, 37, 27, 'v', '2023-03-21 04:34:20'),
+(31, 37, 27, 'vv', '2023-03-21 04:34:37'),
+(32, 37, 27, 'v', '2023-03-21 04:36:51'),
+(33, 37, 5, 'vvvb', '2023-03-21 04:37:12'),
+(34, 37, 5, 'vbv', '2023-03-21 04:39:46'),
+>>>>>>> 2790b7a75acebd8407557a46b1e33ac06803e2f6
 (35, 37, 33, 'bv', '2023-03-21 04:43:00'),
 (36, 37, 33, 'gg', '2023-03-21 04:46:35'),
 (37, 37, 33, 'gggokgogk', '2023-03-21 04:46:58'),
 (38, 39, 34, 'Holaaaaaaaaaa Nikol', '2023-03-21 12:51:26'),
 (39, 39, 1, 'Comentario', '2023-03-21 12:51:45'),
 (40, 39, 33, 'fgggf', '2023-03-21 12:59:58'),
+<<<<<<< HEAD
 (42, 39, 1, 'ghhghgh', '2023-03-21 13:37:08'),
 (43, 14, 1, ':)', '2023-03-22 15:44:13'),
 (44, 1, 1, 'lel viejo zancaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', '2023-03-30 13:13:19'),
@@ -620,6 +679,11 @@ INSERT INTO `respuestas` (`idRespuesta`, `idUsuario`, `idForo`, `respuesta`, `fe
 (55, 1, 27, 'Hola', '2023-05-03 20:57:09'),
 (56, 47, 36, 'No! El libro es muy bueno ', '2023-05-04 11:50:03'),
 (62, 1, 34, 'puto', '2023-05-06 22:25:01');
+=======
+(41, 39, 5, 'g', '2023-03-21 13:03:42'),
+(42, 39, 1, 'ghhghgh', '2023-03-21 13:37:08'),
+(43, 14, 1, ':)', '2023-03-22 15:44:13');
+>>>>>>> 2790b7a75acebd8407557a46b1e33ac06803e2f6
 
 -- --------------------------------------------------------
 
@@ -724,6 +788,7 @@ INSERT INTO `usuario` (`idUsuario`, `nombreUsuario`, `apellidoUsuario`, `correoU
 (37, 'Dennis', 'Morato', 'dennis23@gmail.com', 3, 'Dennis23', 'Hwnc', 1, 24),
 (38, 'Nikol', 'Ram&iacute;rez', 'nnnn@gmail.com', 3, 'Nnn', 'HgLesw==', 1, 241),
 (39, 'Alexandraa', 'Ramoss', 'Alexandraa@gmail.com', 3, 'Alexandraa', 'HgLesw==', 1, 241),
+<<<<<<< HEAD
 (41, 'Like', 'Crazy', 'likeCrazy@gmail.com', 3, 'LikeCrazy', 'QlKE5NWhIgJg', 1, 241),
 (42, 'Cepillo II', 'Cepillin', 'holasoygerman@gmail.com', 3, 'ZapatosSucios2', 'HwnctaM=', 1, 241),
 (43, 'Nikol', 'Ram&iacute;rez', 'nik@1gmail.com', 3, 'Nikolll', 'HgLesw==', 1, 241),
@@ -731,6 +796,9 @@ INSERT INTO `usuario` (`idUsuario`, `nombreUsuario`, `apellidoUsuario`, `correoU
 (45, 'Nikol', 'Ram&iacute;rez', 'sharp@gmail.com', 3, 'sharp', 'DQ==', 1, 241),
 (46, 'aaa', 'a', 'a@gmail.com', 3, 'a', 'Tw==', 1, 241),
 (47, 'Dennis Jessenia  ', 'Morato Quintero', 'd@gmail.com', 3, 'DJ', 'al6B7/+gA0ks', 1, 241);
+=======
+(41, 'Like', 'Crazy', 'likeCrazy@gmail.com', 3, 'LikeCrazy', 'QlKE5NWhIgJg', 1, 241);
+>>>>>>> 2790b7a75acebd8407557a46b1e33ac06803e2f6
 
 --
 -- Índices para tablas volcadas
@@ -849,7 +917,11 @@ ALTER TABLE `categoria`
 -- AUTO_INCREMENT de la tabla `clientes`
 --
 ALTER TABLE `clientes`
+<<<<<<< HEAD
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+=======
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+>>>>>>> 2790b7a75acebd8407557a46b1e33ac06803e2f6
 
 --
 -- AUTO_INCREMENT de la tabla `editorial`
@@ -867,7 +939,11 @@ ALTER TABLE `estado`
 -- AUTO_INCREMENT de la tabla `foro`
 --
 ALTER TABLE `foro`
+<<<<<<< HEAD
   MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+=======
+  MODIFY `id` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+>>>>>>> 2790b7a75acebd8407557a46b1e33ac06803e2f6
 
 --
 -- AUTO_INCREMENT de la tabla `libro`
@@ -879,13 +955,21 @@ ALTER TABLE `libro`
 -- AUTO_INCREMENT de la tabla `orden`
 --
 ALTER TABLE `orden`
+<<<<<<< HEAD
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+=======
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+>>>>>>> 2790b7a75acebd8407557a46b1e33ac06803e2f6
 
 --
 -- AUTO_INCREMENT de la tabla `orden_articulos`
 --
 ALTER TABLE `orden_articulos`
+<<<<<<< HEAD
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+=======
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+>>>>>>> 2790b7a75acebd8407557a46b1e33ac06803e2f6
 
 --
 -- AUTO_INCREMENT de la tabla `pais`
@@ -897,7 +981,11 @@ ALTER TABLE `pais`
 -- AUTO_INCREMENT de la tabla `respuestas`
 --
 ALTER TABLE `respuestas`
+<<<<<<< HEAD
   MODIFY `idRespuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+=======
+  MODIFY `idRespuesta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+>>>>>>> 2790b7a75acebd8407557a46b1e33ac06803e2f6
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
@@ -915,7 +1003,11 @@ ALTER TABLE `tematica`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
+<<<<<<< HEAD
   MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+=======
+  MODIFY `idUsuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+>>>>>>> 2790b7a75acebd8407557a46b1e33ac06803e2f6
 
 --
 -- Restricciones para tablas volcadas
