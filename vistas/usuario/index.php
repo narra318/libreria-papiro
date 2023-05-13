@@ -7,6 +7,11 @@
         unset($_SESSION["Foro2"]);
     }
 
+    if(isset($_SESSION['carritoIngreso'])){
+        echo $_SESSION['carritoIngreso'];
+        unset($_SESSION["carritoIngreso"]);
+    }
+
     if(isset($_SESSION["Status"])){
         header ('Location: ./logeado/index.php'); 
     }
@@ -32,9 +37,10 @@
     <?= menu("../.."); ?>
 
     <?php 
-        if(isset($_SESSION["Error"])){
-            echo '<div class="alert alert-danger m-0"><i class="bi bi-exclamation-diamond-fill"> </i>';
-            echo $_SESSION["Error"];
+         if(isset($_SESSION["Error"])){
+            echo '<div class="alert alert-info rounded m-0 text-center alert-dismissible fade show" role="alert">
+                <i class="bi bi-exclamation-diamond-fill">  </i>' . $_SESSION["Error"] . '
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
             echo '</div>';
             unset($_SESSION["Error"]);
         }
@@ -56,6 +62,9 @@
             <div class="form-floating m-4">
                 <input type="password"" class="form-control bg-secondary bg-opacity-75 text-dark border-bottom border-primary" id="password" placeholder="Ingrese su Contraseña" name="password" required>
                 <label for="password" style="color: var(--primary)">  <i class="bi bi-lock"></i> Password:</label>
+            </div>
+            <div class="form-floating m-4">
+                <a href="../../codigo/usuario/restablecer_contrasena.php" class="btn btn-link">¿Olvidaste tu contraseña?</a>
             </div>
 
             <div class="text-end mt-5 mb-4">

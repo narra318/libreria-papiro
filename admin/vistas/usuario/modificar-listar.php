@@ -4,8 +4,6 @@
     if(!isset($_SESSION['Admin'])){
         header('Location: ../../index.php');
     }
-
-    $limite = 21;
 ?>
 
 <!DOCTYPE html>
@@ -14,14 +12,13 @@
     <title> Modificar Usuario </title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="description" content="Pagina para modificar los usuarios registrados, ya sea para inhabilitarlo o cambiar otro dato, aplica a empleado o cliente.">
+    <meta name="description" content="Pagina para modificar los usuarios registrados, ya sea para inhabilitarlo o cambiar otro dato, aplica a empleado o cliente.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../../img/icono2.png" type="image/ico" />
     <link rel="stylesheet" href="../../../css/custom.css">
     <link rel="stylesheet" href="../../../css/style2.css">
-    <script src="../../../js/bootstrap.bundle.min.js"> </script>
-    <script src="../../../js/jquery-3.6.1.min.js"> </script>
     <link href ="../../../libs/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/jquery.dataTables.min.css">
     <style>
         body{
             background-image: url('../../../img/fondos/fondo-admin.jpg');
@@ -38,7 +35,7 @@
 
     </style>
 </head>
-<body class="bg-dark ">
+<body class="bg-dark mb-4">
     <?php include '../../../modules/menu-footer.php'; ?>
     <?= menuAdmin("../../../"); ?>
 
@@ -59,7 +56,7 @@
         <p class="text-white text-center"> Por favor seleccione un usuario </p>
 
         <div class="overflow-auto">
-        <table class="table overflow-auto">
+        <table class="table overflow-auto" id="usuarios" class="display">
             <thead>
                 <tr class="text-white bg-info bg-opacity-75 text-center"> 
                     <th class="border border-info "> ID </th>
@@ -85,7 +82,7 @@
             INNER JOIN estado ON usuario.idEstado = estado.idEstado 
             INNER JOIN roles ON usuario.idRol = roles.idRol
             WHERE usuario.idUsuario NOT IN (1,2)
-        ORDER BY usuario.idRol ASC LIMIT $limite;";
+        ORDER BY usuario.idRol ASC;";
 
         $usuarios = mysqli_query($conexion, $sql);
         
@@ -111,11 +108,21 @@
         }
     ?>
         </table>
-            <!-- Paginación -->
         </div>
     </div>
+
+    
+        <script src="../../../js/bootstrap.bundle.min.js"> </script>
+        <script src="../../../js/jquery-3.6.1.min.js"> </script>
+        <script src="../../../js/jquery.dataTables.min.js"></script>
         <script>
             $(document).ready(function(){
+                $('#usuarios').DataTable({
+                    paging: true,
+                    ordering: true,
+                    info: true,
+                });
+
                 $(".linea").mouseover(function(){
                     $(this).attr("class", "bg-primary text-white bg-opacity-75");
                 });

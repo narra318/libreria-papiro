@@ -12,14 +12,13 @@
     <title> Modificar Productos </title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="description" content="Pagina para modificar los usuarios registrados, ya sea para inhabilitarlo o cambiar otro dato, aplica a empleado o cliente.">
+    <meta name="description" content="Pagina para modificar los productos registrados, ya sea para inhabilitarlo o cambiar otro dato, aplica a empleado o cliente.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../../img/icono2.png" type="image/ico" />
     <link rel="stylesheet" href="../../../css/custom.css">
     <link rel="stylesheet" href="../../../css/style2.css">
-    <script src="../../../js/bootstrap.bundle.min.js"> </script>
-    <script src="../../../js/jquery-3.6.1.min.js"> </script>
     <link href ="../../../libs/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/jquery.dataTables.min.css">
     <style>
         body{
             background-image: url('../../../img/fondos/fondo-admin.jpg');
@@ -36,7 +35,7 @@
 
     </style>
 </head>
-<body class="bg-dark ">
+<body class="bg-dark mb-5">
     <?php include '../../../modules/menu-footer.php'; ?>
     <?= menuAdmin("../../../"); ?>
 
@@ -55,7 +54,7 @@
     <div class="container mt-5 overflow-auto">
         <p id="Titulo3" class="text-center"> Modificar Productos </p>
         <p class="text-white text-center"> Por favor seleccione un producto </p>
-        <table class="table overflow-auto">
+        <table class="table overflow-auto" id="usuarios">
             <thead>
                 <tr class="text-white bg-info bg-opacity-75 text-center"> 
                     <th class="border border-info"> ID </th>
@@ -65,17 +64,11 @@
                     <th class="border border-info"> Precio </th>
                     <th class="border border-info"> Cantidad </th>
                     <th class="border border-info"> Editorial </th>
-                    <!-- <th class="border border-info"> Paginas </th> -->
-                    <!-- <th class="border border-info"> Año </th> -->
-                    <!-- <th class="border border-info"> Pais </th> -->
-                    <th class="border border-info"> Tematica </th>
                     <th class="border border-info"> ISBN </th>
-                    <th class="border border-info"> Categoria </th>
                     <th class="border border-info"> Estado </th>
                     <th class="border border-info">  </th>
                 </tr>
             </thead>
-            <!-- <img src="../../codigo/inventario/img/10.jpg" style='min-width: 100px; width: 100px; min-height: 100px;' alt=""> -->
     <?php
         include "../../codigo/controller/conexion.php";
         $con = new Configuracion;
@@ -86,8 +79,7 @@
             INNER JOIN editorial ON libro.idEditorial = editorial.idEditorial  
             INNER JOIN tematica ON libro.idTematica = tematica.idTematica  
             INNER JOIN categoria ON libro.idCategoria = categoria.idCategoria   
-            INNER JOIN estado ON libro.idEstado = estado.idEstado 
-        LIMIT 21;";
+            INNER JOIN estado ON libro.idEstado = estado.idEstado;";
 
         $productos = mysqli_query($conexion, $sql);
         
@@ -115,9 +107,7 @@
                 <td class='border border-info'> $".number_format($precio)." </td>
                 <td class='border border-info text-center'> ".$cantidad." </td>
                 <td class='border border-info'> ".$editorial." </td>
-                <td class='border border-info'> ".$tematica." </td>
                 <td class='border border-info'> ".$isbn." </td>
-                <td class='border border-info'> ".$categoria." </td>
                 <td class='border border-info'> ".$estado." </td>
             <td class='border border-info' id='Link'> <a href='../../codigo/inventario/modificar.php?id=".$idLibro."'> Editar <i class='bi bi-pencil'> </i> </a> </td>
             </tr>";
@@ -127,16 +117,27 @@
 
     ?>
         </table>
-    </div>>
-        <script>
-            $(document).ready(function(){
-                $(".linea").mouseover(function(){
-                    $(this).attr("class", "bg-primary text-white bg-opacity-75");
-                });
-                $(".linea").mouseout(function() {
-                    $(this).attr("class", "bg-dark text-secondary bg-dark p-0");
-                });
-            })
-        </script>
+    </div>
+
+        
+    <script src="../../../js/bootstrap.bundle.min.js"> </script>
+    <script src="../../../js/jquery-3.6.1.min.js"> </script>
+    <script src="../../../js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#usuarios').DataTable({
+                paging: true,
+                ordering: true,
+                info: true,
+            });
+
+            $(".linea").mouseover(function(){
+                $(this).attr("class", "bg-primary text-white bg-opacity-75");
+            });
+            $(".linea").mouseout(function() {
+                $(this).attr("class", "bg-dark text-secondary bg-dark p-0");
+            });
+        })
+    </script>
 </body>
 </html>

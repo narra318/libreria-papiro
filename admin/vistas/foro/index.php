@@ -51,14 +51,6 @@
     <div class="container mt-5 mb-5">
     <div class="row row-cols-1 row-cols-md-3 g-4">
         <div class="col">
-            <a href=""><div class="card h-100 bg-dark p-4 bg-opacity-75" id="caja">
-            <div class="card-body">
-                <p class="card-title text-center text-secondary"><i class="bi bi-arrow-left-right" style="font-size: 100px;"></i></p>
-                <p class="card-text h1 text-center text-secondary"> Gestionar Intercambio </p>
-            </div>
-            </div></a>
-        </div>
-        <div class="col">
             <a href="formulario.php"><div class="card h-100 bg-dark p-4 bg-opacity-75" id="caja">
             <div class="card-body">
                 <p class="card-title text-center text-secondary"><i class="bi bi-pencil-square" style="font-size: 100px;"></i></p>
@@ -82,14 +74,6 @@
             </div>
             </div></a>
         </div>
-        <!-- <div class="col text-center">
-            <a href=""><div class="card h-100 bg-dark p-4 bg-opacity-75" id="caja">
-            <div class="card-body">
-                <p class="card-title text-center text-secondary"><i class="bi bi-trash" style="font-size: 100px;"></i></p>
-                <h1 class="card-text text-center text-secondary"> Eliminar Foro </h1>
-            </div>
-            </div></a>
-        </div> -->
     </div>
     </div>
 </body>

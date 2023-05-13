@@ -13,7 +13,7 @@
     INNER JOIN pais ON usuario.idPais = pais.idPais 
     INNER JOIN estado ON usuario.idEstado = estado.idEstado 
     INNER JOIN roles ON usuario.idRol = roles.idRol 
-    WHERE (usuario.usuario LIKE '%$busqueda%' OR usuario.correoUsuario LIKE '%$busqueda%') LIMIT 21;";
+    WHERE (usuario.usuario LIKE '%$busqueda%' OR usuario.correoUsuario LIKE '%$busqueda%');";
 
     $resultado = mysqli_query($conexion, $sql);
 
@@ -21,15 +21,15 @@
         echo '<div class="container">
         <div class="row justify-content-center overflow-auto">
             <div class="col-md text-center text-white">
-                <table class="table bg-dark border border-primary bg-opacity-75 rounded mt-3">
+                <table class="table bg-dark border border-primary bg-opacity-75 rounded mt-3" id="usuarios">
                     <thead><tr class="text-white"> 
-                        <th class="border border-info bg-info bg-opacity-50"> ID </th>
-                        <th class="border border-info bg-info bg-opacity-50"> Rol </th>
-                        <th class="border border-info bg-info bg-opacity-50"> Estado </th>
-                        <th class="border border-info bg-info bg-opacity-50"> Usuario </th>
-                        <th class="border border-info bg-info bg-opacity-50"> Nombre </th>
-                        <th class="border border-info bg-info bg-opacity-50"> Apellido </th>
-                        <th class="border border-info bg-info bg-opacity-50"> Correo </th>
+                        <th class="border border-info bg-info bg-opacity-50" style="text-align: center;"> ID </th>
+                        <th class="border border-info bg-info bg-opacity-50" style="text-align: center;"> Rol </th>
+                        <th class="border border-info bg-info bg-opacity-50" style="text-align: center;"> Estado </th>
+                        <th class="border border-info bg-info bg-opacity-50" style="text-align: center;"> Usuario </th>
+                        <th class="border border-info bg-info bg-opacity-50" style="text-align: center;"> Nombre </th>
+                        <th class="border border-info bg-info bg-opacity-50" style="text-align: center;"> Apellido </th>
+                        <th class="border border-info bg-info bg-opacity-50" style="text-align: center;"> Correo </th>
                     </tr></thead>';            
                         
 
@@ -52,6 +52,11 @@
                 });
                 $(".linea").mouseout(function() {
                     $(this).attr("class", "bg-dark text-secondary bg-dark p-0");
+                });
+                $("#usuarios").DataTable({
+                    paging: true,
+                    ordering: true,
+                    info: true,
                 });
             </script>';
 

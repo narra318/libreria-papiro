@@ -66,11 +66,19 @@
         echo '</div>';
         unset($_SESSION["ForoAdmin"]);
     }
+
+    if(isset($_SESSION["ErrorDB"])){
+        echo '<div class="alert alert-warning m-0 alert-dismissible fade show text-center">
+            <button class="btn-close" type="button" data-bs-dismiss="alert"></button>
+            <strong> <i class="bi bi-exclamation-circle"></i> Error:</strong> ';
+        echo $_SESSION["ErrorDB"];
+        echo '</div>';
+        unset($_SESSION['ErrorDB']);
+    }
   ?>
 
   <div class="container">
         <h1 id="Titulo1" class="mt-5 text-center text-white"> Escribir Foro </h1>
-        <!-- <p id="" class="mt-2 text-center text-info">  </p> -->
 
         <section class="section-sm">
             <div class="container">
@@ -95,7 +103,7 @@
                         </div>
                         <div class="text-end m-4 p-4 pb-0">
                             <button type="submit" class="btn btn-light rounded" name=""> Crear Foro </button>
-                            <a type="button" id="regresar" name="regresar" onclick="history.back()" class="btn btn-outline-light border border-primary rounded"> Volver </a>
+                            <a type="button" id="regresar" name="regresar" onclick="return confirm('La información no se guardara ¿Desea regresar?')"  href="./" class="btn btn-outline-light border border-primary rounded"> Volver </a>
                         </div>
                     </form>
                 </div>

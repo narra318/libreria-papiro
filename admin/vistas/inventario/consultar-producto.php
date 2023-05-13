@@ -18,12 +18,12 @@
     <link rel="stylesheet" href="../../../css/custom.css">
     <link rel="stylesheet" href="../../../css/style2.css">
     <link href ="../../../libs/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/jquery.dataTables.min.css">
     <style>
         body{
             background-image: url('../../../img/fondos/fondo-admin.jpg');
             background-size: 100%;
         }
-
         #Link a{
             text-decoration: none;
             color: #B9B4BF;
@@ -32,10 +32,17 @@
             color: white;
             font-size: 17px;
         }
+        .dataTables_wrapper .dataTables_length,
+        .dataTables_wrapper .dataTables_filter {
+            color: transparent;
+            visibility: hidden;
+            display: none;
+            margin: 5px;
+        }
 
     </style>
 </head>
-<body class="bg-dark ">
+<body class="bg-dark mb-4">
     <?php include '../../../modules/menu-footer.php'; ?>
     <?= menuAdmin("../../../"); ?>
         
@@ -50,19 +57,19 @@
     
     <div class="container">
         <div id="Producto" class="text-center text-light p-3 overflow-auto">
-            <table class="table">
+            <table class="table" id="productos">
                 <thead>
                     <tr class="text-white bg-info bg-opacity-75"> 
-                        <th class="border border-info"> ID </th>
-                        <th class="border border-info"> Estado </th>
-                        <th class="border border-info"> Nombre </th>
-                        <th class="border border-info"> Autor </th>
-                        <th class="border border-info"> Precio </th>
-                        <th class="border border-info"> Editorial </th>
-                        <th class="border border-info"> Paginas </th>
-                        <th class="border border-info"> ISBN </th>
-                        <th class="border border-info"> Ver más </th>
-                        <th class="border border-info"> Imagen </th>
+                        <th class="border border-info" style="text-align: center;"> ID </th>
+                        <th class="border border-info" style="text-align: center;"> Estado </th>
+                        <th class="border border-info" style="text-align: center;"> Nombre </th>
+                        <th class="border border-info" style="text-align: center;"> Autor </th>
+                        <th class="border border-info" style="text-align: center;"> Precio </th>
+                        <th class="border border-info" style="text-align: center;"> Editorial </th>
+                        <th class="border border-info" style="text-align: center;"> Paginas </th>
+                        <th class="border border-info" style="text-align: center;"> ISBN </th>
+                        <th class="border border-info" style="text-align: center;"> Ver más </th>
+                        <th class="border border-info" style="text-align: center;"> Imagen </th>
                     </tr>
                 </thead>
             <?php
@@ -75,8 +82,7 @@
                     INNER JOIN editorial ON libro.idEditorial = editorial.idEditorial  
                     INNER JOIN tematica ON libro.idTematica = tematica.idTematica  
                     INNER JOIN categoria ON libro.idCategoria = categoria.idCategoria   
-                    INNER JOIN estado ON libro.idEstado = estado.idEstado 
-                LIMIT 21;";
+                    INNER JOIN estado ON libro.idEstado = estado.idEstado";
 
                 $productos = mysqli_query($conexion, $sql);
                 
@@ -117,6 +123,7 @@
 
     <script src="../../../js/bootstrap.bundle.min.js"> </script>
     <script src="../../../js/jquery-3.6.1.min.js"> </script>
+    <script src="../../../js/jquery.dataTables.min.js"></script>
     <script>
         $(document).ready(function(){
             var input = $('#buscar');
@@ -141,6 +148,12 @@
             $(".linea").mouseout(function() {
                 $(this).attr("class", "bg-dark text-secondary bg-dark p-0");
             });
+
+            $('#productos').DataTable({
+                    paging: true,
+                    ordering: true,
+                    info: true,
+                });
         });
     </script>
 </body>

@@ -17,7 +17,7 @@
     <link rel="shortcut icon" href="../../../img/icono2.png" type="image/ico" />
     <link rel="stylesheet" href="../../../css/custom.css">
     <link rel="stylesheet" href="../../../css/style2.css">
-    <script src="../../../js/bootstrap.bundle.min.js"> </script>
+    <link rel="stylesheet" href="../../../css/jquery.dataTables.min.css">
     <link href="../../../libs/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <style>
         body {
@@ -27,20 +27,11 @@
     </style>
 </head>
 
-<body>
+<body class="bg-dark">
     <?php include '../../../modules/menu-footer.php'; ?>
     <?= menuAdmin("../../../"); ?>
 
     <?php
-    
-    if(isset($_SESSION["ErrorDB"])){
-        echo '<div class="alert alert-success m-0 alert-dismissible fade show">
-            <button class="btn-close" type="button" data-bs-dismiss="alert"></button>
-            <strong> Exito:</strong> ';
-        echo $_SESSION["ErrorDB"];
-        echo '</div>';
-        unset($_SESSION['ErrorDB']);
-    }
 
     include "../../../controller/conexion.php";
     $conn = new Configuracion();
@@ -58,19 +49,26 @@
 
                 <form action="../../codigo/inventario/editorial.php" method="POST" class="">
                     <div class="form-floating m-4 mx-auto" style="width: 50%;">
-                        <input type="text" placeholder="Ingrese el nombre del producto" name="nueva-editorial" id="nueva-editorial" class="form-control bg-dark bg-opacity-75 text-light border-bottom border-light " required>
+                        <input type="text" placeholder="Ingrese el nombre del producto" name="nueva-editorial" id="nueva-editorial"  minlength="3" pattern="^[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+(?:[ \t][a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+)*$"  class="form-control bg-dark bg-opacity-75 text-light border-bottom border-light " required>
                         <label for="nueva-editorial" class="text-light">Ingrese una nueva editorial</label>
+                        <?php
+                            if(isset($_SESSION["ErrorDB"])){
+                                echo '<div class="alert alert-warning m-0 alert-dismissible fade show">
+                                    <button class="btn-close" type="button" data-bs-dismiss="alert"></button>
+                                    <i class="bi bi-exclamation-circle"></i> <strong> Error:</strong> ';
+                                echo $_SESSION["ErrorDB"];
+                                echo '</div>';
+                                unset($_SESSION['ErrorDB']);
+                            }
+                        ?>
                     </div>
                     <div class="text-center m-4">
                         <button type="submit" class="btn btn-light border rounded">Agregar editorial</button>
-                        <a type="button" id="regresar" name="regresar" onclick="history.back()" class="btn btn-light border border-light rounded"> Volver </a>
+                        <a type="button" id="regresar" name="regresar" href="agregar-producto.php" class="btn btn-light border border-light rounded"> Volver </a>
                     </div>
                 </form>
-                <div class="container overflow-auto p-4 pt-0 text-white"> 
-                    <br><br>
-                    <p class="text-center fw-bold bg-dark w-25 mx-auto"> Las editoriales actuales son:  </p>
-
-                    <table class="table overflow-auto  w-50 mx-auto">
+                <div class="container overflow-auto p-4 pt-0 w-50 text-white"> <br><br>
+                    <table class="table overflow-auto  mx-auto" id="tabla">
                         <thead>
                             <tr class="text-white bg-info bg-opacity-75 text-center"> 
                                 <th class="border border-info"> ID </th>
@@ -94,9 +92,21 @@
                         ?>
                     </table>
                 </div>
-
             </div>
         </div>
-</body>
+    </div>
 
+    <script src="../../../js/bootstrap.bundle.min.js"> </script>
+    <script src="../../../js/jquery-3.6.1.min.js"> </script>
+    <script src="../../../js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#tabla').DataTable({
+                paging: true,
+                ordering: true,
+                info: false,
+            });
+        });
+    </script>
+</body>
 </html>

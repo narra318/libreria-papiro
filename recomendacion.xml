@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<recomendaciones>
+    <poesia>
+        <libro>
+            <titulo> Lumpen </titulo>
+            <autor> Aixa Bonilla </autor>
+            <editorial> Espasa </editorial>
+            <tematica> Poesía | Poesía urbana </tematica>
+            <coleccion> ESPASAesPOESÍA </coleccion>
+            <paginas> 104 </paginas>
+            <img> ./img/portada/lumpen.jpg </img>
+            <des> 
+                <b>Versos que nos interpelan sin demora, como un dardo en el pensamiento.</b>
+                Lumpen pone voz a los desgarradas vivencias de los excluidos, de aquellos que nunca se encuentran en su sitio, que navegan por la vida en una vieja barca sin adivinar el rumbo. Es un libro tan sagaz como conmovedor, cuajado de referencias urbanas, filosóficas, pero también de los medios de comunicación, la televisión, el cine y de la cultura pop en general. Sus textos son pequeños golpes con un ritmo ágil y dinámico que recuerda mucho a los «Spoken Words», recitales poéticos que combinan la palabra, su entonación, su ritmo, con distintos elementos teatrales. Lumpen puede ser leído como una performance de la vertiginosa vida de una marginada que lleva toda la vida intentando encajar en un mundo que le resulta incómodo, difícil, a veces inadmisible.
+            </des>
+        </libro>
+    
+        <libro>
+            <titulo> Perdón a la lluvia </titulo>
+            <autor> Sara Búho </autor>
+            <editorial> Lunwerg Editores </editorial>
+            <tematica> Poesía | Poesía urbana </tematica>
+            <coleccion> Poesía ilustrada </coleccion>
+            <paginas> 160 </paginas>
+            <img>./img/portada/perdon-lluvia.jpg</img>
+            <des> 
+                <b>Vuelve la poeta Sara Búho con su libro más bello y personal</b>
+                Perdón a la lluvia es un conjunto de tormentas que no supimos navegar. Un viaje por todos los naufragios, por todo lo mal entendido. Una vuelta al dolor en brazos de la nostalgia. Un intento de convertir los recuerdos en alas, y que dejen de ser cadenas. Un paso atrás para recuperar lo que es valioso y quedó perdido en la huida, y también para sanar lo que un día no supimos cómo. En estas páginas los lectores se asomarán a un cuidado cuaderno de notas íntimas, acompañadas de frases manuscritas y dibujos originales de la propia Sara Búho. Al igual que en sus anteriores poemarios, y en palabras de Gioconda Belli, «permanecerán sus versos rondándote mientras vuelan frágiles pero contundentes frente a tus ojos».
+            </des>
+        </libro>
+    
+        <libro>
+            <titulo> Flores </titulo>
+            <autor> Nieves Pulido </autor>
+            <editorial> Espasa </editorial>
+            <tematica> Poesía | Poesía contemporánea </tematica>
+            <coleccion> ESPASAesPOESÍA </coleccion>
+            <paginas> 80 </paginas>
+            <img> ./img/portada/flores.jpg </img>
+            <des> 
+                <b>La delicadeza en estado puro: naturaleza y lirismo</b>
+                Flores es un breve y delicado libro compuesto por 42 poemas. Este poemario de Nieves Pulido, de clara influencia oriental, explora las correspondencias y tensiones que se dan entre poema y naturaleza, lenguaje y realidad. Ordenados a modo de manual botánico, los poemas van acompañados por las bellas ilustraciones de Eire (Irlanda Tambascio), que aparecen como una auténtica y logradísima reproducción de las flores originales.
+            </des>
+        </libro>
+    
+        <libro>
+            <titulo> eighteen </titulo>
+            <autor> Alberto Ramos </autor>
+            <editorial> Espasa </editorial>
+            <tematica> Poesía | Poesía urbana </tematica>
+            <coleccion> ESPASAesPOESÍA </coleccion>
+            <paginas> 248 </paginas>
+            <img> ./img/portada/eighteen.jpg </img>
+            <des> 
+                <b>Poesía contra la discriminación para celebrar el amor y la belleza.</b>
+                Alberto Ramos tenía solo 15 años cuando decidió meter en una maleta su esperanza y voluntad, abandonar Málaga y establecerse en Estocolmo, buscando una nueva vida. Y realizar su sueño de estudiar en el extranjero su bachillerato internacional. El instituto está situado en Södertälje, un peculiar municipio de Estocolmo con una gran influencia del cristianismo (católico y ortodoxo) e ideologías inflexibles y totalitarias por su población proveniente de las diásporas asiria (assyrier/syrianer) y árabe. La resultante homofobia extrema de ese fuerte choque cultural hizo que lo que para Alberto comenzó como una aventura se transformara en una pesadilla que duró tres años. El joven tuvo que enfrentarse a continuos episodios de abusos, intimidaciones, desprecios y bullying por parte de sus compañeros debido a su orientación sexual. Las denuncias ante la policía no tuvieron efecto y fue entonces cuando decidió hacerlo públicamente a través de sus redes sociales, llegando así a los medios de comunicación. Estos se hicieron eco del caso. Le pusieron una pulsera de seguridad para estar conectado con la policía, comenzaron a ir agentes al instituto, la directora decidió llenar todo el instituto de banderas LGTB… 
+                Todo su dolor quedó plasmado en eighteen, un diario poético en el que narra su experiencia a través de su poesía y sus ilustraciones. El libro condensa todo el dolor de esos años pero también su rebeldía y su voluntad de superarlo; se trata de un recorrido de crecimiento personal que refleja lo que es el abuso, el suicidio, la pérdida, el bullying, el trauma y la homofobia, pero también el amor, la celebración de uno mismo, el amor propio y la belleza, entre otras experiencias.&#10;&#10;El libro está dividido en tres partes, cada una de ellas supone una etapa en el proceso de superación personal que llevó a cabo el autor («el fin», «la transición» y «el principio») ejemplificada con la evolución de la larva hasta convertirse en la mariposa.
+            </des>
+        </libro>
+    </poesia>
+
+    <contemporaneo>
+        <libro>
+            <titulo> Sueño </titulo>
+            <autor> Iván Sánchez Zapardiel </autor>
+            <editorial> Editorial Planeta </editorial>
+            <tematica> Novela contemporánea </tematica>
+            <coleccion> Autores Españoles e Iberoamericanos </coleccion>
+            <paginas> 216 </paginas>
+            <img> ./img/portada/Sueño.jpg </img>
+            <des> 
+                <b> Versos que nos interpelan sin demora, como un dardo en el pensamiento. </b> 
+                Mientras un hombre misterioso no puede despertar de un terrible sueño en el que inquietantes escenas de desamor se van solapando, la hermosa Sofía viaja a un enclave paradisiaco para intentar resolver las dudas que pesan sobre su relación tras más de una década junto a su pareja. Sus largos paseos por la isla y un fascinante hombre llamado Alexandro le harán revivir sensaciones hace tiempo olvidadas y replantearse en qué consiste el amor y las razones que la han llevado hasta allí. 
+                Entretanto, la joven Danae, disgustada por tener que pasar las vacaciones alejada de su mejor amiga, descubre lo que significa que, por primera vez, se te desboque el corazón. 
+                Una novela intimista y reflexiva, a veces desgarradora, otras ilusionante y evocadora, sobre la naturaleza de las relaciones de pareja y las distintas etapas del amor. 
+                A veces, la verdadera naturaleza del amor se manifiesta solo a través de los sueños. 
+            </des>
+        </libro>
+    
+        <libro>
+            <titulo> Los hombres de Federico </titulo>
+            <autor> Ana Bernal-Triviño | Lady Desidia </autor>
+            <editorial> Lunwerg Editores </editorial>
+            <tematica> Novela contemporánea | Drama | Arte | Ilustrados </tematica>
+            <coleccion> Literatura ilustrada </coleccion>
+            <paginas> 224 </paginas>
+            <img> ./img/portada/federico.jpg </img>
+            <des> 
+                <b> Tras el gran éxito de Las Mujeres de Federico, la segunda parte de esta trilogía de ficción se centra en los personajes masculinos de Lorca creando un vibrante y conmovedor relato </b> 
+                Un año después, las mujeres de Federico se reúnen de nuevo en la Huerta de San Vicente ante la llamada de Novia, pero ellas ya no son las mismas y el entorno también ha cambiado por un paisaje sombrío y bañado en rojo. El encuentro se complicará cuando las protagonistas descubran que García Lorca creó un manuscrito sobre sus nuevas vidas que deja una puerta abierta a que otros personajes se adueñen de la historia. Las mujeres se darán cuenta de que algo no va bien cuando ocurran situaciones extrañas en la casa y su angustia irá en aumento con los rumores de que los hombres de Federico (las antiguas parejas o amantes de ellas) quieren llegar hasta el lugar con propósitos desconocidos. Solo la magia y mantenerse juntas podrán ayudarlas a enfrentarse a la incertidumbre y a los peligros que les depara esa imprevista llegada.
+            </des>
+        </libro>
+    
+        <libro>
+            <titulo> Los crímenes de Chopin </titulo>
+            <autor> Blue Jeans </autor>
+            <editorial> Editorial Planeta </editorial>
+            <tematica> Novela contemporánea | Juvenil | Novela negra | Thriller </tematica>
+            <coleccion> Planeta </coleccion>
+            <paginas> 512 </paginas>
+            <img> ./img/portada/chopin.jpg </img>
+            <des> 
+                <b> Intriga, misterio y amor en la nueva novela de Blue Jeans </b> 
+                En varias casas de Sevilla se han producido una serie de robos que preocupan a toda la ciudad. El ladrón, al que apodan «Chopin» porque siempre deja una partitura del famoso compositor para firmar el robo, se lleva dinero, joyas y diferentes artículos de valor. Una noche aparece un cadáver en el salón de una de esas viviendas y la tensión aumenta. 
+                Nikolai Olejnik es un joven polaco que llegó a España con su abuelo hace varios años. Desde que este murió, está solo y sobrevive a base de delinquir. Fue un niño prodigio en su país y su mayor pasión es tocar el piano. De repente, todo se complica y se convierte en el principal sospechoso de un asesinato. Niko acude al despacho de Celia Mayo, detective privado, a pedirle ayuda y allí conoce a Triana, la hija de Celia. La joven enseguida llama su atención, aunque no es el mejor momento para enamorarse. 
+                Blanca Sanz apenas lleva cinco meses trabajando en el periódico El Guadalquivir cuando recibe una extraña llamada en la que le filtran datos sobre el caso Chopin, que nadie más conoce. Desde ese momento se obsesiona con todo lo relacionado con la investigación e intenta averiguar quién está detrás de aquellos robos. 
+                Intriga, misterio, amor y crímenes son la base de esta novela ambientada en las enigmáticas calles de Sevilla, en la que el lector formará parte de la investigación. ¿Conseguirás adivinar quién es el culpable? 
+            </des>
+        </libro>
+    
+        <libro>
+            <titulo> Anhelo </titulo>
+            <autor> Tracy Wolff </autor>
+            <editorial> Booket </editorial>
+            <tematica> Novela contemporánea | Juvenil </tematica>
+            <coleccion> Especial Enero Febrero 2022 </coleccion>
+            <paginas> 672 </paginas>
+            <img> ./img/portada/Anhelo.jpg </img>
+            <des> 
+                <b> Versos que nos interpelan sin demora, como un dardo en el pensamiento. </b> 
+                    Primer volumen de la adictiva Serie Crave.  
+                    Una chica capaz de vencer al miedo. Un vampiro marcado por su oscuro pasado. Dos seres solitarios cuyos caminos se cruzan en el lugar más frío de la Tierra.  
+                    Mi mundo cambió en el instante en el que pisé el instituto Katmere. Aquí todo resulta extraño: la escuela, los alumnos, las asignaturas; y yo no soy más que una simple mortal entre ellos, dioses... o monstruos. Todavía no sé a qué bando pertenezco, si es que pertenezco a alguno, sólo sé que lo que parece unirlos a todos es su odio hacia mí.  
+                    Pero entre ellos está Jaxon Vega, un vampiro que esconde oscuros secretos y que no ha sentido nada durante un siglo. Algo en él me atrae, apenas lo conozco, pero sé que hay algo roto en su interior que de alguna manera encaja con lo que hay roto en mí. Acercarme a él puede significar el fin del mundo, pero empiezo a sospechar que alguien me ha traído a este lugar a propósito, y tengo que descubrir por qué.  
+                    «Vampiros, hombres lobo, dragones… ¡Lo tiene todo! Es imposible de soltar.» Andrea Izquierdo (@andreorowling)
+            </des>
+        </libro>
+    </contemporaneo>
+
+
+</recomendaciones>

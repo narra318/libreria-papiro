@@ -12,14 +12,13 @@
     <title> Inicio </title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="description" content="Iniciio general de la página, aqui se escuentran libros, descripciones generales y más.">
+    <meta name="description" content="Iniciio general de la página, aqui se escuentran libros, descripciones generales y más.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../../img/icono2.png" type="image/ico" />
     <link rel="stylesheet" href="../../../css/custom.css">
     <link rel="stylesheet" href="../../../css/style2.css">
-    <script src="../../../js/bootstrap.bundle.min.js"> </script>
-    <script src="../../../js/jquery-3.6.1.min.js"> </script>
     <link href ="../../../libs/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/jquery.dataTables.min.css">
     <style>
         body{
             background-image: url('../../../img/fondos/fondo-admin.jpg');
@@ -67,15 +66,15 @@
     
     <div class="container">
         <div id="Producto" class="text-center text-light p-3 overflow-auto">
-            <table class="table overflow-auto">
+            <table class="table overflow-auto" id="foros">
             <thead>
-                <tr class="text-white bg-info bg-opacity-75"> 
-                    <th class="border border-info"> ID </th>
-                    <th class="border border-info"> Nombre </th>
-                    <th class="border border-info"> Autor </th>
-                    <th class="border border-info"> Usuario </th>
-                    <th class="border border-info"> Descripción </th>
-                    <th class="border border-info"> Inhabilitar </th>
+                <tr class="text-white text-center bg-info bg-opacity-75"> 
+                    <th class="border border-info" style="text-align: center;"> ID </th>
+                    <th class="border border-info" style="text-align: center;"> Nombre </th>
+                    <th class="border border-info" style="text-align: center;"> Autor </th>
+                    <th class="border border-info" style="text-align: center;"> Usuario </th>
+                    <th class="border border-info" style="text-align: center;"> Descripción </th>
+                    <th class="border border-info" style="text-align: center;"> Inhabilitar </th>
                 </tr>
             </thead>
     <?php
@@ -101,7 +100,7 @@
             $aMostrar=substr($desc, 0, 150);
             $aMostrar.="...";
             
-            echo "<tr class=' bg-dark text-secondary'>
+            echo "<tr class='linea bg-dark text-secondary'>
                 <td class='border border-info'> ".$idForo." </td>
                 <td class='border border-info'> ".$usuario." </td>
                 <td class='border border-info'> ".$nombre." </td>
@@ -114,10 +113,12 @@
 
     ?>
         </table>
-            <!-- <a href=""></a> -->
         </div>
     </div>
 
+    <script src="../../../js/bootstrap.bundle.min.js"> </script>
+    <script src="../../../js/jquery-3.6.1.min.js"> </script>
+    <script src="../../../js/jquery.dataTables.min.js"></script>
     <script>
         // Funcion para buscar usuario
         function buscarProducto(valor){
@@ -142,6 +143,12 @@
             });
             $(".linea").mouseout(function() {
                 $(this).attr("class", "bg-dark text-secondary bg-dark border border-info");
+            });
+            
+            $('#foros').DataTable({
+                paging: true,
+                ordering: true,
+                info: true,
             });
         })
     </script>

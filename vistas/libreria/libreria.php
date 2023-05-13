@@ -28,8 +28,8 @@
                     Queremos que las librerías sean santuarios a los que se acuda buscando mucho más de lo que se puede encontrar en un almacén. Que los escritores y los artistas sean auténticas estrellas capaces de influir en el espíritu de su época.
                     Librerías entre cuyas estanterías nacieron escritores, artistas, músicos, cineastas, actores, pero también locos, dementes, profetas, políticos y otros Quijotes necesarios para que una sociedad sea libre y sueñe.
                     <br><br>
-                    La Librería Papiro de Colombia fue fundada en la ciudad de Barranquilla en septiembre de 1941, y fue pionera en la modalidad de autoservicio y en la venta y distribución de revistas en el país.
-                    En la Librería Papiro nos destacamos también por la novedosa integración de heladerías y cafeterías dentro de nuestras sedes (en las de Cali particularmente); en la actualidad contamos con 31 Agencias a nivel Nacional, librerías en seis ciudades (Bogotá, Cali, Medellín, Barranquilla, Cartagena y Pereira) situadas en los mejores centros comerciales de cada una de estas ciudades.
+                    La Librería Papiro de Colombia fue fundada en la ciudad de Tunja en septiembre de 1941, y fue pionera en la modalidad de autoservicio y en la venta y distribución de revistas en el país.
+                    En la Librería Papiro nos destacamos también por la novedosa integración de heladerías y cafeterías dentro de nuestras sedes (en las de Cali particularmente); en la actualidad contamos con 31 Agencias a nivel Nacional, librerías en seis ciudades (Bogotá, Cali, Medellín, Tunja, Cartagena y Pereira) situadas en los mejores centros comerciales de cada una de estas ciudades.
                 </p>
             </div>
         </div>
@@ -52,13 +52,13 @@
                 <div class="col-md-6"> 
                     <p style="font-size: 47px;" id="Titulo2" class="text-end"> Misión <i class="bi bi-chat-right-heart text-info p-3" style="font-size: 40px;"></i> </p> 
                     <p class="p-5 pt-3 text-end pe-3">
-                        Satisfacer íntegramente las necesidades de nuestros clientes, ofreciendo el mayor surtido de libros de texto, lectura e innovación digital.  Satisfaciendo las necesidades de la comunidad educativa con una amplia gama de editoriales para garantizar el aprendizaje y fomentar el amor a la lectura en el público en general.
+                        Nuestra misión en la librería es ser el destino preferido de los amantes de los libros, ofreciendo una amplia selección de obras literarias y recursos educativos de alta calidad, así como un ambiente acogedor y cómodo para que los clientes disfruten de su tiempo en nuestra tienda. Nos esforzamos por proporcionar un excelente servicio al cliente y promover la lectura y el aprendizaje en nuestra comunidad.
                     </p>
                 </div>
                 <div class="col-md-6"> 
                     <p style="font-size: 47px;" id="Titulo2" class="text-start"> <i class="bi bi-chat-left-heart text-info p-3" style="font-size: 40px;"></i> Visión  </p> 
                     <p class="p-5 pt-3 ps-3">
-                        Satisfacer íntegramente las necesidades de nuestros clientes, ofreciendo el mayor surtido de libros de texto, lectura e innovación digital.  Satisfaciendo las necesidades de la comunidad educativa con una amplia gama de editoriales para garantizar el aprendizaje y fomentar el amor a la lectura en el público en general.
+                        Nuestra visión es convertirnos en la librería más reconocida y respetada en nuestra comunidad, con un enfoque en la excelencia en el servicio al cliente, la calidad de nuestros productos y recursos, y un ambiente acogedor y cómodo para nuestros clientes. Queremos ser un centro para la cultura y el aprendizaje, donde la gente pueda encontrar inspiración, conocimiento y entretenimiento a través de la lectura y la educación.
                     </p>
                 </div>
             </div>

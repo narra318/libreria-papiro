@@ -7,17 +7,18 @@
     $con = $conn->conexion();
 
     $limite = 9;
-    $paginaActual = isset($_GET['p']) && is_numeric($_GET['p']) ? (int)$_GET['p']: 1;
-
-    $stmt = $con -> prepare("SELECT libro.idLibro, libro.nombreLibro,  libro.autor, libro.precioLibro, libro.descripcionLibro, libro.ISBN, categoria.categoria, libro.img 
+    $paginaActual = isset($_GET['p']) && is_numeric($_GET['p']) ? (int)$_GET['p'] : 1;
+    
+    $stmt = $con->prepare("SELECT libro.idLibro, libro.nombreLibro, libro.autor, libro.precioLibro, libro.descripcionLibro, libro.ISBN, categoria.categoria, libro.img 
     FROM libro INNER JOIN categoria ON libro.idCategoria = categoria.idCategoria  
-    WHERE idEstado='1' LIMIT ?,?;");
-
-    $stmt -> bindValue(1, ($paginaActual - 1)* $limite, PDO::PARAM_INT);
-    $stmt -> bindValue(2, $limite, PDO::PARAM_INT);
-    $stmt -> execute();
-    $pr = $stmt -> fetchAll(PDO::FETCH_ASSOC);
-    $totalArticulos = $con -> query("SELECT * FROM libro;") -> rowCount();
+    WHERE idEstado='1' ORDER BY idLibro ASC LIMIT ?,?;");
+    
+    $stmt->bindValue(1, ($paginaActual - 1) * $limite, PDO::PARAM_INT);
+    $stmt->bindValue(2, $limite, PDO::PARAM_INT);
+    $stmt->execute();
+    $pr = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $totalArticulos = $con->query("SELECT * FROM libro WHERE idEstado='1';")->rowCount();
+    $totalPaginas = ceil($totalArticulos / $limite);
 ?>
 
 <!DOCTYPE html>
@@ -38,6 +39,14 @@
 <body class="bg-secondary">
     <?php include '../../modules/menu-footer.php'; ?>
     <?= menu("../.."); ?>
+
+    <div class="mt-3">
+        <ul class="nav nav-pills justify-content-center">
+            <li role="presentation" class="active btn"><a href="../../index.php">Inicio</a></li>
+            <li role="presentation" class="btn"><a href="../../carrito/VerCarta.php">Carrito de Compras</a></li>
+            <li role="presentation" class="btn"><a href="../../carrito/Pagos.php">Pagar</a></li>
+        </ul>
+    </div>
 
     <div class="container-fluid text-light">
         <div class="row">
@@ -72,9 +81,11 @@
                                             <span class="card-title text-white"><?php echo $row['autor']; ?></span>
                                             <p class="card-text text-secondary"><small class=""> <?php echo $row['categoria']; ?> </small> <br>
                                             <small class="text"> ISBN: <?php echo $row['ISBN']; ?> </small></p>
-                                            <p class="card-text"><span class="text-primary"><b>Precio: $<?php echo  number_format($row['precioLibro']); ?></b> </span></p>
+                                            <p class="card-text"><span class="text-light"><b>Precio: $<?php echo  number_format($row['precioLibro']); ?></b> </span></p>
+                                        </div>
 
-                                            <a type="button" href="descripcion.php?id=<?php echo $row['idLibro']; ?>" value="Ver más" class="btn btn-primary"> Ver más </a>
+                                        <div class="card-footer" style="border: none; background-color: transparent;">
+                                            <a type="button" href="descripcion.php?id=<?php echo $row['idLibro']; ?>" value="Ver más" class="btn btn-primary rounded"> Ver más </a><br><br>
                                         </div>
                                     </div>
                                 </div>
@@ -89,29 +100,27 @@
         <div class="container mt-5 text-center">
             <ul class="pagination justify-content-center">
                 <?php if($paginaActual > 1): ?>
-                <li class="page-item me-3">
-                    <a class="rounded btn btn-outline-primary border border-primary btn-sm" href="catalogo.php?pagina=producto&p=<?php echo $paginaActual-1; ?>"> Anterior </a>
-                </li>
+                    <li class="page-item me-3">
+                        <a class="rounded btn btn-outline-primary border border-primary btn-sm" href="catalogo.php?p=<?php echo $paginaActual-1; ?>"> Anterior </a>
+                    </li>
                 <?php endif ?>
                 
-                <?php 
-                    $i = 1;
-                    if($totalArticulos > ($paginaActual*$limite)-$limite+ count($pr)): 
-                        $x = ($totalArticulos/$limite);
-                        for($i; $i<$x; $i+1):
+                <?php
+                    if ($totalArticulos > ($paginaActual * $limite) - $limite + count($pr)) :
+                        for ($pagina = 1; $pagina <= $totalPaginas; $pagina += 1) :
                 ?>
-                    <li class="page-item me-2"><a class="btn btn-outline-primary border border-primary btn-sm rounded-pill" href="catalogo.php?pagina=producto&p=<?php echo $i ?>"><?php echo $i ?></a></li> 
-                <?php   
-                        $i=$i+1;
+                            <li class="page-item me-2"><a class="btn btn-outline-primary border border-primary btn-sm rounded-pill" href="catalogo.php?p=<?php echo $pagina ?>"><?php echo $pagina ?></a></li>
+                <?php
                         endfor;
                     endif;
                 ?>
 
-                <?php if($totalArticulos > ($paginaActual*$limite)-$limite+ count($pr)): ?>
+                <?php if ($paginaActual < $totalPaginas) : ?>
                     <li class="page-item ms-2">
-                        <a class="btn btn-outline-primary border border-primary btn-sm rounded" href="catalogo.php?pagina=producto&p=<?php echo $paginaActual+1; ?>">
-                        Siguiente
-                    </a></li> 
+                        <a class="btn btn-outline-primary border border-primary btn-sm rounded" href="catalogo.php?p=<?php echo $paginaActual + 1; ?>">
+                            Siguiente
+                        </a>
+                    </li>
                 <?php endif ?>
             </ul>
         </div>

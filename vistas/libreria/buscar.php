@@ -1,116 +1,115 @@
 <?php
-include '../../controller/conexion.php';
+    include '../../controller/conexion.php';
 
-$conexion = new Configuracion();
-$con = $conexion->conectarDB();
-
-$registros_por_pagina = 3;
-
-$buscar = '';
-if (isset($_GET['pagina'])) {
-    $pagina_actual = $_GET['pagina'];
-    $buscar = mysqli_real_escape_string($con, $buscar);
-} else {
-    $pagina_actual = 1;
-}
-
-$registro_inicial = ($pagina_actual - 1) * $registros_por_pagina;
-
-$consulta = "SELECT * FROM foro 
-            INNER JOIN usuario ON foro.idUsuario = usuario.idUsuario
-            INNER JOIN estado ON foro.idEstado = estado.idEstado
-            WHERE foro.identificador = 0 AND estado.idEstado=1 AND nombreLibro LIKE '%$buscar%'
-            ORDER BY id DESC
-            LIMIT $registro_inicial, $registros_por_pagina";
-
-
-$resultado = $con->query($consulta);
-
-if (!$resultado) {
-    echo "Error al ejecutar la consulta: " . mysqli_error($con);
-}
-
-if (mysqli_num_rows($resultado) > 0) {
-
-    include '../../modules/menu-footer.php';
+    $con = new Configuracion;
+    $conexion = $con->conectarDB();
     
+    $busqueda = $_GET["parametro"];
+    $busqueda = mysqli_real_escape_string($conexion, $busqueda);
     
-    echo '<div class="p-5" id="resultados">  <div class="table-responsive">
-                <table class="table table-striped" style="max-width: 100%;">
-                    <thead>
-                        <tr>
-                            <th></th>
-                            <th>Creador</th>
-                            <th>Libro</th>
-                            <th>Autor</th>
-                            <th>Respuestas</th>
-                        </tr>
-                    </thead>
-                    <tbody>';
-
-    while ($row = mysqli_fetch_array($resultado, MYSQLI_ASSOC)) {
-        $id = $row['id'];
-        $idUsuario = $row['usuario'];
-        $titulo = $row['nombreLibro'];
-        $autor = $row['autorLibro'];
-        $fecha = $row['fecha'];
-        $respuestas = $row['respuestas'];
-
-                echo "<tr>";
-                    echo "<td><a href='../foros/foro.php?id=$id'>Ver</a></td>";
-                    echo "<td>$idUsuario</td>";
-                    echo "<td>$titulo</td>";
-                    echo "<td>$autor</td>";
-                    echo "<td>$respuestas</td>";
-                echo "</tr>";
-    }
-
-            echo "</tbody>";
-        echo "</table>";
-    echo "</div>";
-
-    // Agregar sección de enlaces para la paginación
-    $total_registros = mysqli_num_rows(mysqli_query($con, "SELECT * FROM foro WHERE identificador = 0"));
-    $total_paginas = ceil($total_registros / $registros_por_pagina);
-    $url = $_SERVER['PHP_SELF'] . "?pagina=";
-    echo "<nav aria-label='Pagina de navegacion'>";
-        echo "<ul class='pagination justify-content-center'>";
-        for ($i = 1; $i <= $total_paginas; $i++) {
-            echo "<li class='page-item'><a class='page-link' href='" . $url . $i . "'>" . $i . "</a></li>";
-        }
-        echo "</ul>";
-    echo "</nav>";
-
-    echo '<div class="p-5 pt-2 "> 
-            <a href="http://localhost/Libreria/vistas/libreria/foros.php" id="volver-a-foros"> Volver a los foros </a>
-          </div>';
-
-    ?>
+    $limite = 6;
+    $paginaActual = isset($_GET['p']) && is_numeric($_GET['p']) ? (int)$_GET['p'] : 1;
     
-    <script>
-        function buscar() {
-            var busqueda = document.getElementById('busqueda').value;
+    $queryTotal = "SELECT COUNT(s.idForo) AS total FROM usuario u, foro f, (SELECT f.id AS idForo, COUNT(r.idForo) AS cantidad FROM respuestas r RIGHT JOIN foro f ON r.idForo = f.id WHERE f.idEstado = 1 AND (nombreLibro LIKE '%$busqueda%' OR autorLibro LIKE '%$busqueda%') GROUP BY f.id) s WHERE u.idUsuario = f.idUsuario AND s.idForo = f.id";
+    $resultadoTotal = mysqli_query($conexion, $queryTotal);
+    $rowTotal = mysqli_fetch_assoc($resultadoTotal);
+    $totalFilas = $rowTotal['total'];
+    $totalPaginas = ceil($totalFilas / $limite);
+    
+    $offset = ($paginaActual - 1) * $limite;
+    
+    $query = "SELECT s.idForo, f.idUsuario, f.nombreLibro, f.autorLibro, u.usuario, s.cantidad
+                FROM usuario u, foro f, (
+                                            SELECT f.id AS idForo, COUNT(r.idRespuesta) AS cantidad, u.usuario AS usuario
+                                            FROM respuestas r
+                                            RIGHT JOIN foro f ON r.idForo = f.id 
+                                            JOIN usuario u ON f.idUsuario = u.idUsuario
+                                            WHERE f.idEstado = 1 AND (nombreLibro LIKE '%$busqueda%' OR autorLibro LIKE '%$busqueda%' OR u.usuario LIKE '%$busqueda%') 
+                                            GROUP BY f.id
+                                        ) s 
+                WHERE u.idUsuario = f.idUsuario AND s.idForo = f.id
+                LIMIT $offset, $limite";
 
-            if (busqueda.trim() == "") {
-                document.getElementById("resultados").innerHTML = "";
-                return;
-            } else {
-                var xmlhttp = new XMLHttpRequest();
-                xmlhttp.onreadystatechange = function() {
-                    if (this.readyState == 4 && this.status == 200) {
-                        document.getElementById("resultados").innerHTML = this.responseText;
-                    }
-                };
-                xmlhttp.open("GET", "resultados.php?busqueda=" + busqueda, true);
-                xmlhttp.send();
-            }
-        }
-    </script>
-<?php
-    if ($buscar == "") {
-        echo ' </body></html>';
+    
+    $result = mysqli_query($conexion, $query);
+    
+    if (mysqli_num_rows($result) > 0) {
+        while ($row = mysqli_fetch_array($result)) {
+            $idUsuario = $row['usuario'];
+            $titulo = $row['nombreLibro'];
+            $autor = $row['autorLibro'];
+            $respuestas = $row['cantidad'];
+            $id = $row['idForo'];
+
+            echo "<div class='row mt-3 forum-card'>
+                <div class='col-12'>
+                    <a href='../foros/foro.php?id=" . $id . "'>
+                        <div class='card'>
+                            <div class='card-body d-flex justify-content-between'>
+                                <div class='col-5'>
+                                    <h5 class='card-subtitle mb-2'>Creador: " . $idUsuario . "</h5 style=' font-size: 16px;'>
+                                    <h4 class='card-text mb-2'>" . $titulo . "</h4>
+                                    <p class='card-tittle mb-0' style='opacity: 0.7;'>" . $autor . "</p>
+                                </div>
+                                <div class='col-6 d-flex flex-row-reverse align-items-center text-dark'>
+                                    <span class='card-text mb-0' style='font-size: 1.2rem;'><i class='bi bi-chat-left' style='font-size: 1.4rem;'></i>  &nbsp; " . $respuestas . "</span>
+                                    <img class='libroE me-4' src='https://img.icons8.com/ios-glyphs/30/null/open-book--v2.png'/>
+                                </div>
+                                <div class='col-1 d-flex align-items-center justify-content-center'>
+                                    <!-- Columna vacía para centrar el contenido -->
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>";
+        } $filas = mysqli_fetch_all($resultadoTotal, MYSQLI_ASSOC);
+
+        ?>
+
+        <div class="container mt-5 text-center">
+            <ul class="pagination justify-content-center">
+                <?php  if($paginaActual > 1): ?>
+                    <li class="page-item me-3">
+                        <a class="rounded btn btn-outline-primary border border-primary btn-sm" href="foros.php?p=<?php echo $paginaActual-1; ?>"> Anterior </a>
+                    </li>
+                <?php endif ?>
+                
+                <?php
+                    if ($totalFilas > ($paginaActual * $limite) - $limite + count($filas)) :
+                        for ($pagina = 1; $pagina <= $totalPaginas; $pagina += 1) :
+                ?>
+                            <li class="page-item me-2"><a class="btn btn-outline-primary border border-primary btn-sm rounded-pill" href="foros.php?p=<?php echo $pagina ?>"><?php echo $pagina ?></a></li>
+                <?php
+                        endfor;
+                    endif;
+                ?>
+
+                <?php if ($paginaActual < $totalPaginas) : ?>
+                    <li class="page-item ms-2">
+                        <a class="btn btn-outline-primary border border-primary btn-sm rounded" href="foros.php?p=<?php echo $paginaActual + 1; ?>">
+                            Siguiente
+                        </a>
+                    </li>
+                <?php endif ?>
+            </ul>
+        </div>
+
+
+    <?php
+        echo '
+        <script>
+            var icono = $(".libroE");
+            icono.hover(function() {
+                $(this).attr("src", "../../img/iconos/libro-abierto.gif");
+            }, function() {
+                $(this).attr("src", "https://img.icons8.com/ios-glyphs/30/null/open-book--v2.png");
+            });
+        </script>';
     } else {
-        echo "<h1 class='text-center'>No se encontraron resultados para la búsqueda: " . $buscar . "</h1>";
-    };
-}
+        echo "<h5 class= 'text-center mx-auto'> No se encontraron resultados</h5>";
+    }
+    $conexion = $con->cerrarConexion();
+    unset($conexion);
+
 ?>
