@@ -19,6 +19,7 @@ if (isset($_GET['id'])) {
 
 	$query = "SELECT * FROM foro 
               INNER JOIN usuario ON foro.idUsuario = usuario.idUsuario
+              INNER JOIN estado ON foro.idEstado = estado.idEstado
               WHERE id = ? ORDER BY foro.fecha DESC";
 
 	$stmt = $conexion->prepare($query);
@@ -35,6 +36,7 @@ if (isset($_GET['id'])) {
 		$autor = $row['autorLibro'];
 		$mensaje = $row['descripcion'];
 		$fecha = $row['fecha'];
+		$estado = $row['idEstado'];
 	}
 	$con->cerrarConexion();
 	unset($conexion);
@@ -54,9 +56,7 @@ if (isset($_GET['id'])) {
 	<link rel="shortcut icon" href="../../img/icono2.png" type="image/ico" />
 	<link rel="apple-touch-icon" href="../../img/icono2.png">
 	<link rel="stylesheet" href="../../css/custom.css">
-	<script src="../../js/bootstrap.bundle.min.js"></script>
 	<link rel="stylesheet" href="../../css/style.css">
-	<script src="../../js/jquery-3.6.1.min.js"></script>
 	<link href="../../libs/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
 	<style>
 		.comentario:nth-child(n+5) {
@@ -87,13 +87,7 @@ if (isset($_GET['id'])) {
 		<h3 class="text-center"><b>Autor:</b> <?php echo $autor ?></h3>
 		<p class="p-5 text-dark" id="parrafo-msj"> <?php echo $mensaje ?></p>
 
-		<div id="comentarios" class="mt-5">
-
-			<?php
-
-			?>
-
-		</div>
+	<?php if($estado == 2){ echo '<div style="display: none;">';}else{echo '<div style="display: block;">';} ?>
 
 		<form action="ingresar_comentario.php" method="POST" id="nuevo-comentario">
 			<div class="text-end pe-5">
@@ -115,13 +109,13 @@ if (isset($_GET['id'])) {
 
 			</div>
 		</div>
+		<?php echo '</div>';   ?>
+
 	</div>
 
 	<div class="mb-3"> &nbsp; </div>
-
 	<div><?= footer(); ?></div>
-
 	<script src="../../js/jquery-3.6.1.min.js"></script>
-
+	<script src="../../js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

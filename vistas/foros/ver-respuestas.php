@@ -7,7 +7,7 @@
 	$queryComentarios = "SELECT usuario.usuario,respuestas.fecha,respuestas.respuesta FROM respuestas 
 			INNER JOIN usuario ON respuestas.idUsuario = usuario.idUsuario 
 			INNER JOIN foro ON respuestas.idForo = foro.id
-			WHERE id = ? ORDER BY respuestas.fecha ASC ";
+			WHERE id = ? ORDER BY respuestas.fecha DESC ";
 	$stmt = $conexion->prepare($queryComentarios);
 
 	$stmt->bind_Param('i', $idForo);
@@ -33,11 +33,25 @@
 	
 		if(mysqli_num_rows($resultComentarios) > 4){
 			echo '<div class="text-end"><button id="ver-mas" class="btn btn-primary rounded mb-5">Ver más comentarios</button></div>';
+			echo '<div class="text-end"><button id="ver-menos" style="display:none;" class="btn btn-primary rounded mb-5">Ver menos comentarios</button></div>';
 	?>
 		<script>
-			$("#ver-mas").click(function() {
+			  $("#ver-mas").click(function() {
 				$(".comentario:hidden").show();
+				$("#ver-menos").show();
 				$("#ver-mas").hide();
+			});
+
+			$("#ver-menos").click(function() {
+				$(".comentario:gt(3)").hide();
+				$("#ver-menos").hide();
+				$("#ver-mas").show();
+			});
+			
+			$(document).ready(function() {
+				if ($(".comentario").length > 4) {
+				$("#ver-mas").show();
+				}
 			});
 		</script>
 		

@@ -12,7 +12,7 @@
     $usuarioId = $_SESSION['idUsuario'];
 
     $sql = "SELECT id, idUsuario, name, phone, ciudad, address, masInf FROM clientes 
-    WHERE idUsuario='$usuarioId' LIMIT 21;";
+    WHERE idUsuario='$usuarioId';";
 
     $inf= $con->query($sql);
 ?>

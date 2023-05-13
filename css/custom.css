@@ -11919,3 +11919,9 @@ textarea.form-control-lg {
   color: #53213d;
 }/*# sourceMappingURL=custom.css.map */
 
+@media (max-width: 1010px) {
+  .menu-link {
+    font-size: 12px;
+  }
+}
+

@@ -15,6 +15,9 @@
 </head>
 
 <body class="bg-secondary">
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v16.0" nonce="FuROFNPG"></script>
+
     <?php include '../../modules/menu-footer.php'; ?>
     <?= menu("../.."); ?>
 
@@ -98,6 +101,8 @@
             } // endwhile
             ?>
             <br>
+
+            <div class="fb-comments mt-3" data-href="https://libreria-papiro.000webhostapp.com/descripcion.php?id=<?php echo $id; ?>" data-width="1100" data-numposts="5" data-colorscheme="dark"></div>
         </div>
         </div>
 

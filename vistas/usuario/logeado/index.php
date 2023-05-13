@@ -121,13 +121,15 @@
                         $respuestas = $row['cantidad'];
 
                         if ($estado == "Habilitado") {
+                            $estado = "Publicado";
                             echo "<tr class='bg-success bg-opacity-50'>";
                         } elseif ($estado == "Inhabilitado") {
+                            $estado = "En espera";
                             echo "<tr class='bg-warning bg-opacity-50'>";
                         }
                         
                         echo "<td style='border-right: 1px solid purple;' > <a href='../../foros/foro.php?id=$id'>Ver</a></td>";
-                        echo "<td style='border-right: 1px solid purple;' >$estado</td>";
+                        echo "<td style='border-right: 1px solid purple;' > $estado </td>";
                         echo "<td style='border-right: 1px solid purple;' >$titulo</td>";
                         echo "<td style='border-right: 1px solid purple;' >$autor</td>";
                         echo "<td style='border-right: 1px solid purple;' >$respuestas</td>";

@@ -16,8 +16,6 @@
     $query = $db->query("SELECT * FROM clientes WHERE idUsuario = " . $_SESSION['idUsuario']);
     $custRow = $query->fetch_assoc();
 
-    
-    
     include '../controller/conexion.php';
     $conexion = new Configuracion();
     $con = $conexion -> conectarDB();

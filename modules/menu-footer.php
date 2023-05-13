@@ -88,12 +88,12 @@
       
               <div class="collapse navbar-collapse justify-content-end" id="menuR">
                   <ul class="navbar-nav me-3">
-                      <li class="nav-item"> <a class="nav-link me-2" href="http://localhost/Libreria/admin/vistas/pedidos/"> <i class="bi bi-bag-plus me-1"> </i> Pedidos </a> </li>
-                      <li class="nav-item"> <a class="nav-link me-2" href="http://localhost/Libreria/admin/vistas/usuario/"> <i class="bi bi-person-rolodex me-1"> </i> Usuarios </a> </li>
-                      <li class="nav-item"> <a class="nav-link me-2" href="http://localhost/Libreria/admin/vistas/inventario/"> <i class="bi bi-journals me-1"> </i> Inventario </a> </li>
+                      <li class="nav-item"> <a class="nav-link me-2 menu-link" href="http://localhost/Libreria/admin/vistas/pedidos/"> <i class="bi bi-bag-plus me-1"> </i> Pedidos </a> </li>
+                      <li class="nav-item"> <a class="nav-link me-2 menu-link" href="http://localhost/Libreria/admin/vistas/usuario/"> <i class="bi bi-person-rolodex me-1"> </i> Usuarios </a> </li>
+                      <li class="nav-item"> <a class="nav-link me-2 menu-link" href="http://localhost/Libreria/admin/vistas/inventario/"> <i class="bi bi-journals me-1"> </i> Inventario </a> </li>
       
-                      <li class="nav-item"> <a class="nav-link me-2" href="http://localhost/Libreria/admin/vistas/foro/"> <i class="bi bi-body-text me-1"> </i> Foros </a> </li>
-                      <li class="nav-item"> <a class="nav-link me-2" href="http://localhost/Libreria/admin/codigo/controller/logout.php"> <i class="bi bi-door-closed-fill me-1"> </i> Cerrar Sesión </a> </li>
+                      <li class="nav-item"> <a class="nav-link me-2 menu-link" href="http://localhost/Libreria/admin/vistas/foro/"> <i class="bi bi-body-text me-1"> </i> Foros </a> </li>
+                      <li class="nav-item"> <a class="nav-link me-2 menu-link" href="http://localhost/Libreria/admin/codigo/controller/logout.php"> <i class="bi bi-door-closed-fill me-1"> </i> Cerrar Sesión </a> </li>
                   </ul>
               </div>
           </div>
@@ -149,7 +149,6 @@
                 <div class="offcanvas-body bg-primary text-white">
                   <div class="text-center mb-5"> <img src="$img/img/iconoooo.png" style="min-width: 30%; max-width: 70%; height: auto;" alt="perrito con mariposas"> </div> 
                   <hr class="">
-
                   <ul class="nav nav-pills flex-column mb-auto">
                       <li class="nav-item menu-side">
                           <a href="http://localhost/Libreria/vistas/usuario/logeado/" class="nav-link menuu text-white $status1"> Foros </a>

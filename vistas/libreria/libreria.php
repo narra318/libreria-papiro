@@ -52,13 +52,13 @@
                 <div class="col-md-6"> 
                     <p style="font-size: 47px;" id="Titulo2" class="text-end"> Misión <i class="bi bi-chat-right-heart text-info p-3" style="font-size: 40px;"></i> </p> 
                     <p class="p-5 pt-3 text-end pe-3">
-                        Satisfacer íntegramente las necesidades de nuestros clientes, ofreciendo el mayor surtido de libros de texto, lectura e innovación digital.  Satisfaciendo las necesidades de la comunidad educativa con una amplia gama de editoriales para garantizar el aprendizaje y fomentar el amor a la lectura en el público en general.
+                        Nuestra misión en la librería es ser el destino preferido de los amantes de los libros, ofreciendo una amplia selección de obras literarias y recursos educativos de alta calidad, así como un ambiente acogedor y cómodo para que los clientes disfruten de su tiempo en nuestra tienda. Nos esforzamos por proporcionar un excelente servicio al cliente y promover la lectura y el aprendizaje en nuestra comunidad.
                     </p>
                 </div>
                 <div class="col-md-6"> 
                     <p style="font-size: 47px;" id="Titulo2" class="text-start"> <i class="bi bi-chat-left-heart text-info p-3" style="font-size: 40px;"></i> Visión  </p> 
                     <p class="p-5 pt-3 ps-3">
-                        Satisfacer íntegramente las necesidades de nuestros clientes, ofreciendo el mayor surtido de libros de texto, lectura e innovación digital.  Satisfaciendo las necesidades de la comunidad educativa con una amplia gama de editoriales para garantizar el aprendizaje y fomentar el amor a la lectura en el público en general.
+                        Nuestra visión es convertirnos en la librería más reconocida y respetada en nuestra comunidad, con un enfoque en la excelencia en el servicio al cliente, la calidad de nuestros productos y recursos, y un ambiente acogedor y cómodo para nuestros clientes. Queremos ser un centro para la cultura y el aprendizaje, donde la gente pueda encontrar inspiración, conocimiento y entretenimiento a través de la lectura y la educación.
                     </p>
                 </div>
             </div>

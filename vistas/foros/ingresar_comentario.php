@@ -9,7 +9,7 @@
     $idForo = $_POST['foro'];
     $idUsuario = $_POST['usuario'];
     $comentario = htmlspecialchars($_POST['comentario']);
-    $malas_palabras = array("perra", "hijueputa", "malparida", "idiota", "estupido", "imbecil", "puta", "jodido", "cabron", "maricon", "mierda", "cono", "verga", "concha", "puto"); // Lista de malas palabras
+    $malas_palabras = array("perra", "hijueputa", "malparida", "malparido", "malparidas", "malparidos", "idiota", "estupido", "imbecil", "puta", "jodido", "cabron", "maricon", "imbecil","hdpt", "mierda", "cono", "verga", "concha", "puto"); // Lista de malas palabras
 
     foreach ($malas_palabras as $palabra) {
         if (strpos(strtolower($comentario), $palabra) !== false) {

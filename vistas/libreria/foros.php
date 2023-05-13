@@ -38,31 +38,10 @@
             margin-top: 20px;
         }
 
-        .dataTables_wrapper .dataTables_length,
-        .dataTables_wrapper .dataTables_filter {
-            color: transparent;
-            visibility: hidden;
-            display: none;
-            margin: 5px;
+        .forum-card:hover{
+            cursor: pointer;
         }
-
-        #tabla-foros {
-            border-collapse: collapse;
-        }
-
-        #tabla-foros th,
-        #tabla-foros td {
-            border: none;
-            padding: 10px;
-        }
-
-        #tabla-foros tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        #tabla-foros tr:nth-child(odd) {
-            background-color: #ffffff;
-        }
+        
     </style>
 </head>
 
@@ -133,22 +112,24 @@
                 ?>
                     <div class="row mt-3 forum-card">
                         <div class="col-12">
-                            <div class="card forum-card-border-color forum-card-background-color forum-text-color">
-                                <div class="card-body d-flex justify-content-between">
-                                    <div class="col-5">
-                                        <h5 class="card-subtitle mb-2">Creador: <?php echo $idUsuario; ?></h5 style=" font-size: 16px;">
-                                        <h4 class="card-text mb-2"><?php echo $titulo; ?></h4>
-                                        <p class="card-tittle mb-0" style="opacity: 0.7;"><?php echo $autor; ?></p>
-                                    </div>
-                                    <div class="col-6 d-flex flex-row-reverse align-items-center text-dark">
-                                        <span class="card-text mb-0" style="font-size: 1.2rem;"><i class="bi bi-chat-left" style="font-size: 1.4rem;"></i>  &nbsp; <?php echo $respuestas; ?></span>
-                                        <a class="me-5" href="../foros/foro.php?id=<?php echo $id; ?>" aria-label="Ver más"> <img class="libroE" src="https://img.icons8.com/ios-glyphs/30/null/open-book--v2.png"/> </a>
-                                    </div>
-                                    <div class="col-1 d-flex align-items-center justify-content-center">
-                                        <!-- Columna vacía para centrar el contenido -->
+                            <a href="../foros/foro.php?id=<?php echo $id; ?>" class="carta">
+                                <div class="card">
+                                    <div class="card-body d-flex justify-content-between">
+                                        <div class="col-5">
+                                            <h5 class="card-subtitle mb-2">Creador: <?php echo $idUsuario; ?></h5 style=" font-size: 16px;">
+                                            <h4 class="card-text mb-2"><?php echo $titulo; ?></h4>
+                                            <p class="card-tittle mb-0" style="opacity: 0.7;"><?php echo $autor; ?></p>
+                                        </div>
+                                        <div class="col-6 d-flex flex-row-reverse align-items-center text-dark">
+                                            <span class="card-text mb-0" style="font-size: 1.2rem;"><i class="bi bi-chat-left" style="font-size: 1.4rem;"></i>  &nbsp; <?php echo $respuestas; ?></span>
+                                            <img class="libroE me-4" src="https://img.icons8.com/ios-glyphs/30/null/open-book--v2.png"/>
+                                        </div>
+                                        <div class="col-1 d-flex align-items-center justify-content-center">
+                                            <!-- Columna vacía para centrar el contenido -->
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </a>
                         </div>
                     </div>
                 <?php } $filas = mysqli_fetch_all($resultLimit, MYSQLI_ASSOC);?>
@@ -188,12 +169,15 @@
     <script src="../../js/bootstrap.bundle.min.js"> </script>
     <script src="../../js/jquery-3.6.1.min.js"> </script>
     <script>
+
         $(document).ready(function() {
-            var icono = $(".libroE");
-            icono.hover(function() {
-                $(this).attr("src", "../../img/iconos/libro-abierto.gif");
+            var carta = $(".carta");
+            carta.hover(function() {
+                var icono = $(this).find(".libroE");
+                icono.attr("src", "../../img/iconos/libro-abierto.gif");
             }, function() {
-                $(this).attr("src", "https://img.icons8.com/ios-glyphs/30/null/open-book--v2.png");
+                var icono = $(this).find(".libroE");
+                icono.attr("src", "https://img.icons8.com/ios-glyphs/30/null/open-book--v2.png");
             });
             
             var busqueda = $('#buscar')
